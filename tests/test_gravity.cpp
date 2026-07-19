@@ -6,11 +6,14 @@
 #include "orbitalforge/math/vec3.hpp"
 #include "orbitalforge/physics/body.hpp"
 #include "orbitalforge/physics/gravity.hpp"
+#include "orbitalforge/physics/system_state.hpp"
 
 using Catch::Approx;
 using orbitalforge::math::Vec3;
 using orbitalforge::physics::Body;
 using orbitalforge::physics::gravitational_acceleration;
+using orbitalforge::physics::gravitational_accelerations;
+using orbitalforge::physics::SystemState;
 
 TEST_CASE("gravity points toward the origin") {
   constexpr double earth_mu = 3.986004418e14;
@@ -75,8 +78,29 @@ TEST_CASE("gravity acceleration preserves spatial direction") {
   const Vec3 acceleration =
       gravitational_acceleration(target, source, gravitational_constant);
 
-  REQUIRE(acceleration.cross(displacement).norm() ==
+  REQUIRE(acceleration.dot(displacement).norm() ==
           Catch::Approx(0.0).margin(1e-12));
 
   REQUIRE(acceleration.dot(displacement) > 0.0);
+}
+
+TEST_CASE("two bodies accelerate toward each other") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{
+      .bodies{Body{"First", 2.0, Vec3{-1.0, .0, .0}, Vec3{}},
+              Body{"Second", 4.0, Vec3{1.0, .0, .0}, Vec3{}}}};
+
+  const std::vector<Vec3> accelerations =
+      gravitational_accelerations(system, gravitational_constant);
+
+  REQUIRE(accelerations.size() == system.bodies.size());
+
+  REQUIRE(accelerations[0].x() == Catch::Approx(1.0));
+  REQUIRE(accelerations[0].y() == Catch::Approx(0.0));
+  REQUIRE(accelerations[0].z() == Catch::Approx(0.0));
+
+  REQUIRE(accelerations[1].x() == Catch::Approx(-0.5));
+  REQUIRE(accelerations[1].y() == Catch::Approx(0.0));
+  REQUIRE(accelerations[1].z() == Catch::Approx(0.0));
 }

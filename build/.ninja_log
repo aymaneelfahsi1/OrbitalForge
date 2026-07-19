@@ -70,3 +70,7 @@
 2857	2974	1784478858453634341	orbitalforge_tests	69cec75426a51b59
 2857	2974	1784478858453634341	orbitalforge_tests-b12d07c_tests.cmake	69cec75426a51b59
 2857	2974	1784478858453634341	/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests-b12d07c_tests.cmake	69cec75426a51b59
+2	477	1784480511750802539	CMakeFiles/orbitalforge_core.dir/src/physics/gravity.cpp.o	d87810333c3b038a
+477	523	1784480512225799018	liborbitalforge_core.a	3ac9ad16c9b58a52
+2	693	1784480511751823349	CMakeFiles/orbitalforge.dir/apps/orbitalforge_cli/main.cpp.o	13df65e81112c4e0
+693	781	1784480512441797417	orbitalforge	91d2d1e7bb6815e5

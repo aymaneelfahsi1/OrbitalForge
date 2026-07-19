@@ -1,9 +1,13 @@
 #include "orbitalforge/physics/gravity.hpp"
+#include <cstddef>
 #include <stdexcept>
+#include <vector>
 
 namespace orbitalforge::physics {
 
 using math::Vec3;
+
+using std::vector;
 
 Vec3 gravitational_acceleration(const math::Vec3 &position,
                                 double gravitational_parameter) {
@@ -39,6 +43,29 @@ Vec3 gravitational_acceleration(const Body &target, const Body &source,
 
   return displacement *
          (gravitational_constant * source.mass / (distance_squared * distance));
+}
+
+vector<Vec3> gravitational_accelerations(const SystemState &system,
+                                         double gravitational_constant) {
+
+  vector<Vec3> accelerations(system.bodies.size(), Vec3{});
+
+  for (std::size_t target_index = 0; target_index < system.bodies.size();
+       ++target_index) {
+
+    for (std::size_t source_index = 0; source_index < system.bodies.size();
+         ++source_index) {
+      if (target_index == source_index) {
+        continue;
+      }
+
+      accelerations[target_index] += gravitational_acceleration(
+          system.bodies[target_index], system.bodies[source_index],
+          gravitational_constant);
+    }
+  }
+
+  return accelerations;
 }
 
 } // namespace orbitalforge::physics
