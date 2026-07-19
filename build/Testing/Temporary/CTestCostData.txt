@@ -1,24 +1,24 @@
-vectors can be multiplied by scalar 6 0.000622201
-vector computes its squared norm 6 0.000435806
-vectors can be substracted 6 0.000476107
-vectors can be added 6 0.000459134
-vector stores three coordinates 6 0.000491606
-default vector is the zero vector 6 0.000523922
-vector computes its norm 6 0.000575952
-vector supports compound addition 5 0.000690301
-vector can be normalized 5 0.000576286
-dot product of perpendicular vectors is zero 5 0.000708341
-vector can be divided by scalar 5 0.00060749
-normalizing zero vector throws 5 0.000616684
-body stores its physical state 4 0.000823341
-body rejects zero mass 4 0.000663645
-body rejects negative mass 4 0.000754649
-gravity rejects invalid gravitational parameter 3 0.000964915
-gravity points toward the origin 3 0.00105953
-gravity has expected magnitude near low Earth orbit 3 0.000952554
-gravity rejects the origin 3 0.000877035
-integrators reject negative time step 2 0.00156478
-integrators reject zero time step 2 0.00145993
-semi implicit Euler uses updated velocity for position 1 0.00254947
-explicit Euler uses current velocity for position 2 0.0013104
+vectors can be multiplied by scalar 8 0.000340614
+vector computes its squared norm 8 0.000317223
+vectors can be substracted 8 0.000393707
+vectors can be added 8 0.000359676
+vector stores three coordinates 8 0.000506844
+default vector is the zero vector 8 0.000377641
+vector computes its norm 8 0.000338965
+vector supports compound addition 7 0.000442421
+vector can be normalized 7 0.000494792
+dot product of perpendicular vectors is zero 7 0.000473055
+vector can be divided by scalar 7 0.000454151
+normalizing zero vector throws 7 0.000468172
+body stores its physical state 6 0.000451948
+body rejects zero mass 6 0.000473609
+body rejects negative mass 6 0.000447781
+gravity rejects invalid gravitational parameter 5 0.00069057
+gravity points toward the origin 5 0.000574072
+gravity has expected magnitude near low Earth orbit 5 0.000650245
+gravity rejects the origin 5 0.00059502
+integrators reject negative time step 4 0.000778112
+integrators reject zero time step 4 0.000709568
+semi implicit Euler uses updated velocity for position 3 0.000865527
+explicit Euler uses current velocity for position 4 0.000741837
 ---
