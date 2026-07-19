@@ -1,6 +1,6 @@
 # Codebase Snapshot
 
-- Generated: `2026-07-19T17:30:53`
+- Generated: `2026-07-19T18:02:32`
 - Project root: `/home/aymane/Desktop/OrbitalForge`
 - Files included: `24`
 - Files skipped: `0`
@@ -376,6 +376,11 @@ public:
     return x_ * x_ + y_ * y_ + z_ * z_;
   }
 
+  [[nodiscard]] constexpr Vec3 cross(const Vec3 &other) const noexcept {
+    return Vec3{y_ * other.z_ - z_ * other.y_, z_ * other.x_ - x_ * other.z_,
+                x_ * other.y_ - y_ * other.x_};
+  }
+
   [[nodiscard]] double
   norm() const noexcept; // No function definition just a declaration
 
@@ -472,6 +477,9 @@ struct Body {
 
 #include "orbitalforge/math/vec3.hpp"
 #include "orbitalforge/physics/body.hpp"
+#include "orbitalforge/physics/system_state.hpp"
+
+#include <vector>
 
 namespace orbitalforge::physics {
 
@@ -484,6 +492,10 @@ using physics::Body;
 [[nodiscard]] Vec3 gravitational_acceleration(const Body &target,
                                               const Body &source,
                                               double gravitational_constant);
+[[nodiscard]] std::vector<Vec3>
+gravitational_accelerations(const SystemState &system,
+                            double gravitational_constant);
+
 }; // namespace orbitalforge::physics
 ```
 
@@ -3738,11 +3750,15 @@ void Body::set_state(const State &new_state) noexcept {
 
 ```cpp
 #include "orbitalforge/physics/gravity.hpp"
+#include <cstddef>
 #include <stdexcept>
+#include <vector>
 
 namespace orbitalforge::physics {
 
 using math::Vec3;
+
+using std::vector;
 
 Vec3 gravitational_acceleration(const math::Vec3 &position,
                                 double gravitational_parameter) {
@@ -3778,6 +3794,29 @@ Vec3 gravitational_acceleration(const Body &target, const Body &source,
 
   return displacement *
          (gravitational_constant * source.mass / (distance_squared * distance));
+}
+
+vector<Vec3> gravitational_accelerations(const SystemState &system,
+                                         double gravitational_constant) {
+
+  vector<Vec3> accelerations(system.bodies.size(), Vec3{});
+
+  for (std::size_t target_index = 0; target_index < system.bodies.size();
+       ++target_index) {
+
+    for (std::size_t source_index = 0; source_index < system.bodies.size();
+         ++source_index) {
+      if (target_index == source_index) {
+        continue;
+      }
+
+      accelerations[target_index] += gravitational_acceleration(
+          system.bodies[target_index], system.bodies[source_index],
+          gravitational_constant);
+    }
+  }
+
+  return accelerations;
 }
 
 } // namespace orbitalforge::physics
@@ -3870,11 +3909,14 @@ TEST_CASE("body rejects negative mass") {
 #include "orbitalforge/math/vec3.hpp"
 #include "orbitalforge/physics/body.hpp"
 #include "orbitalforge/physics/gravity.hpp"
+#include "orbitalforge/physics/system_state.hpp"
 
 using Catch::Approx;
 using orbitalforge::math::Vec3;
 using orbitalforge::physics::Body;
 using orbitalforge::physics::gravitational_acceleration;
+using orbitalforge::physics::gravitational_accelerations;
+using orbitalforge::physics::SystemState;
 
 TEST_CASE("gravity points toward the origin") {
   constexpr double earth_mu = 3.986004418e14;
@@ -3939,10 +3981,31 @@ TEST_CASE("gravity acceleration preserves spatial direction") {
   const Vec3 acceleration =
       gravitational_acceleration(target, source, gravitational_constant);
 
-  REQUIRE(acceleration.cross(displacement).norm() ==
+  REQUIRE(acceleration.dot(displacement).norm() ==
           Catch::Approx(0.0).margin(1e-12));
 
   REQUIRE(acceleration.dot(displacement) > 0.0);
+}
+
+TEST_CASE("two bodies accelerate toward each other") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{
+      .bodies{Body{"First", 2.0, Vec3{-1.0, .0, .0}, Vec3{}},
+              Body{"Second", 4.0, Vec3{1.0, .0, .0}, Vec3{}}}};
+
+  const std::vector<Vec3> accelerations =
+      gravitational_accelerations(system, gravitational_constant);
+
+  REQUIRE(accelerations.size() == system.bodies.size());
+
+  REQUIRE(accelerations[0].x() == Catch::Approx(1.0));
+  REQUIRE(accelerations[0].y() == Catch::Approx(0.0));
+  REQUIRE(accelerations[0].z() == Catch::Approx(0.0));
+
+  REQUIRE(accelerations[1].x() == Catch::Approx(-0.5));
+  REQUIRE(accelerations[1].y() == Catch::Approx(0.0));
+  REQUIRE(accelerations[1].z() == Catch::Approx(0.0));
 }
 ```
 

@@ -65,7 +65,6 @@ TEST_CASE("source body accelerates target toward itself") {
   REQUIRE(acceleration.y() == Catch::Approx(.0));
   REQUIRE(acceleration.z() == Catch::Approx(.0));
 }
-
 TEST_CASE("gravity acceleration preserves spatial direction") {
   constexpr double gravitational_constant = 1.0;
 
@@ -78,7 +77,7 @@ TEST_CASE("gravity acceleration preserves spatial direction") {
   const Vec3 acceleration =
       gravitational_acceleration(target, source, gravitational_constant);
 
-  REQUIRE(acceleration.dot(displacement).norm() ==
+  REQUIRE(acceleration.cross(displacement).norm() ==
           Catch::Approx(0.0).margin(1e-12));
 
   REQUIRE(acceleration.dot(displacement) > 0.0);
@@ -103,4 +102,25 @@ TEST_CASE("two bodies accelerate toward each other") {
   REQUIRE(accelerations[1].x() == Catch::Approx(-0.5));
   REQUIRE(accelerations[1].y() == Catch::Approx(0.0));
   REQUIRE(accelerations[1].z() == Catch::Approx(0.0));
+}
+
+TEST_CASE("isolated body has zero gravitational acceleration") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{
+      .bodies{
+          Body{
+              "Alone",
+              5.0,
+              Vec3{10.0, 20.0, 30.0},
+              Vec3{},
+          },
+      },
+  };
+
+  const std::vector<Vec3> accelerations =
+      gravitational_accelerations(system, gravitational_constant);
+
+  REQUIRE(accelerations.size() == 1);
+  REQUIRE(accelerations[0] == Vec3{});
 }

@@ -1,37 +1,39 @@
-vectors can be multiplied by scalar 14 0.000201028
-vector computes its squared norm 14 0.000194844
-vectors can be substracted 14 0.000210021
-vectors can be added 14 0.000198776
-vector stores three coordinates 14 0.000199573
-default vector is the zero vector 14 0.000187136
-vector computes its norm 14 0.000174513
-vector supports compound addition 13 0.000224451
-vector can be normalized 13 0.000263011
-dot product of perpendicular vectors is zero 13 0.000226414
-vector can be divided by scalar 13 0.000217096
-normalizing zero vector throws 13 0.000196889
-body stores its physical state 12 0.000261993
-body rejects zero mass 12 0.000220527
-body rejects negative mass 12 0.000265098
-gravity rejects invalid gravitational parameter 11 0.000274305
-gravity points toward the origin 11 0.000259194
-gravity has expected magnitude near low Earth orbit 11 0.000238419
-gravity rejects the origin 11 0.000231132
-integrators reject negative time step 10 0.000312768
-integrators reject zero time step 10 0.000301284
-semi implicit Euler uses updated velocity for position 9 0.000406255
-explicit Euler uses current velocity for position 10 0.000297009
-vector supports compound scalar multiplication 3 0.00109254
-dot product computes the expected value 3 0.000999341
-vector arithmetic does not modify its operands 3 0.000902702
-vector supports compound scalar division 3 0.00087199
-vector can be written to an output stream 3 0.00105581
-vector division by zero throws 2 0.00159131
-source body accelerates target toward itself 3 0.000945164
-normalizing a negative direction preserves direction 3 0.000919699
-gravity acceleration preserves spatial direction 1 0.00280879
-vector rejects compound division by zero 3 0.00120466
-system state stores multiple bodies 3 0.000903138
-system state is empty by default 3 0.00100947
-vector supports compound subtraction 3 0.0012145
+vectors can be multiplied by scalar 15 0.000235815
+vector computes its squared norm 15 0.000258641
+vectors can be substracted 15 0.000228724
+vectors can be added 15 0.000379953
+vector stores three coordinates 15 0.000218934
+default vector is the zero vector 15 0.000211534
+vector computes its norm 15 0.000449
+vector supports compound addition 14 0.000424296
+vector can be normalized 14 0.00024117
+dot product of perpendicular vectors is zero 14 0.000221263
+vector can be divided by scalar 14 0.000197457
+normalizing zero vector throws 14 0.000260345
+body stores its physical state 13 0.000224994
+body rejects zero mass 13 0.000347223
+body rejects negative mass 13 0.000225279
+gravity rejects invalid gravitational parameter 12 0.000301431
+gravity points toward the origin 12 0.000324202
+gravity has expected magnitude near low Earth orbit 12 0.000236316
+gravity rejects the origin 12 0.000318011
+integrators reject negative time step 11 0.000291725
+integrators reject zero time step 11 0.000212271
+semi implicit Euler uses updated velocity for position 10 0.000428064
+explicit Euler uses current velocity for position 11 0.000291085
+vector supports compound scalar multiplication 4 0.000665855
+dot product computes the expected value 4 0.000681179
+vector arithmetic does not modify its operands 4 0.000726575
+vector supports compound scalar division 4 0.000860249
+vector can be written to an output stream 4 0.000900072
+vector division by zero throws 3 0.00175933
+source body accelerates target toward itself 4 0.0011085
+normalizing a negative direction preserves direction 4 0.000827781
+gravity acceleration preserves spatial direction 2 0.00166585
+vector rejects compound division by zero 4 0.00105183
+system state stores multiple bodies 4 0.000928425
+system state is empty by default 4 0.000883371
+vector supports compound subtraction 4 0.000769841
+isolated body has zero gravitational acceleration 1 0.00338673
+two bodies accelerate toward each other 1 0.00386751
 ---
