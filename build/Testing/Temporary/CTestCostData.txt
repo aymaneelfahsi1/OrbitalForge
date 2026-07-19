@@ -1,0 +1,24 @@
+vectors can be multiplied by scalar 6 0.000622201
+vector computes its squared norm 6 0.000435806
+vectors can be substracted 6 0.000476107
+vectors can be added 6 0.000459134
+vector stores three coordinates 6 0.000491606
+default vector is the zero vector 6 0.000523922
+vector computes its norm 6 0.000575952
+vector supports compound addition 5 0.000690301
+vector can be normalized 5 0.000576286
+dot product of perpendicular vectors is zero 5 0.000708341
+vector can be divided by scalar 5 0.00060749
+normalizing zero vector throws 5 0.000616684
+body stores its physical state 4 0.000823341
+body rejects zero mass 4 0.000663645
+body rejects negative mass 4 0.000754649
+gravity rejects invalid gravitational parameter 3 0.000964915
+gravity points toward the origin 3 0.00105953
+gravity has expected magnitude near low Earth orbit 3 0.000952554
+gravity rejects the origin 3 0.000877035
+integrators reject negative time step 2 0.00156478
+integrators reject zero time step 2 0.00145993
+semi implicit Euler uses updated velocity for position 1 0.00254947
+explicit Euler uses current velocity for position 2 0.0013104
+---

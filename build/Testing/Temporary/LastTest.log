@@ -1,0 +1,463 @@
+Start testing: Jul 19 13:57 +01
+----------------------------------------------------------
+1/23 Testing: dot product of perpendicular vectors is zero
+1/23 Test: dot product of perpendicular vectors is zero
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "dot product of perpendicular vectors is zero"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"dot product of perpendicular vectors is zero" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "dot product of perpendicular vectors is zero"
+Randomness seeded to: 929312945
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"dot product of perpendicular vectors is zero" end time: Jul 19 13:57 +01
+"dot product of perpendicular vectors is zero" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/23 Testing: gravity rejects invalid gravitational parameter
+2/23 Test: gravity rejects invalid gravitational parameter
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "gravity rejects invalid gravitational parameter"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"gravity rejects invalid gravitational parameter" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "gravity rejects invalid gravitational parameter"
+Randomness seeded to: 3454292252
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"gravity rejects invalid gravitational parameter" end time: Jul 19 13:57 +01
+"gravity rejects invalid gravitational parameter" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/23 Testing: vector computes its squared norm
+3/23 Test: vector computes its squared norm
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector computes its squared norm"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector computes its squared norm" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "vector computes its squared norm"
+Randomness seeded to: 40947087
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector computes its squared norm" end time: Jul 19 13:57 +01
+"vector computes its squared norm" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/23 Testing: explicit Euler uses current velocity for position
+4/23 Test: explicit Euler uses current velocity for position
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "explicit Euler uses current velocity for position"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"explicit Euler uses current velocity for position" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "explicit Euler uses current velocity for position"
+Randomness seeded to: 3381169625
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"explicit Euler uses current velocity for position" end time: Jul 19 13:57 +01
+"explicit Euler uses current velocity for position" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/23 Testing: default vector is the zero vector
+5/23 Test: default vector is the zero vector
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "default vector is the zero vector"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"default vector is the zero vector" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "default vector is the zero vector"
+Randomness seeded to: 3746950229
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"default vector is the zero vector" end time: Jul 19 13:57 +01
+"default vector is the zero vector" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/23 Testing: semi implicit Euler uses updated velocity for position
+6/23 Test: semi implicit Euler uses updated velocity for position
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "semi implicit Euler uses updated velocity for position"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"semi implicit Euler uses updated velocity for position" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "semi implicit Euler uses updated velocity for position"
+Randomness seeded to: 2488965057
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"semi implicit Euler uses updated velocity for position" end time: Jul 19 13:57 +01
+"semi implicit Euler uses updated velocity for position" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/23 Testing: vector stores three coordinates
+7/23 Test: vector stores three coordinates
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector stores three coordinates"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector stores three coordinates" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "vector stores three coordinates"
+Randomness seeded to: 1156247713
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector stores three coordinates" end time: Jul 19 13:57 +01
+"vector stores three coordinates" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/23 Testing: vector computes its norm
+8/23 Test: vector computes its norm
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector computes its norm"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector computes its norm" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "vector computes its norm"
+Randomness seeded to: 2284566685
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector computes its norm" end time: Jul 19 13:57 +01
+"vector computes its norm" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/23 Testing: vectors can be multiplied by scalar
+9/23 Test: vectors can be multiplied by scalar
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vectors can be multiplied by scalar"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vectors can be multiplied by scalar" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "vectors can be multiplied by scalar"
+Randomness seeded to: 2931233712
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vectors can be multiplied by scalar" end time: Jul 19 13:57 +01
+"vectors can be multiplied by scalar" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/23 Testing: vector can be normalized
+10/23 Test: vector can be normalized
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector can be normalized"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector can be normalized" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "vector can be normalized"
+Randomness seeded to: 1029762105
+===============================================================================
+All tests passed (4 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector can be normalized" end time: Jul 19 13:57 +01
+"vector can be normalized" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/23 Testing: vector can be divided by scalar
+11/23 Test: vector can be divided by scalar
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector can be divided by scalar"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector can be divided by scalar" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "vector can be divided by scalar"
+Randomness seeded to: 439433865
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector can be divided by scalar" end time: Jul 19 13:57 +01
+"vector can be divided by scalar" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/23 Testing: vectors can be substracted
+12/23 Test: vectors can be substracted
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vectors can be substracted"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vectors can be substracted" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "vectors can be substracted"
+Randomness seeded to: 3690785440
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vectors can be substracted" end time: Jul 19 13:57 +01
+"vectors can be substracted" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/23 Testing: gravity rejects the origin
+13/23 Test: gravity rejects the origin
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "gravity rejects the origin"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"gravity rejects the origin" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "gravity rejects the origin"
+Randomness seeded to: 3711194287
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"gravity rejects the origin" end time: Jul 19 13:57 +01
+"gravity rejects the origin" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/23 Testing: body rejects negative mass
+14/23 Test: body rejects negative mass
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "body rejects negative mass"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"body rejects negative mass" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "body rejects negative mass"
+Randomness seeded to: 2904633546
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"body rejects negative mass" end time: Jul 19 13:57 +01
+"body rejects negative mass" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/23 Testing: vector supports compound addition
+15/23 Test: vector supports compound addition
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector supports compound addition"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector supports compound addition" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "vector supports compound addition"
+Randomness seeded to: 4245374548
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector supports compound addition" end time: Jul 19 13:57 +01
+"vector supports compound addition" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/23 Testing: body stores its physical state
+16/23 Test: body stores its physical state
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "body stores its physical state"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"body stores its physical state" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "body stores its physical state"
+Randomness seeded to: 1843787391
+===============================================================================
+All tests passed (4 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"body stores its physical state" end time: Jul 19 13:57 +01
+"body stores its physical state" time elapsed: 00:00:00
+----------------------------------------------------------
+
+17/23 Testing: vectors can be added
+17/23 Test: vectors can be added
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vectors can be added"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vectors can be added" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "vectors can be added"
+Randomness seeded to: 1107355957
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vectors can be added" end time: Jul 19 13:57 +01
+"vectors can be added" time elapsed: 00:00:00
+----------------------------------------------------------
+
+18/23 Testing: gravity has expected magnitude near low Earth orbit
+18/23 Test: gravity has expected magnitude near low Earth orbit
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "gravity has expected magnitude near low Earth orbit"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"gravity has expected magnitude near low Earth orbit" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "gravity has expected magnitude near low Earth orbit"
+Randomness seeded to: 3727559855
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"gravity has expected magnitude near low Earth orbit" end time: Jul 19 13:57 +01
+"gravity has expected magnitude near low Earth orbit" time elapsed: 00:00:00
+----------------------------------------------------------
+
+19/23 Testing: gravity points toward the origin
+19/23 Test: gravity points toward the origin
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "gravity points toward the origin"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"gravity points toward the origin" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "gravity points toward the origin"
+Randomness seeded to: 1934148032
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"gravity points toward the origin" end time: Jul 19 13:57 +01
+"gravity points toward the origin" time elapsed: 00:00:00
+----------------------------------------------------------
+
+20/23 Testing: normalizing zero vector throws
+20/23 Test: normalizing zero vector throws
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "normalizing zero vector throws"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"normalizing zero vector throws" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "normalizing zero vector throws"
+Randomness seeded to: 2559947626
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"normalizing zero vector throws" end time: Jul 19 13:57 +01
+"normalizing zero vector throws" time elapsed: 00:00:00
+----------------------------------------------------------
+
+21/23 Testing: integrators reject negative time step
+21/23 Test: integrators reject negative time step
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "integrators reject negative time step"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"integrators reject negative time step" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "integrators reject negative time step"
+Randomness seeded to: 2003627935
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"integrators reject negative time step" end time: Jul 19 13:57 +01
+"integrators reject negative time step" time elapsed: 00:00:00
+----------------------------------------------------------
+
+22/23 Testing: integrators reject zero time step
+22/23 Test: integrators reject zero time step
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "integrators reject zero time step"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"integrators reject zero time step" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "integrators reject zero time step"
+Randomness seeded to: 1393589966
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"integrators reject zero time step" end time: Jul 19 13:57 +01
+"integrators reject zero time step" time elapsed: 00:00:00
+----------------------------------------------------------
+
+23/23 Testing: body rejects zero mass
+23/23 Test: body rejects zero mass
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "body rejects zero mass"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"body rejects zero mass" start time: Jul 19 13:57 +01
+Output:
+----------------------------------------------------------
+Filters: "body rejects zero mass"
+Randomness seeded to: 2387644405
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"body rejects zero mass" end time: Jul 19 13:57 +01
+"body rejects zero mass" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jul 19 13:57 +01
