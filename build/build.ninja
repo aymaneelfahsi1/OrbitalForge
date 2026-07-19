@@ -355,6 +355,15 @@ build CMakeFiles/orbitalforge_tests.dir/tests/test_integrator.cpp.o: CXX_COMPILE
   OBJECT_FILE_DIR = CMakeFiles/orbitalforge_tests.dir/tests
   TARGET_SUPPORT_DIR = CMakeFiles/orbitalforge_tests.dir
 
+build CMakeFiles/orbitalforge_tests.dir/tests/test_system_state.cpp.o: CXX_COMPILER__orbitalforge_tests_unscanned_Debug /home/aymane/Desktop/OrbitalForge/tests/test_system_state.cpp || cmake_object_order_depends_target_orbitalforge_tests
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles/orbitalforge_tests.dir/tests/test_system_state.cpp.o.d
+  FLAGS = -g -std=c++20
+  INCLUDES = -I/home/aymane/Desktop/OrbitalForge/include
+  OBJECT_DIR = CMakeFiles/orbitalforge_tests.dir
+  OBJECT_FILE_DIR = CMakeFiles/orbitalforge_tests.dir/tests
+  TARGET_SUPPORT_DIR = CMakeFiles/orbitalforge_tests.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target orbitalforge_tests
@@ -363,7 +372,7 @@ build CMakeFiles/orbitalforge_tests.dir/tests/test_integrator.cpp.o: CXX_COMPILE
 #############################################
 # Link the executable orbitalforge_tests
 
-build orbitalforge_tests orbitalforge_tests-b12d07c_tests.cmake | ${cmake_ninja_workdir}orbitalforge_tests-b12d07c_tests.cmake: CXX_EXECUTABLE_LINKER__orbitalforge_tests_Debug CMakeFiles/orbitalforge_tests.dir/tests/test_vec3.cpp.o CMakeFiles/orbitalforge_tests.dir/tests/test_body.cpp.o CMakeFiles/orbitalforge_tests.dir/tests/test_gravity.cpp.o CMakeFiles/orbitalforge_tests.dir/tests/test_integrator.cpp.o | liborbitalforge_core.a /usr/lib64/libCatch2Main.so.3.13.0 /usr/lib64/libCatch2.so.3.13.0 || liborbitalforge_core.a
+build orbitalforge_tests orbitalforge_tests-b12d07c_tests.cmake | ${cmake_ninja_workdir}orbitalforge_tests-b12d07c_tests.cmake: CXX_EXECUTABLE_LINKER__orbitalforge_tests_Debug CMakeFiles/orbitalforge_tests.dir/tests/test_vec3.cpp.o CMakeFiles/orbitalforge_tests.dir/tests/test_body.cpp.o CMakeFiles/orbitalforge_tests.dir/tests/test_gravity.cpp.o CMakeFiles/orbitalforge_tests.dir/tests/test_integrator.cpp.o CMakeFiles/orbitalforge_tests.dir/tests/test_system_state.cpp.o | liborbitalforge_core.a /usr/lib64/libCatch2Main.so.3.13.0 /usr/lib64/libCatch2.so.3.13.0 || liborbitalforge_core.a
   CONFIG = Debug
   DEP_FILE = CMakeFiles/orbitalforge_tests.dir/link.d
   FLAGS = -g

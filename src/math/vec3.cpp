@@ -25,6 +25,35 @@ Vec3 Vec3::normalized() const {
   return *this / length;
 }
 
+Vec3 &Vec3::operator-=(const Vec3 &other) noexcept {
+  x_ -= other.x_;
+  y_ -= other.y_;
+  z_ -= other.z_;
+
+  return *this;
+}
+
+Vec3 &Vec3::operator*=(double scalar) noexcept {
+  x_ *= scalar;
+  y_ *= scalar;
+  z_ *= scalar;
+
+  return *this;
+}
+
+Vec3 &Vec3::operator/=(double scalar) {
+
+  if (scalar == 0.0) {
+    throw std::domain_error{"Cannot divide a vector by zero"};
+  }
+
+  x_ /= scalar;
+  y_ /= scalar;
+  z_ /= scalar;
+
+  return *this;
+}
+
 std::ostream &operator<<(std::ostream &output, const Vec3 &vector) {
   output << '(' << vector.x() << ", " << vector.y() << ", " << vector.z()
          << ')';

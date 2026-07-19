@@ -68,6 +68,7 @@ add_executable(
     tests/test_body.cpp
     tests/test_gravity.cpp
     tests/test_integrator.cpp
+    tests/test_system_state.cpp
 )
 
 target_link_libraries(
