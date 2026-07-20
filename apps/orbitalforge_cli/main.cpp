@@ -176,7 +176,7 @@ int main() {
    */
   constexpr std::size_t body_count = 500;
 
-  constexpr std::size_t step_count = 2'000;
+  constexpr std::size_t step_count = 2'000'000;
 
   constexpr std::size_t output_interval = 200;
 
