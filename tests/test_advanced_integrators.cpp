@@ -1,6 +1,11 @@
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
 
+#include "orbitalforge/math/vec3.hpp"
+#include "orbitalforge/physics/body.hpp"
+#include "orbitalforge/physics/diagnostics.hpp"
+#include "orbitalforge/physics/system_state.hpp"
+#include "orbitalforge/simulation/step.hpp"
 #include <array>
 #include <cmath>
 #include <cstddef>
@@ -9,12 +14,6 @@
 #include <string>
 #include <string_view>
 
-#include "orbitalforge/math/vec3.hpp"
-#include "orbitalforge/physics/body.hpp"
-#include "orbitalforge/physics/diagnostics.hpp"
-#include "orbitalforge/physics/system_state.hpp"
-#include "orbitalforge/simulation/step.hpp"
-
 namespace {
 
 using orbitalforge::math::Vec3;
@@ -22,11 +21,11 @@ using orbitalforge::physics::Body;
 using orbitalforge::physics::SystemState;
 using orbitalforge::physics::total_momentum;
 
-using StepFunction = void (*)(SystemState &, double, double);
+using StepFunction = void(SystemState &, double, double);
 
 struct NamedIntegrator {
   std::string_view name;
-  StepFunction step;
+  StepFunction *step;
 };
 
 constexpr std::array advanced_integrators{

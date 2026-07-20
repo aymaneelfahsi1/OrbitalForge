@@ -180,7 +180,77 @@ void advance_leapfrog_step(SystemState &system, double gravitational_constant,
   const vector<Vec3> initial_accelerations =
       gravitational_accelerations(system, gravitational_constant);
 
-  validate_acceleration_count(system, , initial_accelerations);
+  validate_acceleration_count(system, initial_accelerations);
+
+  const double half_time_step = .5 * time_step;
+
+  for (std::size_t index = 0; index < system.bodies.size(); ++index) {
+    Body &body = system.bodies[index];
+    body.velocity += initial_accelerations[index] * half_time_step;
+  }
+
+  for (Body &body : system.bodies) {
+    body.position += body.velocity * time_step;
+  }
+
+  const vector<Vec3> final_accelerations =
+      gravitational_accelerations(system, gravitational_constant);
+
+  validate_acceleration_count(system, final_accelerations);
+
+  for (std::size_t index = 0; index < system.bodies.size(); ++index) {
+    system.bodies[index].velocity +=
+        final_accelerations[index] * half_time_step;
+  }
+}
+
+void advance_runge_kutta_4_step(physics::SystemState &system,
+                                double gravitational_constant,
+                                double time_step) {
+
+  validate_time_step(time_step);
+
+  const SystemState initial_system = system;
+
+  const SystemDerivative k1 =
+      evaluate_derivative(initial_system, gravitational_constant);
+
+  const SystemState k2_system =
+      offset_system(initial_system, k1, .5 * time_step);
+
+  const SystemDerivative k2 =
+      evaluate_derivative(k2_system, gravitational_constant);
+
+  const SystemState k3_system = offset_system(k2_system, k2, .5 * time_step);
+
+  const SystemDerivative k3 =
+      evaluate_derivative(k3_system, gravitational_constant);
+
+  const SystemState k4_system = offset_system(k3_system, k3, time_step);
+
+  const SystemDerivative k4 =
+      evaluate_derivative(k4_system, gravitational_constant);
+
+  const double weighted_time_step = time_step / 6.0;
+
+  for (std::size_t index = 0; index < system.bodies.size(); ++index) {
+    const State initial_state = initial_system.bodies[index].state();
+
+    const Vec3 weighted_position_rate =
+        k1.position_rates[index] + 2.0 * k2.position_rates[index] +
+        2.0 * k3.position_rates[index] + k4.position_rates[index];
+
+    const Vec3 weighted_velocity_rate =
+        k1.velocity_rates[index] + 2.0 * k2.velocity_rates[index] +
+        2.0 * k3.velocity_rates[index] + k4.velocity_rates[index];
+
+    const Vec3 new_postion =
+        initial_state.position + weighted_position_rate * weighted_time_step;
+    const Vec3 new_velocity =
+        initial_state.velocity + weighted_velocity_rate * weighted_time_step;
+
+    system.bodies[index].set_state(State{new_postion, new_velocity});
+  }
 }
 
 } // namespace orbitalforge::simulation
