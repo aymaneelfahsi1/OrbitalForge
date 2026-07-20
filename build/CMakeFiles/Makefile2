@@ -1079,12 +1079,12 @@ CMakeFiles/ContinuousSubmit.dir/clean:
 CMakeFiles/orbitalforge_tests.dir/all: CMakeFiles/orbitalforge_core.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/orbitalforge_tests.dir/build.make CMakeFiles/orbitalforge_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/orbitalforge_tests.dir/build.make CMakeFiles/orbitalforge_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/aymane/Desktop/OrbitalForge/build/CMakeFiles --progress-num=10,11,12,13,14,15,16,17 "Built target orbitalforge_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/aymane/Desktop/OrbitalForge/build/CMakeFiles --progress-num=10,11,12,13,14,15,16,17,18 "Built target orbitalforge_tests"
 .PHONY : CMakeFiles/orbitalforge_tests.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/orbitalforge_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/aymane/Desktop/OrbitalForge/build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/aymane/Desktop/OrbitalForge/build/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/orbitalforge_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/aymane/Desktop/OrbitalForge/build/CMakeFiles 0
 .PHONY : CMakeFiles/orbitalforge_tests.dir/rule
@@ -1096,7 +1096,7 @@ orbitalforge_tests: CMakeFiles/orbitalforge_tests.dir/rule
 # codegen rule for target.
 CMakeFiles/orbitalforge_tests.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/orbitalforge_tests.dir/build.make CMakeFiles/orbitalforge_tests.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/aymane/Desktop/OrbitalForge/build/CMakeFiles --progress-num=10,11,12,13,14,15,16,17 "Finished codegen for target orbitalforge_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/aymane/Desktop/OrbitalForge/build/CMakeFiles --progress-num=10,11,12,13,14,15,16,17,18 "Finished codegen for target orbitalforge_tests"
 .PHONY : CMakeFiles/orbitalforge_tests.dir/codegen
 
 # clean rule for target.

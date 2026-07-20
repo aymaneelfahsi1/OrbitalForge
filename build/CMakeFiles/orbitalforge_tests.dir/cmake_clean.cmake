@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/orbitalforge_tests.dir/link.d"
+  "CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.o"
+  "CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.o.d"
   "CMakeFiles/orbitalforge_tests.dir/tests/test_body.cpp.o"
   "CMakeFiles/orbitalforge_tests.dir/tests/test_body.cpp.o.d"
   "CMakeFiles/orbitalforge_tests.dir/tests/test_diagnostics.cpp.o"

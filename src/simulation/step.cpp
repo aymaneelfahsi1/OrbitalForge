@@ -29,8 +29,9 @@ using std::vector;
 namespace {
 
 void validate_time_step(double time_step) {
-  if (time_step <= 0.0) {
-    throw std::invalid_argument{"time_step must be strictly positive"};
+  if (!std::isfinite(time_step) || time_step <= 0.0) {
+    throw std::invalid_argument{
+        "time_step must be finite and strictly positive"};
   }
 }
 

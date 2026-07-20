@@ -697,6 +697,30 @@ src/simulation/step.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/orbitalforge_core.dir/build.make CMakeFiles/orbitalforge_core.dir/src/simulation/step.cpp.s
 .PHONY : src/simulation/step.cpp.s
 
+tests/test_advanced_integrators.o: tests/test_advanced_integrators.cpp.o
+.PHONY : tests/test_advanced_integrators.o
+
+# target to build an object file
+tests/test_advanced_integrators.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orbitalforge_tests.dir/build.make CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.o
+.PHONY : tests/test_advanced_integrators.cpp.o
+
+tests/test_advanced_integrators.i: tests/test_advanced_integrators.cpp.i
+.PHONY : tests/test_advanced_integrators.i
+
+# target to preprocess a source file
+tests/test_advanced_integrators.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orbitalforge_tests.dir/build.make CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.i
+.PHONY : tests/test_advanced_integrators.cpp.i
+
+tests/test_advanced_integrators.s: tests/test_advanced_integrators.cpp.s
+.PHONY : tests/test_advanced_integrators.s
+
+# target to generate assembly for a file
+tests/test_advanced_integrators.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/orbitalforge_tests.dir/build.make CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.s
+.PHONY : tests/test_advanced_integrators.cpp.s
+
 tests/test_body.o: tests/test_body.cpp.o
 .PHONY : tests/test_body.o
 
@@ -926,6 +950,9 @@ help:
 	@echo "... src/simulation/step.o"
 	@echo "... src/simulation/step.i"
 	@echo "... src/simulation/step.s"
+	@echo "... tests/test_advanced_integrators.o"
+	@echo "... tests/test_advanced_integrators.i"
+	@echo "... tests/test_advanced_integrators.s"
 	@echo "... tests/test_body.o"
 	@echo "... tests/test_body.i"
 	@echo "... tests/test_body.s"

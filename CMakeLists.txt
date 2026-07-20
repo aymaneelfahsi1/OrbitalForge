@@ -74,6 +74,7 @@ add_executable(
     tests/test_system_state.cpp
     tests/test_diagnostics.cpp
     tests/test_simulation_step.cpp
+    tests/test_advanced_integrators.cpp
 )
 
 target_link_libraries(

@@ -1,234 +1,14 @@
-Start testing: Jul 20 11:14 +01
+Start testing: Jul 20 12:59 +01
 ----------------------------------------------------------
-1/72 Testing: empty system has no gravitational accelerations
-1/72 Test: empty system has no gravitational accelerations
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "empty system has no gravitational accelerations"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"empty system has no gravitational accelerations" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "empty system has no gravitational accelerations"
-Randomness seeded to: 221233585
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"empty system has no gravitational accelerations" end time: Jul 20 11:14 +01
-"empty system has no gravitational accelerations" time elapsed: 00:00:00
-----------------------------------------------------------
-
-2/72 Testing: vector supports compound scalar multiplication
-2/72 Test: vector supports compound scalar multiplication
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector supports compound scalar multiplication"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"vector supports compound scalar multiplication" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "vector supports compound scalar multiplication"
-Randomness seeded to: 1255522060
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"vector supports compound scalar multiplication" end time: Jul 20 11:14 +01
-"vector supports compound scalar multiplication" time elapsed: 00:00:00
-----------------------------------------------------------
-
-3/72 Testing: vectors can be substracted
-3/72 Test: vectors can be substracted
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vectors can be substracted"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"vectors can be substracted" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "vectors can be substracted"
-Randomness seeded to: 576018515
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"vectors can be substracted" end time: Jul 20 11:14 +01
-"vectors can be substracted" time elapsed: 00:00:00
-----------------------------------------------------------
-
-4/72 Testing: default vector is the zero vector
-4/72 Test: default vector is the zero vector
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "default vector is the zero vector"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"default vector is the zero vector" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "default vector is the zero vector"
-Randomness seeded to: 2413559544
-===============================================================================
-All tests passed (3 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"default vector is the zero vector" end time: Jul 20 11:14 +01
-"default vector is the zero vector" time elapsed: 00:00:00
-----------------------------------------------------------
-
-5/72 Testing: semi implicit Euler uses updated velocity for position
-5/72 Test: semi implicit Euler uses updated velocity for position
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "semi implicit Euler uses updated velocity for position"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"semi implicit Euler uses updated velocity for position" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "semi implicit Euler uses updated velocity for position"
-Randomness seeded to: 3017251474
-===============================================================================
-All tests passed (2 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"semi implicit Euler uses updated velocity for position" end time: Jul 20 11:14 +01
-"semi implicit Euler uses updated velocity for position" time elapsed: 00:00:00
-----------------------------------------------------------
-
-6/72 Testing: body acceleration accumulates contributions from all sources
-6/72 Test: body acceleration accumulates contributions from all sources
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "body acceleration accumulates contributions from all sources"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"body acceleration accumulates contributions from all sources" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "body acceleration accumulates contributions from all sources"
-Randomness seeded to: 2401015482
-===============================================================================
-All tests passed (3 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"body acceleration accumulates contributions from all sources" end time: Jul 20 11:14 +01
-"body acceleration accumulates contributions from all sources" time elapsed: 00:00:00
-----------------------------------------------------------
-
-7/72 Testing: single body is located at the center of mass
-7/72 Test: single body is located at the center of mass
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "single body is located at the center of mass"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"single body is located at the center of mass" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "single body is located at the center of mass"
-Randomness seeded to: 3758580133
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"single body is located at the center of mass" end time: Jul 20 11:14 +01
-"single body is located at the center of mass" time elapsed: 00:00:00
-----------------------------------------------------------
-
-8/72 Testing: vectors can be multiplied by scalar
-8/72 Test: vectors can be multiplied by scalar
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vectors can be multiplied by scalar"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"vectors can be multiplied by scalar" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "vectors can be multiplied by scalar"
-Randomness seeded to: 2610230582
-===============================================================================
-All tests passed (2 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"vectors can be multiplied by scalar" end time: Jul 20 11:14 +01
-"vectors can be multiplied by scalar" time elapsed: 00:00:00
-----------------------------------------------------------
-
-9/72 Testing: normalizing zero vector throws
-9/72 Test: normalizing zero vector throws
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "normalizing zero vector throws"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"normalizing zero vector throws" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "normalizing zero vector throws"
-Randomness seeded to: 312595059
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"normalizing zero vector throws" end time: Jul 20 11:14 +01
-"normalizing zero vector throws" time elapsed: 00:00:00
-----------------------------------------------------------
-
-10/72 Testing: system state is empty by default
-10/72 Test: system state is empty by default
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "system state is empty by default"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"system state is empty by default" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "system state is empty by default"
-Randomness seeded to: 1162608943
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"system state is empty by default" end time: Jul 20 11:14 +01
-"system state is empty by default" time elapsed: 00:00:00
-----------------------------------------------------------
-
-11/72 Testing: explicit Euler rejects an invalid gravitational constant
-11/72 Test: explicit Euler rejects an invalid gravitational constant
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "explicit Euler rejects an invalid gravitational constant"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"explicit Euler rejects an invalid gravitational constant" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "explicit Euler rejects an invalid gravitational constant"
-Randomness seeded to: 238916469
-===============================================================================
-All tests passed (2 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"explicit Euler rejects an invalid gravitational constant" end time: Jul 20 11:14 +01
-"explicit Euler rejects an invalid gravitational constant" time elapsed: 00:00:00
-----------------------------------------------------------
-
-12/72 Testing: equal and opposite momenta cancel
-12/72 Test: equal and opposite momenta cancel
+1/82 Testing: equal and opposite momenta cancel
+1/82 Test: equal and opposite momenta cancel
 Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "equal and opposite momenta cancel"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"equal and opposite momenta cancel" start time: Jul 20 11:14 +01
+"equal and opposite momenta cancel" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
 Filters: "equal and opposite momenta cancel"
-Randomness seeded to: 3974137827
+Randomness seeded to: 1655844153
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
@@ -236,639 +16,39 @@ All tests passed (1 assertion in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"equal and opposite momenta cancel" end time: Jul 20 11:14 +01
+"equal and opposite momenta cancel" end time: Jul 20 12:59 +01
 "equal and opposite momenta cancel" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-13/72 Testing: total momentum sums all momentum components
-13/72 Test: total momentum sums all momentum components
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "total momentum sums all momentum components"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"total momentum sums all momentum components" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "total momentum sums all momentum components"
-Randomness seeded to: 3451039008
-===============================================================================
-All tests passed (3 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"total momentum sums all momentum components" end time: Jul 20 11:14 +01
-"total momentum sums all momentum components" time elapsed: 00:00:00
-----------------------------------------------------------
-
-14/72 Testing: vector can be written to an output stream
-14/72 Test: vector can be written to an output stream
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector can be written to an output stream"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"vector can be written to an output stream" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "vector can be written to an output stream"
-Randomness seeded to: 580278188
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"vector can be written to an output stream" end time: Jul 20 11:14 +01
-"vector can be written to an output stream" time elapsed: 00:00:00
-----------------------------------------------------------
-
-15/72 Testing: two body potential energy is negative
-15/72 Test: two body potential energy is negative
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "two body potential energy is negative"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"two body potential energy is negative" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "two body potential energy is negative"
-Randomness seeded to: 2249711105
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"two body potential energy is negative" end time: Jul 20 11:14 +01
-"two body potential energy is negative" time elapsed: 00:00:00
-----------------------------------------------------------
-
-16/72 Testing: normalizing a negative direction preserves direction
-16/72 Test: normalizing a negative direction preserves direction
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "normalizing a negative direction preserves direction"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"normalizing a negative direction preserves direction" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "normalizing a negative direction preserves direction"
-Randomness seeded to: 570733171
-===============================================================================
-All tests passed (4 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"normalizing a negative direction preserves direction" end time: Jul 20 11:14 +01
-"normalizing a negative direction preserves direction" time elapsed: 00:00:00
-----------------------------------------------------------
-
-17/72 Testing: center of mass is undefined for an empty system
-17/72 Test: center of mass is undefined for an empty system
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "center of mass is undefined for an empty system"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"center of mass is undefined for an empty system" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "center of mass is undefined for an empty system"
-Randomness seeded to: 2016506657
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"center of mass is undefined for an empty system" end time: Jul 20 11:14 +01
-"center of mass is undefined for an empty system" time elapsed: 00:00:00
-----------------------------------------------------------
-
-18/72 Testing: explicit Euler uses current velocity for position
-18/72 Test: explicit Euler uses current velocity for position
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "explicit Euler uses current velocity for position"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"explicit Euler uses current velocity for position" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "explicit Euler uses current velocity for position"
-Randomness seeded to: 524146093
-===============================================================================
-All tests passed (2 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"explicit Euler uses current velocity for position" end time: Jul 20 11:14 +01
-"explicit Euler uses current velocity for position" time elapsed: 00:00:00
-----------------------------------------------------------
-
-19/72 Testing: vector arithmetic does not modify its operands
-19/72 Test: vector arithmetic does not modify its operands
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector arithmetic does not modify its operands"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"vector arithmetic does not modify its operands" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "vector arithmetic does not modify its operands"
-Randomness seeded to: 577385159
-===============================================================================
-All tests passed (3 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"vector arithmetic does not modify its operands" end time: Jul 20 11:14 +01
-"vector arithmetic does not modify its operands" time elapsed: 00:00:00
-----------------------------------------------------------
-
-20/72 Testing: system state stores multiple bodies
-20/72 Test: system state stores multiple bodies
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "system state stores multiple bodies"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"system state stores multiple bodies" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "system state stores multiple bodies"
-Randomness seeded to: 577913641
-===============================================================================
-All tests passed (3 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"system state stores multiple bodies" end time: Jul 20 11:14 +01
-"system state stores multiple bodies" time elapsed: 00:00:00
-----------------------------------------------------------
-
-21/72 Testing: source body accelerates target toward itself
-21/72 Test: source body accelerates target toward itself
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "source body accelerates target toward itself"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"source body accelerates target toward itself" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "source body accelerates target toward itself"
-Randomness seeded to: 1599381266
-===============================================================================
-All tests passed (3 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"source body accelerates target toward itself" end time: Jul 20 11:14 +01
-"source body accelerates target toward itself" time elapsed: 00:00:00
-----------------------------------------------------------
-
-22/72 Testing: integrators reject zero time step
-22/72 Test: integrators reject zero time step
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "integrators reject zero time step"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"integrators reject zero time step" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "integrators reject zero time step"
-Randomness seeded to: 3189545387
-===============================================================================
-All tests passed (2 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"integrators reject zero time step" end time: Jul 20 11:14 +01
-"integrators reject zero time step" time elapsed: 00:00:00
-----------------------------------------------------------
-
-23/72 Testing: an isolated body moves with constant velocity using semi-implicit Euler
-23/72 Test: an isolated body moves with constant velocity using semi-implicit Euler
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "an isolated body moves with constant velocity using semi-implicit Euler"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"an isolated body moves with constant velocity using semi-implicit Euler" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "an isolated body moves with constant velocity using semi-implicit Euler"
-Randomness seeded to: 23020912
-===============================================================================
-All tests passed (6 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"an isolated body moves with constant velocity using semi-implicit Euler" end time: Jul 20 11:14 +01
-"an isolated body moves with constant velocity using semi-implicit Euler" time elapsed: 00:00:00
-----------------------------------------------------------
-
-24/72 Testing: dot product of perpendicular vectors is zero
-24/72 Test: dot product of perpendicular vectors is zero
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "dot product of perpendicular vectors is zero"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"dot product of perpendicular vectors is zero" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "dot product of perpendicular vectors is zero"
-Randomness seeded to: 314393209
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"dot product of perpendicular vectors is zero" end time: Jul 20 11:14 +01
-"dot product of perpendicular vectors is zero" time elapsed: 00:00:00
-----------------------------------------------------------
-
-25/72 Testing: vector can be normalized
-25/72 Test: vector can be normalized
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector can be normalized"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"vector can be normalized" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "vector can be normalized"
-Randomness seeded to: 3571210544
-===============================================================================
-All tests passed (4 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"vector can be normalized" end time: Jul 20 11:14 +01
-"vector can be normalized" time elapsed: 00:00:00
-----------------------------------------------------------
-
-26/72 Testing: semi-implicit Euler rejects an invalid gravitational constant
-26/72 Test: semi-implicit Euler rejects an invalid gravitational constant
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "semi-implicit Euler rejects an invalid gravitational constant"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"semi-implicit Euler rejects an invalid gravitational constant" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "semi-implicit Euler rejects an invalid gravitational constant"
-Randomness seeded to: 164454104
-===============================================================================
-All tests passed (2 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"semi-implicit Euler rejects an invalid gravitational constant" end time: Jul 20 11:14 +01
-"semi-implicit Euler rejects an invalid gravitational constant" time elapsed: 00:00:00
-----------------------------------------------------------
-
-27/72 Testing: potential energy rejects invalid gravitational constants
-27/72 Test: potential energy rejects invalid gravitational constants
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "potential energy rejects invalid gravitational constants"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"potential energy rejects invalid gravitational constants" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "potential energy rejects invalid gravitational constants"
-Randomness seeded to: 918196505
-===============================================================================
-All tests passed (2 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"potential energy rejects invalid gravitational constants" end time: Jul 20 11:14 +01
-"potential energy rejects invalid gravitational constants" time elapsed: 00:00:00
-----------------------------------------------------------
-
-28/72 Testing: integrators reject negative time step
-28/72 Test: integrators reject negative time step
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "integrators reject negative time step"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"integrators reject negative time step" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "integrators reject negative time step"
-Randomness seeded to: 2845375706
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"integrators reject negative time step" end time: Jul 20 11:14 +01
-"integrators reject negative time step" time elapsed: 00:00:00
-----------------------------------------------------------
-
-29/72 Testing: vector computes its squared norm
-29/72 Test: vector computes its squared norm
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector computes its squared norm"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"vector computes its squared norm" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "vector computes its squared norm"
-Randomness seeded to: 2330280230
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"vector computes its squared norm" end time: Jul 20 11:14 +01
-"vector computes its squared norm" time elapsed: 00:00:00
-----------------------------------------------------------
-
-30/72 Testing: body rejects negative mass
-30/72 Test: body rejects negative mass
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "body rejects negative mass"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"body rejects negative mass" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "body rejects negative mass"
-Randomness seeded to: 1387116228
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.01 sec
-----------------------------------------------------------
-Test Passed.
-"body rejects negative mass" end time: Jul 20 11:14 +01
-"body rejects negative mass" time elapsed: 00:00:00
-----------------------------------------------------------
-
-31/72 Testing: two-body internal forces are equal and opposite
-31/72 Test: two-body internal forces are equal and opposite
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "two-body internal forces are equal and opposite"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"two-body internal forces are equal and opposite" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "two-body internal forces are equal and opposite"
-Randomness seeded to: 76839728
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"two-body internal forces are equal and opposite" end time: Jul 20 11:14 +01
-"two-body internal forces are equal and opposite" time elapsed: 00:00:00
-----------------------------------------------------------
-
-32/72 Testing: vector rejects compound division by zero
-32/72 Test: vector rejects compound division by zero
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector rejects compound division by zero"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"vector rejects compound division by zero" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "vector rejects compound division by zero"
-Randomness seeded to: 983876464
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"vector rejects compound division by zero" end time: Jul 20 11:14 +01
-"vector rejects compound division by zero" time elapsed: 00:00:00
-----------------------------------------------------------
-
-33/72 Testing: gravity acceleration preserves spatial direction
-33/72 Test: gravity acceleration preserves spatial direction
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "gravity acceleration preserves spatial direction"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"gravity acceleration preserves spatial direction" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "gravity acceleration preserves spatial direction"
-Randomness seeded to: 4137155885
-===============================================================================
-All tests passed (2 assertions in 1 test case)
-
-<end of output>
-Test time =   0.01 sec
-----------------------------------------------------------
-Test Passed.
-"gravity acceleration preserves spatial direction" end time: Jul 20 11:14 +01
-"gravity acceleration preserves spatial direction" time elapsed: 00:00:00
-----------------------------------------------------------
-
-34/72 Testing: kinetic energy sums contributions from every body
-34/72 Test: kinetic energy sums contributions from every body
+2/82 Testing: kinetic energy sums contributions from every body
+2/82 Test: kinetic energy sums contributions from every body
 Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "kinetic energy sums contributions from every body"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"kinetic energy sums contributions from every body" start time: Jul 20 11:14 +01
+"kinetic energy sums contributions from every body" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
 Filters: "kinetic energy sums contributions from every body"
-Randomness seeded to: 2348894125
+Randomness seeded to: 333412894
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"kinetic energy sums contributions from every body" end time: Jul 20 11:14 +01
+"kinetic energy sums contributions from every body" end time: Jul 20 12:59 +01
 "kinetic energy sums contributions from every body" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-35/72 Testing: doubling source mass doubles target acceleration
-35/72 Test: doubling source mass doubles target acceleration
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "doubling source mass doubles target acceleration"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"doubling source mass doubles target acceleration" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "doubling source mass doubles target acceleration"
-Randomness seeded to: 3620239198
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.01 sec
-----------------------------------------------------------
-Test Passed.
-"doubling source mass doubles target acceleration" end time: Jul 20 11:14 +01
-"doubling source mass doubles target acceleration" time elapsed: 00:00:00
-----------------------------------------------------------
-
-36/72 Testing: total energy combines kinetic and potential energy
-36/72 Test: total energy combines kinetic and potential energy
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "total energy combines kinetic and potential energy"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"total energy combines kinetic and potential energy" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "total energy combines kinetic and potential energy"
-Randomness seeded to: 3374399055
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"total energy combines kinetic and potential energy" end time: Jul 20 11:14 +01
-"total energy combines kinetic and potential energy" time elapsed: 00:00:00
-----------------------------------------------------------
-
-37/72 Testing: vector supports compound scalar division
-37/72 Test: vector supports compound scalar division
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector supports compound scalar division"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"vector supports compound scalar division" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "vector supports compound scalar division"
-Randomness seeded to: 655218125
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"vector supports compound scalar division" end time: Jul 20 11:14 +01
-"vector supports compound scalar division" time elapsed: 00:00:00
-----------------------------------------------------------
-
-38/72 Testing: vector computes its norm
-38/72 Test: vector computes its norm
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector computes its norm"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"vector computes its norm" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "vector computes its norm"
-Randomness seeded to: 734662646
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"vector computes its norm" end time: Jul 20 11:14 +01
-"vector computes its norm" time elapsed: 00:00:00
-----------------------------------------------------------
-
-39/72 Testing: semi-implicit Euler rejects a zero time step
-39/72 Test: semi-implicit Euler rejects a zero time step
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "semi-implicit Euler rejects a zero time step"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"semi-implicit Euler rejects a zero time step" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "semi-implicit Euler rejects a zero time step"
-Randomness seeded to: 2182700448
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"semi-implicit Euler rejects a zero time step" end time: Jul 20 11:14 +01
-"semi-implicit Euler rejects a zero time step" time elapsed: 00:00:00
-----------------------------------------------------------
-
-40/72 Testing: potential energy counts each pair exactly once
-40/72 Test: potential energy counts each pair exactly once
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "potential energy counts each pair exactly once"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"potential energy counts each pair exactly once" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "potential energy counts each pair exactly once"
-Randomness seeded to: 1855040276
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"potential energy counts each pair exactly once" end time: Jul 20 11:14 +01
-"potential energy counts each pair exactly once" time elapsed: 00:00:00
-----------------------------------------------------------
-
-41/72 Testing: potential energy is undefined for coincident bodies
-41/72 Test: potential energy is undefined for coincident bodies
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "potential energy is undefined for coincident bodies"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"potential energy is undefined for coincident bodies" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "potential energy is undefined for coincident bodies"
-Randomness seeded to: 1323528818
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"potential energy is undefined for coincident bodies" end time: Jul 20 11:14 +01
-"potential energy is undefined for coincident bodies" time elapsed: 00:00:00
-----------------------------------------------------------
-
-42/72 Testing: gravity points toward the origin
-42/72 Test: gravity points toward the origin
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "gravity points toward the origin"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"gravity points toward the origin" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "gravity points toward the origin"
-Randomness seeded to: 4169371604
-===============================================================================
-All tests passed (3 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"gravity points toward the origin" end time: Jul 20 11:14 +01
-"gravity points toward the origin" time elapsed: 00:00:00
-----------------------------------------------------------
-
-43/72 Testing: doubling distance reduces acceleration by four
-43/72 Test: doubling distance reduces acceleration by four
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "doubling distance reduces acceleration by four"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"doubling distance reduces acceleration by four" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "doubling distance reduces acceleration by four"
-Randomness seeded to: 3445001598
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"doubling distance reduces acceleration by four" end time: Jul 20 11:14 +01
-"doubling distance reduces acceleration by four" time elapsed: 00:00:00
-----------------------------------------------------------
-
-44/72 Testing: semi-implicit Euler advances a symmetric two-body system
-44/72 Test: semi-implicit Euler advances a symmetric two-body system
+3/82 Testing: semi-implicit Euler advances a symmetric two-body system
+3/82 Test: semi-implicit Euler advances a symmetric two-body system
 Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "semi-implicit Euler advances a symmetric two-body system"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"semi-implicit Euler advances a symmetric two-body system" start time: Jul 20 11:14 +01
+"semi-implicit Euler advances a symmetric two-body system" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
 Filters: "semi-implicit Euler advances a symmetric two-body system"
-Randomness seeded to: 1897254261
+Randomness seeded to: 1720100530
 ===============================================================================
 All tests passed (12 assertions in 1 test case)
 
@@ -876,39 +56,19 @@ All tests passed (12 assertions in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"semi-implicit Euler advances a symmetric two-body system" end time: Jul 20 11:14 +01
+"semi-implicit Euler advances a symmetric two-body system" end time: Jul 20 12:59 +01
 "semi-implicit Euler advances a symmetric two-body system" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-45/72 Testing: vector stores three coordinates
-45/72 Test: vector stores three coordinates
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector stores three coordinates"
+4/82 Testing: vectors can be added
+4/82 Test: vectors can be added
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vectors can be added"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"vector stores three coordinates" start time: Jul 20 11:14 +01
+"vectors can be added" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
-Filters: "vector stores three coordinates"
-Randomness seeded to: 519553245
-===============================================================================
-All tests passed (3 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"vector stores three coordinates" end time: Jul 20 11:14 +01
-"vector stores three coordinates" time elapsed: 00:00:00
-----------------------------------------------------------
-
-46/72 Testing: vector supports compound addition
-46/72 Test: vector supports compound addition
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector supports compound addition"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"vector supports compound addition" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "vector supports compound addition"
-Randomness seeded to: 2413503240
+Filters: "vectors can be added"
+Randomness seeded to: 2212837084
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
@@ -916,19 +76,39 @@ All tests passed (1 assertion in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"vector supports compound addition" end time: Jul 20 11:14 +01
-"vector supports compound addition" time elapsed: 00:00:00
+"vectors can be added" end time: Jul 20 12:59 +01
+"vectors can be added" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-47/72 Testing: empty and single body systems have zero potential energy
-47/72 Test: empty and single body systems have zero potential energy
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "empty and single body systems have zero potential energy"
+5/82 Testing: advanced integrators reject negative time step
+5/82 Test: advanced integrators reject negative time step
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "advanced integrators reject negative time step"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"empty and single body systems have zero potential energy" start time: Jul 20 11:14 +01
+"advanced integrators reject negative time step" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
-Filters: "empty and single body systems have zero potential energy"
-Randomness seeded to: 1660383767
+Filters: "advanced integrators reject negative time step"
+Randomness seeded to: 1596768219
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"advanced integrators reject negative time step" end time: Jul 20 12:59 +01
+"advanced integrators reject negative time step" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/82 Testing: semi implicit Euler uses updated velocity for position
+6/82 Test: semi implicit Euler uses updated velocity for position
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "semi implicit Euler uses updated velocity for position"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"semi implicit Euler uses updated velocity for position" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "semi implicit Euler uses updated velocity for position"
+Randomness seeded to: 2030300093
 ===============================================================================
 All tests passed (2 assertions in 1 test case)
 
@@ -936,19 +116,199 @@ All tests passed (2 assertions in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"empty and single body systems have zero potential energy" end time: Jul 20 11:14 +01
+"semi implicit Euler uses updated velocity for position" end time: Jul 20 12:59 +01
+"semi implicit Euler uses updated velocity for position" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/82 Testing: leapfrog matches velocity Verlet
+7/82 Test: leapfrog matches velocity Verlet
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "leapfrog matches velocity Verlet"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"leapfrog matches velocity Verlet" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "leapfrog matches velocity Verlet"
+Randomness seeded to: 2430295676
+===============================================================================
+All tests passed (19 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"leapfrog matches velocity Verlet" end time: Jul 20 12:59 +01
+"leapfrog matches velocity Verlet" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/82 Testing: vectors can be multiplied by scalar
+8/82 Test: vectors can be multiplied by scalar
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vectors can be multiplied by scalar"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vectors can be multiplied by scalar" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "vectors can be multiplied by scalar"
+Randomness seeded to: 1499453882
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vectors can be multiplied by scalar" end time: Jul 20 12:59 +01
+"vectors can be multiplied by scalar" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/82 Testing: advanced integrators preserve body identity and mass
+9/82 Test: advanced integrators preserve body identity and mass
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "advanced integrators preserve body identity and mass"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"advanced integrators preserve body identity and mass" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "advanced integrators preserve body identity and mass"
+Randomness seeded to: 829539334
+===============================================================================
+All tests passed (18 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"advanced integrators preserve body identity and mass" end time: Jul 20 12:59 +01
+"advanced integrators preserve body identity and mass" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/82 Testing: empty system has no gravitational accelerations
+10/82 Test: empty system has no gravitational accelerations
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "empty system has no gravitational accelerations"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"empty system has no gravitational accelerations" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "empty system has no gravitational accelerations"
+Randomness seeded to: 2117436954
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"empty system has no gravitational accelerations" end time: Jul 20 12:59 +01
+"empty system has no gravitational accelerations" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/82 Testing: doubling source mass doubles target acceleration
+11/82 Test: doubling source mass doubles target acceleration
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "doubling source mass doubles target acceleration"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"doubling source mass doubles target acceleration" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "doubling source mass doubles target acceleration"
+Randomness seeded to: 2511984702
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"doubling source mass doubles target acceleration" end time: Jul 20 12:59 +01
+"doubling source mass doubles target acceleration" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/82 Testing: empty and single body systems have zero potential energy
+12/82 Test: empty and single body systems have zero potential energy
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "empty and single body systems have zero potential energy"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"empty and single body systems have zero potential energy" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "empty and single body systems have zero potential energy"
+Randomness seeded to: 839885316
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"empty and single body systems have zero potential energy" end time: Jul 20 12:59 +01
 "empty and single body systems have zero potential energy" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-48/72 Testing: center of mass uses mass weighted positions
-48/72 Test: center of mass uses mass weighted positions
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "center of mass uses mass weighted positions"
+13/82 Testing: advanced integrators reject non-finite time step
+13/82 Test: advanced integrators reject non-finite time step
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "advanced integrators reject non-finite time step"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"center of mass uses mass weighted positions" start time: Jul 20 11:14 +01
+"advanced integrators reject non-finite time step" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
-Filters: "center of mass uses mass weighted positions"
-Randomness seeded to: 2857052155
+Filters: "advanced integrators reject non-finite time step"
+Randomness seeded to: 471100838
+===============================================================================
+All tests passed (6 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"advanced integrators reject non-finite time step" end time: Jul 20 12:59 +01
+"advanced integrators reject non-finite time step" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/82 Testing: an isolated body moves with constant velocity using explicit Euler
+14/82 Test: an isolated body moves with constant velocity using explicit Euler
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "an isolated body moves with constant velocity using explicit Euler"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"an isolated body moves with constant velocity using explicit Euler" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "an isolated body moves with constant velocity using explicit Euler"
+Randomness seeded to: 3252953801
+===============================================================================
+All tests passed (6 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"an isolated body moves with constant velocity using explicit Euler" end time: Jul 20 12:59 +01
+"an isolated body moves with constant velocity using explicit Euler" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/82 Testing: simulation steps leave an empty system empty
+15/82 Test: simulation steps leave an empty system empty
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "simulation steps leave an empty system empty"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"simulation steps leave an empty system empty" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "simulation steps leave an empty system empty"
+Randomness seeded to: 120143732
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"simulation steps leave an empty system empty" end time: Jul 20 12:59 +01
+"simulation steps leave an empty system empty" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/82 Testing: advanced integrators reject zero time step
+16/82 Test: advanced integrators reject zero time step
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "advanced integrators reject zero time step"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"advanced integrators reject zero time step" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "advanced integrators reject zero time step"
+Randomness seeded to: 3578306742
 ===============================================================================
 All tests passed (3 assertions in 1 test case)
 
@@ -956,19 +316,239 @@ All tests passed (3 assertions in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"center of mass uses mass weighted positions" end time: Jul 20 11:14 +01
-"center of mass uses mass weighted positions" time elapsed: 00:00:00
+"advanced integrators reject zero time step" end time: Jul 20 12:59 +01
+"advanced integrators reject zero time step" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-49/72 Testing: gravity rejects invalid gravitational parameter
-49/72 Test: gravity rejects invalid gravitational parameter
+17/82 Testing: dot product of perpendicular vectors is zero
+17/82 Test: dot product of perpendicular vectors is zero
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "dot product of perpendicular vectors is zero"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"dot product of perpendicular vectors is zero" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "dot product of perpendicular vectors is zero"
+Randomness seeded to: 708635621
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"dot product of perpendicular vectors is zero" end time: Jul 20 12:59 +01
+"dot product of perpendicular vectors is zero" time elapsed: 00:00:00
+----------------------------------------------------------
+
+18/82 Testing: body acceleration accumulates contributions from all sources
+18/82 Test: body acceleration accumulates contributions from all sources
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "body acceleration accumulates contributions from all sources"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"body acceleration accumulates contributions from all sources" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "body acceleration accumulates contributions from all sources"
+Randomness seeded to: 1146792450
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"body acceleration accumulates contributions from all sources" end time: Jul 20 12:59 +01
+"body acceleration accumulates contributions from all sources" time elapsed: 00:00:00
+----------------------------------------------------------
+
+19/82 Testing: vector computes its squared norm
+19/82 Test: vector computes its squared norm
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector computes its squared norm"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector computes its squared norm" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "vector computes its squared norm"
+Randomness seeded to: 48307015
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector computes its squared norm" end time: Jul 20 12:59 +01
+"vector computes its squared norm" time elapsed: 00:00:00
+----------------------------------------------------------
+
+20/82 Testing: potential energy is undefined for coincident bodies
+20/82 Test: potential energy is undefined for coincident bodies
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "potential energy is undefined for coincident bodies"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"potential energy is undefined for coincident bodies" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "potential energy is undefined for coincident bodies"
+Randomness seeded to: 1918747510
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"potential energy is undefined for coincident bodies" end time: Jul 20 12:59 +01
+"potential energy is undefined for coincident bodies" time elapsed: 00:00:00
+----------------------------------------------------------
+
+21/82 Testing: RK4 preserves mirror symmetry
+21/82 Test: RK4 preserves mirror symmetry
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "RK4 preserves mirror symmetry"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"RK4 preserves mirror symmetry" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "RK4 preserves mirror symmetry"
+Randomness seeded to: 3308443287
+===============================================================================
+All tests passed (6 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"RK4 preserves mirror symmetry" end time: Jul 20 12:59 +01
+"RK4 preserves mirror symmetry" time elapsed: 00:00:00
+----------------------------------------------------------
+
+22/82 Testing: gravity points toward the origin
+22/82 Test: gravity points toward the origin
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "gravity points toward the origin"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"gravity points toward the origin" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "gravity points toward the origin"
+Randomness seeded to: 2791837238
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"gravity points toward the origin" end time: Jul 20 12:59 +01
+"gravity points toward the origin" time elapsed: 00:00:00
+----------------------------------------------------------
+
+23/82 Testing: vectors can be substracted
+23/82 Test: vectors can be substracted
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vectors can be substracted"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vectors can be substracted" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "vectors can be substracted"
+Randomness seeded to: 1963851818
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vectors can be substracted" end time: Jul 20 12:59 +01
+"vectors can be substracted" time elapsed: 00:00:00
+----------------------------------------------------------
+
+24/82 Testing: advanced integrators move an isolated body linearly
+24/82 Test: advanced integrators move an isolated body linearly
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "advanced integrators move an isolated body linearly"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"advanced integrators move an isolated body linearly" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "advanced integrators move an isolated body linearly"
+Randomness seeded to: 3743298163
+===============================================================================
+All tests passed (18 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"advanced integrators move an isolated body linearly" end time: Jul 20 12:59 +01
+"advanced integrators move an isolated body linearly" time elapsed: 00:00:00
+----------------------------------------------------------
+
+25/82 Testing: total momentum sums all momentum components
+25/82 Test: total momentum sums all momentum components
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "total momentum sums all momentum components"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"total momentum sums all momentum components" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "total momentum sums all momentum components"
+Randomness seeded to: 2945145057
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"total momentum sums all momentum components" end time: Jul 20 12:59 +01
+"total momentum sums all momentum components" time elapsed: 00:00:00
+----------------------------------------------------------
+
+26/82 Testing: doubling distance reduces acceleration by four
+26/82 Test: doubling distance reduces acceleration by four
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "doubling distance reduces acceleration by four"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"doubling distance reduces acceleration by four" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "doubling distance reduces acceleration by four"
+Randomness seeded to: 1430284931
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"doubling distance reduces acceleration by four" end time: Jul 20 12:59 +01
+"doubling distance reduces acceleration by four" time elapsed: 00:00:00
+----------------------------------------------------------
+
+27/82 Testing: velocity Verlet performs the expected two-body step
+27/82 Test: velocity Verlet performs the expected two-body step
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "velocity Verlet performs the expected two-body step"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"velocity Verlet performs the expected two-body step" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "velocity Verlet performs the expected two-body step"
+Randomness seeded to: 2726951397
+===============================================================================
+All tests passed (12 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"velocity Verlet performs the expected two-body step" end time: Jul 20 12:59 +01
+"velocity Verlet performs the expected two-body step" time elapsed: 00:00:00
+----------------------------------------------------------
+
+28/82 Testing: gravity rejects invalid gravitational parameter
+28/82 Test: gravity rejects invalid gravitational parameter
 Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "gravity rejects invalid gravitational parameter"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"gravity rejects invalid gravitational parameter" start time: Jul 20 11:14 +01
+"gravity rejects invalid gravitational parameter" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
 Filters: "gravity rejects invalid gravitational parameter"
-Randomness seeded to: 3199506749
+Randomness seeded to: 3312445251
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
@@ -976,39 +556,19 @@ All tests passed (1 assertion in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"gravity rejects invalid gravitational parameter" end time: Jul 20 11:14 +01
+"gravity rejects invalid gravitational parameter" end time: Jul 20 12:59 +01
 "gravity rejects invalid gravitational parameter" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-50/72 Testing: semi-implicit Euler rejects a negative time step
-50/72 Test: semi-implicit Euler rejects a negative time step
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "semi-implicit Euler rejects a negative time step"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"semi-implicit Euler rejects a negative time step" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "semi-implicit Euler rejects a negative time step"
-Randomness seeded to: 2355127094
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"semi-implicit Euler rejects a negative time step" end time: Jul 20 11:14 +01
-"semi-implicit Euler rejects a negative time step" time elapsed: 00:00:00
-----------------------------------------------------------
-
-51/72 Testing: explicit Euler rejects a negative time step
-51/72 Test: explicit Euler rejects a negative time step
+29/82 Testing: explicit Euler rejects a negative time step
+29/82 Test: explicit Euler rejects a negative time step
 Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "explicit Euler rejects a negative time step"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"explicit Euler rejects a negative time step" start time: Jul 20 11:14 +01
+"explicit Euler rejects a negative time step" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
 Filters: "explicit Euler rejects a negative time step"
-Randomness seeded to: 1175042009
+Randomness seeded to: 1474976218
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
@@ -1016,79 +576,39 @@ All tests passed (1 assertion in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"explicit Euler rejects a negative time step" end time: Jul 20 11:14 +01
+"explicit Euler rejects a negative time step" end time: Jul 20 12:59 +01
 "explicit Euler rejects a negative time step" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-52/72 Testing: empty system has zero kinetic energy
-52/72 Test: empty system has zero kinetic energy
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "empty system has zero kinetic energy"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"empty system has zero kinetic energy" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "empty system has zero kinetic energy"
-Randomness seeded to: 1964084438
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"empty system has zero kinetic energy" end time: Jul 20 11:14 +01
-"empty system has zero kinetic energy" time elapsed: 00:00:00
-----------------------------------------------------------
-
-53/72 Testing: vector supports compound subtraction
-53/72 Test: vector supports compound subtraction
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector supports compound subtraction"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"vector supports compound subtraction" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "vector supports compound subtraction"
-Randomness seeded to: 2103987585
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.01 sec
-----------------------------------------------------------
-Test Passed.
-"vector supports compound subtraction" end time: Jul 20 11:14 +01
-"vector supports compound subtraction" time elapsed: 00:00:00
-----------------------------------------------------------
-
-54/72 Testing: two bodies accelerate toward each other
-54/72 Test: two bodies accelerate toward each other
+30/82 Testing: two bodies accelerate toward each other
+30/82 Test: two bodies accelerate toward each other
 Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "two bodies accelerate toward each other"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"two bodies accelerate toward each other" start time: Jul 20 11:14 +01
+"two bodies accelerate toward each other" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
 Filters: "two bodies accelerate toward each other"
-Randomness seeded to: 3233466155
+Randomness seeded to: 3230662779
 ===============================================================================
 All tests passed (7 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"two bodies accelerate toward each other" end time: Jul 20 11:14 +01
+"two bodies accelerate toward each other" end time: Jul 20 12:59 +01
 "two bodies accelerate toward each other" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-55/72 Testing: gravity rejects the origin
-55/72 Test: gravity rejects the origin
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "gravity rejects the origin"
+31/82 Testing: body rejects negative mass
+31/82 Test: body rejects negative mass
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "body rejects negative mass"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"gravity rejects the origin" start time: Jul 20 11:14 +01
+"body rejects negative mass" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
-Filters: "gravity rejects the origin"
-Randomness seeded to: 3326717849
+Filters: "body rejects negative mass"
+Randomness seeded to: 797446784
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
@@ -1096,19 +616,39 @@ All tests passed (1 assertion in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"gravity rejects the origin" end time: Jul 20 11:14 +01
-"gravity rejects the origin" time elapsed: 00:00:00
+"body rejects negative mass" end time: Jul 20 12:59 +01
+"body rejects negative mass" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-56/72 Testing: stationary bodies have zero kinetic energy
-56/72 Test: stationary bodies have zero kinetic energy
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "stationary bodies have zero kinetic energy"
+32/82 Testing: normalizing a negative direction preserves direction
+32/82 Test: normalizing a negative direction preserves direction
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "normalizing a negative direction preserves direction"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"stationary bodies have zero kinetic energy" start time: Jul 20 11:14 +01
+"normalizing a negative direction preserves direction" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
-Filters: "stationary bodies have zero kinetic energy"
-Randomness seeded to: 1250633573
+Filters: "normalizing a negative direction preserves direction"
+Randomness seeded to: 848520803
+===============================================================================
+All tests passed (4 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"normalizing a negative direction preserves direction" end time: Jul 20 12:59 +01
+"normalizing a negative direction preserves direction" time elapsed: 00:00:00
+----------------------------------------------------------
+
+33/82 Testing: semi-implicit Euler rejects a negative time step
+33/82 Test: semi-implicit Euler rejects a negative time step
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "semi-implicit Euler rejects a negative time step"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"semi-implicit Euler rejects a negative time step" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "semi-implicit Euler rejects a negative time step"
+Randomness seeded to: 822522441
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
@@ -1116,19 +656,39 @@ All tests passed (1 assertion in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"stationary bodies have zero kinetic energy" end time: Jul 20 11:14 +01
-"stationary bodies have zero kinetic energy" time elapsed: 00:00:00
+"semi-implicit Euler rejects a negative time step" end time: Jul 20 12:59 +01
+"semi-implicit Euler rejects a negative time step" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-57/72 Testing: explicit Euler advances a symmetric two-body system
-57/72 Test: explicit Euler advances a symmetric two-body system
+34/82 Testing: vector can be written to an output stream
+34/82 Test: vector can be written to an output stream
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector can be written to an output stream"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector can be written to an output stream" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "vector can be written to an output stream"
+Randomness seeded to: 749798574
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector can be written to an output stream" end time: Jul 20 12:59 +01
+"vector can be written to an output stream" time elapsed: 00:00:00
+----------------------------------------------------------
+
+35/82 Testing: explicit Euler advances a symmetric two-body system
+35/82 Test: explicit Euler advances a symmetric two-body system
 Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "explicit Euler advances a symmetric two-body system"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"explicit Euler advances a symmetric two-body system" start time: Jul 20 11:14 +01
+"explicit Euler advances a symmetric two-body system" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
 Filters: "explicit Euler advances a symmetric two-body system"
-Randomness seeded to: 4181657889
+Randomness seeded to: 1761718716
 ===============================================================================
 All tests passed (12 assertions in 1 test case)
 
@@ -1136,19 +696,39 @@ All tests passed (12 assertions in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"explicit Euler advances a symmetric two-body system" end time: Jul 20 11:14 +01
+"explicit Euler advances a symmetric two-body system" end time: Jul 20 12:59 +01
 "explicit Euler advances a symmetric two-body system" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-58/72 Testing: explicit Euler computes all accelerations from the same snapshot
-58/72 Test: explicit Euler computes all accelerations from the same snapshot
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "explicit Euler computes all accelerations from the same snapshot"
+36/82 Testing: simulation steps preserve body names and masses
+36/82 Test: simulation steps preserve body names and masses
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "simulation steps preserve body names and masses"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"explicit Euler computes all accelerations from the same snapshot" start time: Jul 20 11:14 +01
+"simulation steps preserve body names and masses" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
-Filters: "explicit Euler computes all accelerations from the same snapshot"
-Randomness seeded to: 1552351977
+Filters: "simulation steps preserve body names and masses"
+Randomness seeded to: 1844419758
+===============================================================================
+All tests passed (4 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"simulation steps preserve body names and masses" end time: Jul 20 12:59 +01
+"simulation steps preserve body names and masses" time elapsed: 00:00:00
+----------------------------------------------------------
+
+37/82 Testing: vector stores three coordinates
+37/82 Test: vector stores three coordinates
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector stores three coordinates"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector stores three coordinates" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "vector stores three coordinates"
+Randomness seeded to: 1485962752
 ===============================================================================
 All tests passed (3 assertions in 1 test case)
 
@@ -1156,59 +736,19 @@ All tests passed (3 assertions in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"explicit Euler computes all accelerations from the same snapshot" end time: Jul 20 11:14 +01
-"explicit Euler computes all accelerations from the same snapshot" time elapsed: 00:00:00
+"vector stores three coordinates" end time: Jul 20 12:59 +01
+"vector stores three coordinates" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-59/72 Testing: simulation steps preserve body names and masses
-59/72 Test: simulation steps preserve body names and masses
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "simulation steps preserve body names and masses"
+38/82 Testing: integrators reject zero time step
+38/82 Test: integrators reject zero time step
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "integrators reject zero time step"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"simulation steps preserve body names and masses" start time: Jul 20 11:14 +01
+"integrators reject zero time step" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
-Filters: "simulation steps preserve body names and masses"
-Randomness seeded to: 3909042683
-===============================================================================
-All tests passed (4 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"simulation steps preserve body names and masses" end time: Jul 20 11:14 +01
-"simulation steps preserve body names and masses" time elapsed: 00:00:00
-----------------------------------------------------------
-
-60/72 Testing: body rejects zero mass
-60/72 Test: body rejects zero mass
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "body rejects zero mass"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"body rejects zero mass" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "body rejects zero mass"
-Randomness seeded to: 3197717774
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"body rejects zero mass" end time: Jul 20 11:14 +01
-"body rejects zero mass" time elapsed: 00:00:00
-----------------------------------------------------------
-
-61/72 Testing: simulation steps leave an empty system empty
-61/72 Test: simulation steps leave an empty system empty
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "simulation steps leave an empty system empty"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"simulation steps leave an empty system empty" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "simulation steps leave an empty system empty"
-Randomness seeded to: 2837259818
+Filters: "integrators reject zero time step"
+Randomness seeded to: 3471927180
 ===============================================================================
 All tests passed (2 assertions in 1 test case)
 
@@ -1216,99 +756,19 @@ All tests passed (2 assertions in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"simulation steps leave an empty system empty" end time: Jul 20 11:14 +01
-"simulation steps leave an empty system empty" time elapsed: 00:00:00
+"integrators reject zero time step" end time: Jul 20 12:59 +01
+"integrators reject zero time step" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-62/72 Testing: explicit Euler rejects a zero time step
-62/72 Test: explicit Euler rejects a zero time step
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "explicit Euler rejects a zero time step"
+39/82 Testing: potential energy rejects invalid gravitational constants
+39/82 Test: potential energy rejects invalid gravitational constants
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "potential energy rejects invalid gravitational constants"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"explicit Euler rejects a zero time step" start time: Jul 20 11:14 +01
+"potential energy rejects invalid gravitational constants" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
-Filters: "explicit Euler rejects a zero time step"
-Randomness seeded to: 1319819007
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"explicit Euler rejects a zero time step" end time: Jul 20 11:14 +01
-"explicit Euler rejects a zero time step" time elapsed: 00:00:00
-----------------------------------------------------------
-
-63/72 Testing: body stores its physical state
-63/72 Test: body stores its physical state
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "body stores its physical state"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"body stores its physical state" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "body stores its physical state"
-Randomness seeded to: 935021675
-===============================================================================
-All tests passed (4 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"body stores its physical state" end time: Jul 20 11:14 +01
-"body stores its physical state" time elapsed: 00:00:00
-----------------------------------------------------------
-
-64/72 Testing: semi-implicit Euler computes all accelerations from the same snapshot
-64/72 Test: semi-implicit Euler computes all accelerations from the same snapshot
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "semi-implicit Euler computes all accelerations from the same snapshot"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"semi-implicit Euler computes all accelerations from the same snapshot" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "semi-implicit Euler computes all accelerations from the same snapshot"
-Randomness seeded to: 3030137802
-===============================================================================
-All tests passed (6 assertions in 1 test case)
-
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"semi-implicit Euler computes all accelerations from the same snapshot" end time: Jul 20 11:14 +01
-"semi-implicit Euler computes all accelerations from the same snapshot" time elapsed: 00:00:00
-----------------------------------------------------------
-
-65/72 Testing: vector division by zero throws
-65/72 Test: vector division by zero throws
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector division by zero throws"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"vector division by zero throws" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "vector division by zero throws"
-Randomness seeded to: 3883914183
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.01 sec
-----------------------------------------------------------
-Test Passed.
-"vector division by zero throws" end time: Jul 20 11:14 +01
-"vector division by zero throws" time elapsed: 00:00:00
-----------------------------------------------------------
-
-66/72 Testing: system gravity rejects invalid gravitational constant
-66/72 Test: system gravity rejects invalid gravitational constant
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "system gravity rejects invalid gravitational constant"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"system gravity rejects invalid gravitational constant" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "system gravity rejects invalid gravitational constant"
-Randomness seeded to: 956783681
+Filters: "potential energy rejects invalid gravitational constants"
+Randomness seeded to: 43150369
 ===============================================================================
 All tests passed (2 assertions in 1 test case)
 
@@ -1316,19 +776,39 @@ All tests passed (2 assertions in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"system gravity rejects invalid gravitational constant" end time: Jul 20 11:14 +01
-"system gravity rejects invalid gravitational constant" time elapsed: 00:00:00
+"potential energy rejects invalid gravitational constants" end time: Jul 20 12:59 +01
+"potential energy rejects invalid gravitational constants" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-67/72 Testing: isolated body has zero gravitational acceleration
-67/72 Test: isolated body has zero gravitational acceleration
+40/82 Testing: potential energy counts each pair exactly once
+40/82 Test: potential energy counts each pair exactly once
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "potential energy counts each pair exactly once"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"potential energy counts each pair exactly once" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "potential energy counts each pair exactly once"
+Randomness seeded to: 3599879819
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"potential energy counts each pair exactly once" end time: Jul 20 12:59 +01
+"potential energy counts each pair exactly once" time elapsed: 00:00:00
+----------------------------------------------------------
+
+41/82 Testing: isolated body has zero gravitational acceleration
+41/82 Test: isolated body has zero gravitational acceleration
 Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "isolated body has zero gravitational acceleration"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"isolated body has zero gravitational acceleration" start time: Jul 20 11:14 +01
+"isolated body has zero gravitational acceleration" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
 Filters: "isolated body has zero gravitational acceleration"
-Randomness seeded to: 623854107
+Randomness seeded to: 3430845781
 ===============================================================================
 All tests passed (2 assertions in 1 test case)
 
@@ -1336,19 +816,519 @@ All tests passed (2 assertions in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"isolated body has zero gravitational acceleration" end time: Jul 20 11:14 +01
+"isolated body has zero gravitational acceleration" end time: Jul 20 12:59 +01
 "isolated body has zero gravitational acceleration" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-68/72 Testing: an isolated body moves with constant velocity using explicit Euler
-68/72 Test: an isolated body moves with constant velocity using explicit Euler
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "an isolated body moves with constant velocity using explicit Euler"
+42/82 Testing: dot product computes the expected value
+42/82 Test: dot product computes the expected value
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "dot product computes the expected value"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"an isolated body moves with constant velocity using explicit Euler" start time: Jul 20 11:14 +01
+"dot product computes the expected value" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
-Filters: "an isolated body moves with constant velocity using explicit Euler"
-Randomness seeded to: 3440339058
+Filters: "dot product computes the expected value"
+Randomness seeded to: 2687525784
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"dot product computes the expected value" end time: Jul 20 12:59 +01
+"dot product computes the expected value" time elapsed: 00:00:00
+----------------------------------------------------------
+
+43/82 Testing: vector supports compound addition
+43/82 Test: vector supports compound addition
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector supports compound addition"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector supports compound addition" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "vector supports compound addition"
+Randomness seeded to: 2366430357
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector supports compound addition" end time: Jul 20 12:59 +01
+"vector supports compound addition" time elapsed: 00:00:00
+----------------------------------------------------------
+
+44/82 Testing: vector supports compound subtraction
+44/82 Test: vector supports compound subtraction
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector supports compound subtraction"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector supports compound subtraction" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "vector supports compound subtraction"
+Randomness seeded to: 263274447
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector supports compound subtraction" end time: Jul 20 12:59 +01
+"vector supports compound subtraction" time elapsed: 00:00:00
+----------------------------------------------------------
+
+45/82 Testing: vector computes its norm
+45/82 Test: vector computes its norm
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector computes its norm"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector computes its norm" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "vector computes its norm"
+Randomness seeded to: 3152431331
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector computes its norm" end time: Jul 20 12:59 +01
+"vector computes its norm" time elapsed: 00:00:00
+----------------------------------------------------------
+
+46/82 Testing: system gravity rejects invalid gravitational constant
+46/82 Test: system gravity rejects invalid gravitational constant
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "system gravity rejects invalid gravitational constant"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"system gravity rejects invalid gravitational constant" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "system gravity rejects invalid gravitational constant"
+Randomness seeded to: 2107574840
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"system gravity rejects invalid gravitational constant" end time: Jul 20 12:59 +01
+"system gravity rejects invalid gravitational constant" time elapsed: 00:00:00
+----------------------------------------------------------
+
+47/82 Testing: source body accelerates target toward itself
+47/82 Test: source body accelerates target toward itself
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "source body accelerates target toward itself"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"source body accelerates target toward itself" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "source body accelerates target toward itself"
+Randomness seeded to: 1869679776
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"source body accelerates target toward itself" end time: Jul 20 12:59 +01
+"source body accelerates target toward itself" time elapsed: 00:00:00
+----------------------------------------------------------
+
+48/82 Testing: integrators reject negative time step
+48/82 Test: integrators reject negative time step
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "integrators reject negative time step"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"integrators reject negative time step" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "integrators reject negative time step"
+Randomness seeded to: 3907401943
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"integrators reject negative time step" end time: Jul 20 12:59 +01
+"integrators reject negative time step" time elapsed: 00:00:00
+----------------------------------------------------------
+
+49/82 Testing: gravity has expected magnitude near low Earth orbit
+49/82 Test: gravity has expected magnitude near low Earth orbit
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "gravity has expected magnitude near low Earth orbit"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"gravity has expected magnitude near low Earth orbit" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "gravity has expected magnitude near low Earth orbit"
+Randomness seeded to: 2300419939
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"gravity has expected magnitude near low Earth orbit" end time: Jul 20 12:59 +01
+"gravity has expected magnitude near low Earth orbit" time elapsed: 00:00:00
+----------------------------------------------------------
+
+50/82 Testing: gravity rejects the origin
+50/82 Test: gravity rejects the origin
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "gravity rejects the origin"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"gravity rejects the origin" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "gravity rejects the origin"
+Randomness seeded to: 1170119303
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"gravity rejects the origin" end time: Jul 20 12:59 +01
+"gravity rejects the origin" time elapsed: 00:00:00
+----------------------------------------------------------
+
+51/82 Testing: explicit Euler rejects an invalid gravitational constant
+51/82 Test: explicit Euler rejects an invalid gravitational constant
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "explicit Euler rejects an invalid gravitational constant"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"explicit Euler rejects an invalid gravitational constant" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "explicit Euler rejects an invalid gravitational constant"
+Randomness seeded to: 1090951018
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"explicit Euler rejects an invalid gravitational constant" end time: Jul 20 12:59 +01
+"explicit Euler rejects an invalid gravitational constant" time elapsed: 00:00:00
+----------------------------------------------------------
+
+52/82 Testing: vector division by zero throws
+52/82 Test: vector division by zero throws
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector division by zero throws"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector division by zero throws" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "vector division by zero throws"
+Randomness seeded to: 1711438889
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector division by zero throws" end time: Jul 20 12:59 +01
+"vector division by zero throws" time elapsed: 00:00:00
+----------------------------------------------------------
+
+53/82 Testing: body stores its physical state
+53/82 Test: body stores its physical state
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "body stores its physical state"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"body stores its physical state" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "body stores its physical state"
+Randomness seeded to: 3057342897
+===============================================================================
+All tests passed (4 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"body stores its physical state" end time: Jul 20 12:59 +01
+"body stores its physical state" time elapsed: 00:00:00
+----------------------------------------------------------
+
+54/82 Testing: semi-implicit Euler rejects a zero time step
+54/82 Test: semi-implicit Euler rejects a zero time step
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "semi-implicit Euler rejects a zero time step"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"semi-implicit Euler rejects a zero time step" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "semi-implicit Euler rejects a zero time step"
+Randomness seeded to: 2486213977
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"semi-implicit Euler rejects a zero time step" end time: Jul 20 12:59 +01
+"semi-implicit Euler rejects a zero time step" time elapsed: 00:00:00
+----------------------------------------------------------
+
+55/82 Testing: vector supports compound scalar multiplication
+55/82 Test: vector supports compound scalar multiplication
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector supports compound scalar multiplication"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector supports compound scalar multiplication" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "vector supports compound scalar multiplication"
+Randomness seeded to: 2700382465
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector supports compound scalar multiplication" end time: Jul 20 12:59 +01
+"vector supports compound scalar multiplication" time elapsed: 00:00:00
+----------------------------------------------------------
+
+56/82 Testing: body rejects zero mass
+56/82 Test: body rejects zero mass
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "body rejects zero mass"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"body rejects zero mass" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "body rejects zero mass"
+Randomness seeded to: 2287004624
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"body rejects zero mass" end time: Jul 20 12:59 +01
+"body rejects zero mass" time elapsed: 00:00:00
+----------------------------------------------------------
+
+57/82 Testing: center of mass uses mass weighted positions
+57/82 Test: center of mass uses mass weighted positions
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "center of mass uses mass weighted positions"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"center of mass uses mass weighted positions" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "center of mass uses mass weighted positions"
+Randomness seeded to: 213369031
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"center of mass uses mass weighted positions" end time: Jul 20 12:59 +01
+"center of mass uses mass weighted positions" time elapsed: 00:00:00
+----------------------------------------------------------
+
+58/82 Testing: center of mass is undefined for an empty system
+58/82 Test: center of mass is undefined for an empty system
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "center of mass is undefined for an empty system"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"center of mass is undefined for an empty system" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "center of mass is undefined for an empty system"
+Randomness seeded to: 465677230
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"center of mass is undefined for an empty system" end time: Jul 20 12:59 +01
+"center of mass is undefined for an empty system" time elapsed: 00:00:00
+----------------------------------------------------------
+
+59/82 Testing: two body potential energy is negative
+59/82 Test: two body potential energy is negative
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "two body potential energy is negative"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"two body potential energy is negative" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "two body potential energy is negative"
+Randomness seeded to: 1415067922
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"two body potential energy is negative" end time: Jul 20 12:59 +01
+"two body potential energy is negative" time elapsed: 00:00:00
+----------------------------------------------------------
+
+60/82 Testing: single body is located at the center of mass
+60/82 Test: single body is located at the center of mass
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "single body is located at the center of mass"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"single body is located at the center of mass" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "single body is located at the center of mass"
+Randomness seeded to: 848040127
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"single body is located at the center of mass" end time: Jul 20 12:59 +01
+"single body is located at the center of mass" time elapsed: 00:00:00
+----------------------------------------------------------
+
+61/82 Testing: vector can be normalized
+61/82 Test: vector can be normalized
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector can be normalized"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector can be normalized" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "vector can be normalized"
+Randomness seeded to: 531050310
+===============================================================================
+All tests passed (4 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector can be normalized" end time: Jul 20 12:59 +01
+"vector can be normalized" time elapsed: 00:00:00
+----------------------------------------------------------
+
+62/82 Testing: advanced integrators preserve total momentum
+62/82 Test: advanced integrators preserve total momentum
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "advanced integrators preserve total momentum"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"advanced integrators preserve total momentum" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "advanced integrators preserve total momentum"
+Randomness seeded to: 3688532796
+===============================================================================
+All tests passed (9 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"advanced integrators preserve total momentum" end time: Jul 20 12:59 +01
+"advanced integrators preserve total momentum" time elapsed: 00:00:00
+----------------------------------------------------------
+
+63/82 Testing: normalizing zero vector throws
+63/82 Test: normalizing zero vector throws
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "normalizing zero vector throws"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"normalizing zero vector throws" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "normalizing zero vector throws"
+Randomness seeded to: 3321145393
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"normalizing zero vector throws" end time: Jul 20 12:59 +01
+"normalizing zero vector throws" time elapsed: 00:00:00
+----------------------------------------------------------
+
+64/82 Testing: system state stores multiple bodies
+64/82 Test: system state stores multiple bodies
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "system state stores multiple bodies"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"system state stores multiple bodies" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "system state stores multiple bodies"
+Randomness seeded to: 822630946
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"system state stores multiple bodies" end time: Jul 20 12:59 +01
+"system state stores multiple bodies" time elapsed: 00:00:00
+----------------------------------------------------------
+
+65/82 Testing: semi-implicit Euler rejects an invalid gravitational constant
+65/82 Test: semi-implicit Euler rejects an invalid gravitational constant
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "semi-implicit Euler rejects an invalid gravitational constant"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"semi-implicit Euler rejects an invalid gravitational constant" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "semi-implicit Euler rejects an invalid gravitational constant"
+Randomness seeded to: 2407244790
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"semi-implicit Euler rejects an invalid gravitational constant" end time: Jul 20 12:59 +01
+"semi-implicit Euler rejects an invalid gravitational constant" time elapsed: 00:00:00
+----------------------------------------------------------
+
+66/82 Testing: explicit Euler uses current velocity for position
+66/82 Test: explicit Euler uses current velocity for position
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "explicit Euler uses current velocity for position"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"explicit Euler uses current velocity for position" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "explicit Euler uses current velocity for position"
+Randomness seeded to: 925116497
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"explicit Euler uses current velocity for position" end time: Jul 20 12:59 +01
+"explicit Euler uses current velocity for position" time elapsed: 00:00:00
+----------------------------------------------------------
+
+67/82 Testing: semi-implicit Euler computes all accelerations from the same snapshot
+67/82 Test: semi-implicit Euler computes all accelerations from the same snapshot
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "semi-implicit Euler computes all accelerations from the same snapshot"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"semi-implicit Euler computes all accelerations from the same snapshot" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "semi-implicit Euler computes all accelerations from the same snapshot"
+Randomness seeded to: 1924985280
 ===============================================================================
 All tests passed (6 assertions in 1 test case)
 
@@ -1356,39 +1336,19 @@ All tests passed (6 assertions in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"an isolated body moves with constant velocity using explicit Euler" end time: Jul 20 11:14 +01
-"an isolated body moves with constant velocity using explicit Euler" time elapsed: 00:00:00
+"semi-implicit Euler computes all accelerations from the same snapshot" end time: Jul 20 12:59 +01
+"semi-implicit Euler computes all accelerations from the same snapshot" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-69/72 Testing: vectors can be added
-69/72 Test: vectors can be added
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vectors can be added"
+68/82 Testing: vector rejects compound division by zero
+68/82 Test: vector rejects compound division by zero
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector rejects compound division by zero"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"vectors can be added" start time: Jul 20 11:14 +01
+"vector rejects compound division by zero" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
-Filters: "vectors can be added"
-Randomness seeded to: 1200364425
-===============================================================================
-All tests passed (1 assertion in 1 test case)
-
-<end of output>
-Test time =   0.01 sec
-----------------------------------------------------------
-Test Passed.
-"vectors can be added" end time: Jul 20 11:14 +01
-"vectors can be added" time elapsed: 00:00:00
-----------------------------------------------------------
-
-70/72 Testing: gravity has expected magnitude near low Earth orbit
-70/72 Test: gravity has expected magnitude near low Earth orbit
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "gravity has expected magnitude near low Earth orbit"
-Directory: /home/aymane/Desktop/OrbitalForge/build
-"gravity has expected magnitude near low Earth orbit" start time: Jul 20 11:14 +01
-Output:
-----------------------------------------------------------
-Filters: "gravity has expected magnitude near low Earth orbit"
-Randomness seeded to: 2978189497
+Filters: "vector rejects compound division by zero"
+Randomness seeded to: 1422457723
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
@@ -1396,19 +1356,19 @@ All tests passed (1 assertion in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"gravity has expected magnitude near low Earth orbit" end time: Jul 20 11:14 +01
-"gravity has expected magnitude near low Earth orbit" time elapsed: 00:00:00
+"vector rejects compound division by zero" end time: Jul 20 12:59 +01
+"vector rejects compound division by zero" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-71/72 Testing: dot product computes the expected value
-71/72 Test: dot product computes the expected value
-Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "dot product computes the expected value"
+69/82 Testing: system state is empty by default
+69/82 Test: system state is empty by default
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "system state is empty by default"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"dot product computes the expected value" start time: Jul 20 11:14 +01
+"system state is empty by default" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
-Filters: "dot product computes the expected value"
-Randomness seeded to: 2284205955
+Filters: "system state is empty by default"
+Randomness seeded to: 3375284260
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
@@ -1416,28 +1376,268 @@ All tests passed (1 assertion in 1 test case)
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"dot product computes the expected value" end time: Jul 20 11:14 +01
-"dot product computes the expected value" time elapsed: 00:00:00
+"system state is empty by default" end time: Jul 20 12:59 +01
+"system state is empty by default" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-72/72 Testing: vector can be divided by scalar
-72/72 Test: vector can be divided by scalar
+70/82 Testing: stationary bodies have zero kinetic energy
+70/82 Test: stationary bodies have zero kinetic energy
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "stationary bodies have zero kinetic energy"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"stationary bodies have zero kinetic energy" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "stationary bodies have zero kinetic energy"
+Randomness seeded to: 267836995
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"stationary bodies have zero kinetic energy" end time: Jul 20 12:59 +01
+"stationary bodies have zero kinetic energy" time elapsed: 00:00:00
+----------------------------------------------------------
+
+71/82 Testing: vector can be divided by scalar
+71/82 Test: vector can be divided by scalar
 Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector can be divided by scalar"
 Directory: /home/aymane/Desktop/OrbitalForge/build
-"vector can be divided by scalar" start time: Jul 20 11:14 +01
+"vector can be divided by scalar" start time: Jul 20 12:59 +01
 Output:
 ----------------------------------------------------------
 Filters: "vector can be divided by scalar"
-Randomness seeded to: 516031594
+Randomness seeded to: 2562881514
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"vector can be divided by scalar" end time: Jul 20 11:14 +01
+"vector can be divided by scalar" end time: Jul 20 12:59 +01
 "vector can be divided by scalar" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Jul 20 11:14 +01
+72/82 Testing: advanced integrators accept an empty system
+72/82 Test: advanced integrators accept an empty system
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "advanced integrators accept an empty system"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"advanced integrators accept an empty system" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "advanced integrators accept an empty system"
+Randomness seeded to: 2462259473
+===============================================================================
+All tests passed (6 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"advanced integrators accept an empty system" end time: Jul 20 12:59 +01
+"advanced integrators accept an empty system" time elapsed: 00:00:00
+----------------------------------------------------------
+
+73/82 Testing: default vector is the zero vector
+73/82 Test: default vector is the zero vector
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "default vector is the zero vector"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"default vector is the zero vector" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "default vector is the zero vector"
+Randomness seeded to: 3901868809
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"default vector is the zero vector" end time: Jul 20 12:59 +01
+"default vector is the zero vector" time elapsed: 00:00:00
+----------------------------------------------------------
+
+74/82 Testing: empty system has zero kinetic energy
+74/82 Test: empty system has zero kinetic energy
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "empty system has zero kinetic energy"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"empty system has zero kinetic energy" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "empty system has zero kinetic energy"
+Randomness seeded to: 1599246528
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"empty system has zero kinetic energy" end time: Jul 20 12:59 +01
+"empty system has zero kinetic energy" time elapsed: 00:00:00
+----------------------------------------------------------
+
+75/82 Testing: explicit Euler rejects a zero time step
+75/82 Test: explicit Euler rejects a zero time step
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "explicit Euler rejects a zero time step"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"explicit Euler rejects a zero time step" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "explicit Euler rejects a zero time step"
+Randomness seeded to: 1271897257
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"explicit Euler rejects a zero time step" end time: Jul 20 12:59 +01
+"explicit Euler rejects a zero time step" time elapsed: 00:00:00
+----------------------------------------------------------
+
+76/82 Testing: two-body internal forces are equal and opposite
+76/82 Test: two-body internal forces are equal and opposite
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "two-body internal forces are equal and opposite"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"two-body internal forces are equal and opposite" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "two-body internal forces are equal and opposite"
+Randomness seeded to: 3214711868
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"two-body internal forces are equal and opposite" end time: Jul 20 12:59 +01
+"two-body internal forces are equal and opposite" time elapsed: 00:00:00
+----------------------------------------------------------
+
+77/82 Testing: vector supports compound scalar division
+77/82 Test: vector supports compound scalar division
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector supports compound scalar division"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector supports compound scalar division" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "vector supports compound scalar division"
+Randomness seeded to: 2004367407
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector supports compound scalar division" end time: Jul 20 12:59 +01
+"vector supports compound scalar division" time elapsed: 00:00:00
+----------------------------------------------------------
+
+78/82 Testing: total energy combines kinetic and potential energy
+78/82 Test: total energy combines kinetic and potential energy
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "total energy combines kinetic and potential energy"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"total energy combines kinetic and potential energy" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "total energy combines kinetic and potential energy"
+Randomness seeded to: 523491118
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"total energy combines kinetic and potential energy" end time: Jul 20 12:59 +01
+"total energy combines kinetic and potential energy" time elapsed: 00:00:00
+----------------------------------------------------------
+
+79/82 Testing: gravity acceleration preserves spatial direction
+79/82 Test: gravity acceleration preserves spatial direction
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "gravity acceleration preserves spatial direction"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"gravity acceleration preserves spatial direction" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "gravity acceleration preserves spatial direction"
+Randomness seeded to: 60078681
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"gravity acceleration preserves spatial direction" end time: Jul 20 12:59 +01
+"gravity acceleration preserves spatial direction" time elapsed: 00:00:00
+----------------------------------------------------------
+
+80/82 Testing: explicit Euler computes all accelerations from the same snapshot
+80/82 Test: explicit Euler computes all accelerations from the same snapshot
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "explicit Euler computes all accelerations from the same snapshot"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"explicit Euler computes all accelerations from the same snapshot" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "explicit Euler computes all accelerations from the same snapshot"
+Randomness seeded to: 2138820837
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"explicit Euler computes all accelerations from the same snapshot" end time: Jul 20 12:59 +01
+"explicit Euler computes all accelerations from the same snapshot" time elapsed: 00:00:00
+----------------------------------------------------------
+
+81/82 Testing: vector arithmetic does not modify its operands
+81/82 Test: vector arithmetic does not modify its operands
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "vector arithmetic does not modify its operands"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"vector arithmetic does not modify its operands" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "vector arithmetic does not modify its operands"
+Randomness seeded to: 3592067386
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vector arithmetic does not modify its operands" end time: Jul 20 12:59 +01
+"vector arithmetic does not modify its operands" time elapsed: 00:00:00
+----------------------------------------------------------
+
+82/82 Testing: an isolated body moves with constant velocity using semi-implicit Euler
+82/82 Test: an isolated body moves with constant velocity using semi-implicit Euler
+Command: "/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests" "an isolated body moves with constant velocity using semi-implicit Euler"
+Directory: /home/aymane/Desktop/OrbitalForge/build
+"an isolated body moves with constant velocity using semi-implicit Euler" start time: Jul 20 12:59 +01
+Output:
+----------------------------------------------------------
+Filters: "an isolated body moves with constant velocity using semi-implicit Euler"
+Randomness seeded to: 4158090404
+===============================================================================
+All tests passed (6 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"an isolated body moves with constant velocity using semi-implicit Euler" end time: Jul 20 12:59 +01
+"an isolated body moves with constant velocity using semi-implicit Euler" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jul 20 12:59 +01

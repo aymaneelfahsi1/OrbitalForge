@@ -9,6 +9,7 @@ orbitalforge_tests: \
   CMakeFiles/orbitalforge_tests.dir/tests/test_system_state.cpp.o \
   CMakeFiles/orbitalforge_tests.dir/tests/test_diagnostics.cpp.o \
   CMakeFiles/orbitalforge_tests.dir/tests/test_simulation_step.cpp.o \
+  CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.o \
   liborbitalforge_core.a \
   /usr/lib64/libCatch2Main.so.3.13.0 \
   /usr/lib64/libCatch2.so.3.13.0 \
@@ -66,6 +67,8 @@ CMakeFiles/orbitalforge_tests.dir/tests/test_system_state.cpp.o:
 CMakeFiles/orbitalforge_tests.dir/tests/test_diagnostics.cpp.o:
 
 CMakeFiles/orbitalforge_tests.dir/tests/test_simulation_step.cpp.o:
+
+CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.o:
 
 liborbitalforge_core.a:
 

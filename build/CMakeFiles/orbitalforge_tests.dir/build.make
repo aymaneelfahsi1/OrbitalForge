@@ -170,6 +170,20 @@ CMakeFiles/orbitalforge_tests.dir/tests/test_simulation_step.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/orbitalforge_tests.dir/tests/test_simulation_step.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aymane/Desktop/OrbitalForge/tests/test_simulation_step.cpp -o CMakeFiles/orbitalforge_tests.dir/tests/test_simulation_step.cpp.s
 
+CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.o: CMakeFiles/orbitalforge_tests.dir/flags.make
+CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.o: /home/aymane/Desktop/OrbitalForge/tests/test_advanced_integrators.cpp
+CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.o: CMakeFiles/orbitalforge_tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aymane/Desktop/OrbitalForge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.o -MF CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.o.d -o CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.o -c /home/aymane/Desktop/OrbitalForge/tests/test_advanced_integrators.cpp
+
+CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aymane/Desktop/OrbitalForge/tests/test_advanced_integrators.cpp > CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.i
+
+CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aymane/Desktop/OrbitalForge/tests/test_advanced_integrators.cpp -o CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.s
+
 # Object files for target orbitalforge_tests
 orbitalforge_tests_OBJECTS = \
 "CMakeFiles/orbitalforge_tests.dir/tests/test_vec3.cpp.o" \
@@ -178,7 +192,8 @@ orbitalforge_tests_OBJECTS = \
 "CMakeFiles/orbitalforge_tests.dir/tests/test_integrator.cpp.o" \
 "CMakeFiles/orbitalforge_tests.dir/tests/test_system_state.cpp.o" \
 "CMakeFiles/orbitalforge_tests.dir/tests/test_diagnostics.cpp.o" \
-"CMakeFiles/orbitalforge_tests.dir/tests/test_simulation_step.cpp.o"
+"CMakeFiles/orbitalforge_tests.dir/tests/test_simulation_step.cpp.o" \
+"CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.o"
 
 # External object files for target orbitalforge_tests
 orbitalforge_tests_EXTERNAL_OBJECTS =
@@ -190,13 +205,14 @@ orbitalforge_tests: CMakeFiles/orbitalforge_tests.dir/tests/test_integrator.cpp.
 orbitalforge_tests: CMakeFiles/orbitalforge_tests.dir/tests/test_system_state.cpp.o
 orbitalforge_tests: CMakeFiles/orbitalforge_tests.dir/tests/test_diagnostics.cpp.o
 orbitalforge_tests: CMakeFiles/orbitalforge_tests.dir/tests/test_simulation_step.cpp.o
+orbitalforge_tests: CMakeFiles/orbitalforge_tests.dir/tests/test_advanced_integrators.cpp.o
 orbitalforge_tests: CMakeFiles/orbitalforge_tests.dir/build.make
 orbitalforge_tests: CMakeFiles/orbitalforge_tests.dir/compiler_depend.ts
 orbitalforge_tests: liborbitalforge_core.a
 orbitalforge_tests: /usr/lib64/libCatch2Main.so.3.13.0
 orbitalforge_tests: /usr/lib64/libCatch2.so.3.13.0
 orbitalforge_tests: CMakeFiles/orbitalforge_tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/aymane/Desktop/OrbitalForge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable orbitalforge_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/aymane/Desktop/OrbitalForge/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable orbitalforge_tests"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/orbitalforge_tests.dir/link.txt --verbose=$(VERBOSE)
 	/home/aymane/.local/lib/python3.14/site-packages/cmake/data/bin/cmake -D TEST_TARGET=orbitalforge_tests -D TEST_EXECUTABLE=/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/aymane/Desktop/OrbitalForge/build -D TEST_SPEC= -D TEST_EXTRA_ARGS= -D "TEST_PROPERTIES=SKIP_RETURN_CODE;4" -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_LIST=orbitalforge_tests_TESTS -D TEST_REPORTER= -D TEST_OUTPUT_DIR= -D TEST_OUTPUT_PREFIX= -D TEST_OUTPUT_SUFFIX= -D TEST_DL_PATHS= -D TEST_DL_FRAMEWORK_PATHS= -D CTEST_FILE=/home/aymane/Desktop/OrbitalForge/build/orbitalforge_tests-b12d07c_tests.cmake -D ADD_TAGS_AS_LABELS=FALSE -P /usr/lib64/cmake/Catch2/CatchAddTests.cmake
 
