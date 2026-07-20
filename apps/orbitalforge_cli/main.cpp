@@ -1,8 +1,10 @@
 #include <chrono>
 #include <cmath>
 #include <cstddef>
+#include <cstdio>
 #include <iomanip>
 #include <iostream>
+#include <string>
 
 #include "orbitalforge/math/vec3.hpp"
 #include "orbitalforge/physics/body.hpp"
@@ -16,14 +18,9 @@ using orbitalforge::math::Vec3;
 using orbitalforge::physics::Body;
 using orbitalforge::physics::SystemState;
 
-constexpr double pi = 3.14159265358979323846;
-
 constexpr double gravitational_constant = 6.67430e-11;
-
 constexpr double solar_mass = 1.98847e30;
-
 constexpr double astronomical_unit = 1.495978707e11;
-
 constexpr double seconds_per_day = 86'400.0;
 
 [[nodiscard]] SystemState make_rotating_star_cluster(std::size_t body_count) {
@@ -42,10 +39,6 @@ constexpr double seconds_per_day = 86'400.0;
 
   constexpr double star_mass = solar_mass;
 
-  /*
-   * This irrational-looking angle spreads the stars around the disk
-   * without placing several stars on the same radial line.
-   */
   constexpr double golden_angle = 2.39996322972865332;
 
   for (std::size_t index = 0; index < body_count; ++index) {
@@ -53,10 +46,6 @@ constexpr double seconds_per_day = 86'400.0;
     const double fraction =
         (static_cast<double>(index) + 1.0) / static_cast<double>(body_count);
 
-    /*
-     * Square root distributes the bodies across the area of the disk
-     * instead of concentrating them near its center.
-     */
     const double radius =
         minimum_radius +
         std::sqrt(fraction) * (maximum_radius - minimum_radius);
@@ -65,10 +54,6 @@ constexpr double seconds_per_day = 86'400.0;
 
     const double enclosed_mass = star_mass * static_cast<double>(index + 1);
 
-    /*
-     * Approximate circular speed based on the mass located inside
-     * the current radius.
-     */
     const double orbital_speed =
         std::sqrt(gravitational_constant * enclosed_mass / radius);
 
@@ -97,10 +82,6 @@ constexpr double seconds_per_day = 86'400.0;
     });
   }
 
-  /*
-   * Shift the complete cluster so its center of mass begins
-   * exactly at the origin.
-   */
   const Vec3 initial_center_of_mass =
       orbitalforge::physics::center_of_mass(system);
 
@@ -108,10 +89,6 @@ constexpr double seconds_per_day = 86'400.0;
     body.position -= initial_center_of_mass;
   }
 
-  /*
-   * Remove the cluster's net momentum so the center of mass
-   * does not drift through space because of the initial setup.
-   */
   const Vec3 initial_momentum = orbitalforge::physics::total_momentum(system);
 
   const Vec3 center_of_mass_velocity =
@@ -124,9 +101,76 @@ constexpr double seconds_per_day = 86'400.0;
   return system;
 }
 
+[[nodiscard]] FILE *open_live_plot() {
+
+  FILE *plot = popen("gnuplot", "w");
+
+  if (plot == nullptr) {
+    std::cerr << "Warning: Gnuplot could not be started.\n"
+              << "The simulation will continue without visualization.\n";
+
+    return nullptr;
+  }
+
+  std::fprintf(plot, "set terminal qt size 1000,800\n"
+                     "set title 'OrbitalForge N-body simulation'\n"
+                     "set xlabel 'x (AU)'\n"
+                     "set ylabel 'y (AU)'\n"
+                     "set zlabel 'z (AU)'\n"
+                     "set grid\n"
+                     "set view 60,30\n"
+                     "set xrange [-1100:1100]\n"
+                     "set yrange [-1100:1100]\n"
+                     "set zrange [-100:100]\n"
+                     "set ticslevel 0\n"
+                     "set key off\n");
+
+  std::fflush(plot);
+
+  return plot;
+}
+
+void update_live_plot(FILE *plot, const SystemState &system,
+                      double simulation_time, double elapsed_real_time) {
+
+  if (plot == nullptr) {
+    return;
+  }
+
+  std::fprintf(plot,
+               "set title "
+               "'OrbitalForge | simulated: %.2f days | real: %.2f s'\n",
+               simulation_time / seconds_per_day, elapsed_real_time);
+
+  std::fprintf(plot, "splot '-' using 1:2:3 "
+                     "with points pointtype 7 pointsize 0.7\n");
+
+  for (const Body &body : system.bodies) {
+    std::fprintf(plot, "%.12e %.12e %.12e\n",
+                 body.position.x() / astronomical_unit,
+                 body.position.y() / astronomical_unit,
+                 body.position.z() / astronomical_unit);
+  }
+
+  std::fprintf(plot, "e\n");
+
+  std::fflush(plot);
+}
+
+void close_live_plot(FILE *plot) {
+
+  if (plot == nullptr) {
+    return;
+  }
+
+  std::fprintf(plot, "exit\n");
+  std::fflush(plot);
+  pclose(plot);
+}
+
 void print_progress(const SystemState &system, std::size_t step,
-                    double simulation_time, double initial_energy,
-                    const Vec3 &initial_momentum,
+                    double simulation_time, double elapsed_real_time,
+                    double initial_energy, const Vec3 &initial_momentum,
                     const Vec3 &initial_center_of_mass) {
 
   const double current_energy =
@@ -155,6 +199,8 @@ void print_progress(const SystemState &system, std::size_t step,
             << std::setw(16) << std::fixed << std::setprecision(2)
             << simulation_time / seconds_per_day
 
+            << std::setw(16) << elapsed_real_time
+
             << std::setw(22) << std::scientific << std::setprecision(8)
             << current_energy
 
@@ -171,16 +217,15 @@ void print_progress(const SystemState &system, std::size_t step,
 
 int main() {
 
-  /*
-   * Main simulation controls.
-   */
-  constexpr std::size_t body_count = 500;
+  constexpr std::size_t body_count = 20;
 
   constexpr std::size_t step_count = 2'000'000;
 
   constexpr std::size_t output_interval = 200;
 
-  constexpr double time_step = 0.25 * seconds_per_day;
+  constexpr std::size_t plot_interval = 1;
+
+  constexpr double time_step = 0.1 * seconds_per_day;
 
   SystemState system = make_rotating_star_cluster(body_count);
 
@@ -221,9 +266,13 @@ int main() {
 
             << "Steps:                " << step_count << "\n\n";
 
-  std::cout << std::right << std::setw(10) << "Step"
+  std::cout << std::right
+
+            << std::setw(10) << "Step"
 
             << std::setw(16) << "Time (days)"
+
+            << std::setw(16) << "Real time (s)"
 
             << std::setw(22) << "Energy (J)"
 
@@ -235,24 +284,39 @@ int main() {
 
             << '\n';
 
-  std::cout << std::string(108, '-') << '\n';
+  std::cout << std::string(124, '-') << '\n';
 
-  print_progress(system, 0, 0.0, initial_energy, initial_momentum,
-                 initial_center_of_mass);
+  FILE *live_plot = open_live_plot();
 
   const auto start_time = std::chrono::steady_clock::now();
+
+  print_progress(system, 0, 0.0, 0.0, initial_energy, initial_momentum,
+                 initial_center_of_mass);
+
+  update_live_plot(live_plot, system, 0.0, 0.0);
 
   for (std::size_t step = 1; step <= step_count; ++step) {
 
     orbitalforge::simulation::advance_velocity_verlet_step(
         system, gravitational_constant, time_step);
 
+    const double simulation_time = static_cast<double>(step) * time_step;
+
+    const auto current_time = std::chrono::steady_clock::now();
+
+    const std::chrono::duration<double> elapsed_real_time =
+        current_time - start_time;
+
+    if (step % plot_interval == 0 || step == step_count) {
+
+      update_live_plot(live_plot, system, simulation_time,
+                       elapsed_real_time.count());
+    }
+
     if (step % output_interval == 0 || step == step_count) {
 
-      const double simulation_time = static_cast<double>(step) * time_step;
-
-      print_progress(system, step, simulation_time, initial_energy,
-                     initial_momentum, initial_center_of_mass);
+      print_progress(system, step, simulation_time, elapsed_real_time.count(),
+                     initial_energy, initial_momentum, initial_center_of_mass);
     }
   }
 
@@ -299,6 +363,8 @@ int main() {
             << std::fixed << std::setprecision(3)
 
             << "Execution time:         " << elapsed_time.count() << " ms\n";
+
+  close_live_plot(live_plot);
 
   return 0;
 }
