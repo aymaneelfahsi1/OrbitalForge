@@ -1,2 +1,0 @@
-/usr/bin/ar qc liborbitalforge_core.a CMakeFiles/orbitalforge_core.dir/src/math/vec3.cpp.o CMakeFiles/orbitalforge_core.dir/src/physics/body.cpp.o CMakeFiles/orbitalforge_core.dir/src/physics/gravity.cpp.o CMakeFiles/orbitalforge_core.dir/src/physics/integrator.cpp.o CMakeFiles/orbitalforge_core.dir/src/physics/diagnostics.cpp.o CMakeFiles/orbitalforge_core.dir/src/simulation/step.cpp.o
-/usr/bin/ranlib liborbitalforge_core.a
