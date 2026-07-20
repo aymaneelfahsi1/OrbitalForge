@@ -1,6 +1,7 @@
 #include "orbitalforge/math/vec3.hpp"
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
+#include <sstream>
 #include <stdexcept>
 
 using orbitalforge::math::Vec3;

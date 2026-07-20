@@ -19,6 +19,9 @@ add_library(
     src/physics/body.cpp
     src/physics/gravity.cpp
     src/physics/integrator.cpp
+    src/physics/diagnostics.cpp
+    src/simulation/step.cpp
+
 
 )
 
@@ -69,6 +72,8 @@ add_executable(
     tests/test_gravity.cpp
     tests/test_integrator.cpp
     tests/test_system_state.cpp
+    tests/test_diagnostics.cpp
+    tests/test_simulation_step.cpp
 )
 
 target_link_libraries(

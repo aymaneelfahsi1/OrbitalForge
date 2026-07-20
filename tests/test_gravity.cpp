@@ -124,3 +124,164 @@ TEST_CASE("isolated body has zero gravitational acceleration") {
   REQUIRE(accelerations.size() == 1);
   REQUIRE(accelerations[0] == Vec3{});
 }
+
+TEST_CASE("empty system has no gravitational accelerations") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{};
+
+  const std::vector<Vec3> accelerations =
+      gravitational_accelerations(system, gravitational_constant);
+
+  REQUIRE(accelerations.empty());
+}
+
+TEST_CASE("system gravity rejects invalid gravitational constant") {
+  const SystemState system{
+      .bodies{
+          Body{"Body", 1.0, Vec3{}, Vec3{}},
+      },
+  };
+
+  REQUIRE_THROWS_AS(gravitational_accelerations(system, 0.0),
+                    std::invalid_argument);
+
+  REQUIRE_THROWS_AS(gravitational_accelerations(system, -1.0),
+                    std::invalid_argument);
+}
+
+TEST_CASE("doubling source mass doubles target acceleration") {
+  constexpr double gravitational_constant = 1.0;
+
+  const Body target{
+      "Target",
+      1.0,
+      Vec3{0.0, 0.0, 0.0},
+      Vec3{},
+  };
+
+  const Body light_source{
+      "Light",
+      2.0,
+      Vec3{2.0, 0.0, 0.0},
+      Vec3{},
+  };
+
+  const Body heavy_source{
+      "Heavy",
+      4.0,
+      Vec3{2.0, 0.0, 0.0},
+      Vec3{},
+  };
+
+  const Vec3 light_acceleration =
+      gravitational_acceleration(target, light_source, gravitational_constant);
+
+  const Vec3 heavy_acceleration =
+      gravitational_acceleration(target, heavy_source, gravitational_constant);
+
+  REQUIRE(heavy_acceleration.x() ==
+          Catch::Approx(2.0 * light_acceleration.x()));
+}
+
+TEST_CASE("doubling distance reduces acceleration by four") {
+  constexpr double gravitational_constant = 1.0;
+
+  const Body target{
+      "Target",
+      1.0,
+      Vec3{},
+      Vec3{},
+  };
+
+  const Body near_source{
+      "Near",
+      4.0,
+      Vec3{2.0, 0.0, 0.0},
+      Vec3{},
+  };
+
+  const Body far_source{
+      "Far",
+      4.0,
+      Vec3{4.0, 0.0, 0.0},
+      Vec3{},
+  };
+
+  const double near_magnitude =
+      gravitational_acceleration(target, near_source, gravitational_constant)
+          .norm();
+
+  const double far_magnitude =
+      gravitational_acceleration(target, far_source, gravitational_constant)
+          .norm();
+
+  REQUIRE(far_magnitude == Catch::Approx(near_magnitude / 4.0));
+}
+
+TEST_CASE("two-body internal forces are equal and opposite") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{
+      .bodies{
+          Body{
+              "First",
+              2.0,
+              Vec3{-1.0, 0.0, 0.0},
+              Vec3{},
+          },
+          Body{
+              "Second",
+              4.0,
+              Vec3{1.0, 0.0, 0.0},
+              Vec3{},
+          },
+      },
+  };
+
+  const std::vector<Vec3> accelerations =
+      gravitational_accelerations(system, gravitational_constant);
+
+  const Vec3 first_force = accelerations[0] * system.bodies[0].mass;
+
+  const Vec3 second_force = accelerations[1] * system.bodies[1].mass;
+
+  REQUIRE((first_force + second_force).norm() ==
+          Catch::Approx(0.0).margin(1e-12));
+}
+
+TEST_CASE("body acceleration accumulates contributions from all sources") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{
+      .bodies{
+          Body{
+              "Target",
+              1.0,
+              Vec3{0.0, 0.0, 0.0},
+              Vec3{},
+          },
+          Body{
+              "Right",
+              4.0,
+              Vec3{2.0, 0.0, 0.0},
+              Vec3{},
+          },
+          Body{
+              "Up",
+              8.0,
+              Vec3{0.0, 2.0, 0.0},
+              Vec3{},
+          },
+      },
+  };
+
+  const std::vector<Vec3> accelerations =
+      gravitational_accelerations(system, gravitational_constant);
+
+  REQUIRE(accelerations[0].x() == Catch::Approx(1.0));
+
+  REQUIRE(accelerations[0].y() == Catch::Approx(2.0));
+
+  REQUIRE(accelerations[0].z() == Catch::Approx(0.0));
+}

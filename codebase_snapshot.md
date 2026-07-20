@@ -1,8 +1,8 @@
 # Codebase Snapshot
 
-- Generated: `2026-07-19T18:02:32`
+- Generated: `2026-07-20T11:17:45`
 - Project root: `/home/aymane/Desktop/OrbitalForge`
-- Files included: `24`
+- Files included: `31`
 - Files skipped: `0`
 
 ## Project Tree
@@ -17,20 +17,27 @@ OrbitalForge/
 └── CMakePresets.txt
 └── compile_commands.json
     └── setup.md
+    └── integrator_comparison.cpp
             └── vec3.hpp
             └── body.hpp
+            └── diagnostics.hpp
             └── gravity.hpp
             └── integrator.hpp
             └── state.hpp
             └── system_state.hpp
+            └── step.hpp
 └── OrbitalForge_7-Day_Modern_CPP_Bootcamp.md
         └── vec3.cpp
         └── body.cpp
+        └── diagnostics.cpp
         └── gravity.cpp
         └── integrator.cpp
+        └── step.cpp
     └── test_body.cpp
+    └── test_diagnostics.cpp
     └── test_gravity.cpp
     └── test_integrator.cpp
+    └── test_simulation_step.cpp
     └── test_system_state.cpp
     └── test_vec3.cpp
 ```
@@ -206,6 +213,9 @@ add_library(
     src/physics/body.cpp
     src/physics/gravity.cpp
     src/physics/integrator.cpp
+    src/physics/diagnostics.cpp
+    src/simulation/step.cpp
+
 
 )
 
@@ -256,6 +266,8 @@ add_executable(
     tests/test_gravity.cpp
     tests/test_integrator.cpp
     tests/test_system_state.cpp
+    tests/test_diagnostics.cpp
+    tests/test_simulation_step.cpp
 )
 
 target_link_libraries(
@@ -280,63 +292,87 @@ catch_discover_tests(orbitalforge_tests)
 [
 {
   "directory": "/home/aymane/Desktop/OrbitalForge/build",
-  "command": "/usr/bin/c++ -I/home/aymane/Desktop/OrbitalForge/include -g -std=c++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/orbitalforge_core.dir/src/math/vec3.cpp.o -c /home/aymane/Desktop/OrbitalForge/src/math/vec3.cpp",
+  "command": "/usr/bin/c++  -I/home/aymane/Desktop/OrbitalForge/include -std=c++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/orbitalforge_core.dir/src/math/vec3.cpp.o -c /home/aymane/Desktop/OrbitalForge/src/math/vec3.cpp",
   "file": "/home/aymane/Desktop/OrbitalForge/src/math/vec3.cpp",
-  "output": "/home/aymane/Desktop/OrbitalForge/build/CMakeFiles/orbitalforge_core.dir/src/math/vec3.cpp.o"
+  "output": "CMakeFiles/orbitalforge_core.dir/src/math/vec3.cpp.o"
 },
 {
   "directory": "/home/aymane/Desktop/OrbitalForge/build",
-  "command": "/usr/bin/c++ -I/home/aymane/Desktop/OrbitalForge/include -g -std=c++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/orbitalforge_core.dir/src/physics/body.cpp.o -c /home/aymane/Desktop/OrbitalForge/src/physics/body.cpp",
+  "command": "/usr/bin/c++  -I/home/aymane/Desktop/OrbitalForge/include -std=c++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/orbitalforge_core.dir/src/physics/body.cpp.o -c /home/aymane/Desktop/OrbitalForge/src/physics/body.cpp",
   "file": "/home/aymane/Desktop/OrbitalForge/src/physics/body.cpp",
-  "output": "/home/aymane/Desktop/OrbitalForge/build/CMakeFiles/orbitalforge_core.dir/src/physics/body.cpp.o"
+  "output": "CMakeFiles/orbitalforge_core.dir/src/physics/body.cpp.o"
 },
 {
   "directory": "/home/aymane/Desktop/OrbitalForge/build",
-  "command": "/usr/bin/c++ -I/home/aymane/Desktop/OrbitalForge/include -g -std=c++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/orbitalforge_core.dir/src/physics/gravity.cpp.o -c /home/aymane/Desktop/OrbitalForge/src/physics/gravity.cpp",
+  "command": "/usr/bin/c++  -I/home/aymane/Desktop/OrbitalForge/include -std=c++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/orbitalforge_core.dir/src/physics/gravity.cpp.o -c /home/aymane/Desktop/OrbitalForge/src/physics/gravity.cpp",
   "file": "/home/aymane/Desktop/OrbitalForge/src/physics/gravity.cpp",
-  "output": "/home/aymane/Desktop/OrbitalForge/build/CMakeFiles/orbitalforge_core.dir/src/physics/gravity.cpp.o"
+  "output": "CMakeFiles/orbitalforge_core.dir/src/physics/gravity.cpp.o"
 },
 {
   "directory": "/home/aymane/Desktop/OrbitalForge/build",
-  "command": "/usr/bin/c++ -I/home/aymane/Desktop/OrbitalForge/include -g -std=c++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/orbitalforge_core.dir/src/physics/integrator.cpp.o -c /home/aymane/Desktop/OrbitalForge/src/physics/integrator.cpp",
+  "command": "/usr/bin/c++  -I/home/aymane/Desktop/OrbitalForge/include -std=c++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/orbitalforge_core.dir/src/physics/integrator.cpp.o -c /home/aymane/Desktop/OrbitalForge/src/physics/integrator.cpp",
   "file": "/home/aymane/Desktop/OrbitalForge/src/physics/integrator.cpp",
-  "output": "/home/aymane/Desktop/OrbitalForge/build/CMakeFiles/orbitalforge_core.dir/src/physics/integrator.cpp.o"
+  "output": "CMakeFiles/orbitalforge_core.dir/src/physics/integrator.cpp.o"
 },
 {
   "directory": "/home/aymane/Desktop/OrbitalForge/build",
-  "command": "/usr/bin/c++ -I/home/aymane/Desktop/OrbitalForge/include -g -std=c++20 -o CMakeFiles/orbitalforge.dir/apps/orbitalforge_cli/main.cpp.o -c /home/aymane/Desktop/OrbitalForge/apps/orbitalforge_cli/main.cpp",
+  "command": "/usr/bin/c++  -I/home/aymane/Desktop/OrbitalForge/include -std=c++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/orbitalforge_core.dir/src/physics/diagnostics.cpp.o -c /home/aymane/Desktop/OrbitalForge/src/physics/diagnostics.cpp",
+  "file": "/home/aymane/Desktop/OrbitalForge/src/physics/diagnostics.cpp",
+  "output": "CMakeFiles/orbitalforge_core.dir/src/physics/diagnostics.cpp.o"
+},
+{
+  "directory": "/home/aymane/Desktop/OrbitalForge/build",
+  "command": "/usr/bin/c++  -I/home/aymane/Desktop/OrbitalForge/include -std=c++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/orbitalforge_core.dir/src/simulation/step.cpp.o -c /home/aymane/Desktop/OrbitalForge/src/simulation/step.cpp",
+  "file": "/home/aymane/Desktop/OrbitalForge/src/simulation/step.cpp",
+  "output": "CMakeFiles/orbitalforge_core.dir/src/simulation/step.cpp.o"
+},
+{
+  "directory": "/home/aymane/Desktop/OrbitalForge/build",
+  "command": "/usr/bin/c++  -I/home/aymane/Desktop/OrbitalForge/include -std=c++20 -o CMakeFiles/orbitalforge.dir/apps/orbitalforge_cli/main.cpp.o -c /home/aymane/Desktop/OrbitalForge/apps/orbitalforge_cli/main.cpp",
   "file": "/home/aymane/Desktop/OrbitalForge/apps/orbitalforge_cli/main.cpp",
-  "output": "/home/aymane/Desktop/OrbitalForge/build/CMakeFiles/orbitalforge.dir/apps/orbitalforge_cli/main.cpp.o"
+  "output": "CMakeFiles/orbitalforge.dir/apps/orbitalforge_cli/main.cpp.o"
 },
 {
   "directory": "/home/aymane/Desktop/OrbitalForge/build",
-  "command": "/usr/bin/c++ -I/home/aymane/Desktop/OrbitalForge/include -g -std=c++20 -o CMakeFiles/orbitalforge_tests.dir/tests/test_vec3.cpp.o -c /home/aymane/Desktop/OrbitalForge/tests/test_vec3.cpp",
+  "command": "/usr/bin/c++  -I/home/aymane/Desktop/OrbitalForge/include -std=c++20 -o CMakeFiles/orbitalforge_tests.dir/tests/test_vec3.cpp.o -c /home/aymane/Desktop/OrbitalForge/tests/test_vec3.cpp",
   "file": "/home/aymane/Desktop/OrbitalForge/tests/test_vec3.cpp",
-  "output": "/home/aymane/Desktop/OrbitalForge/build/CMakeFiles/orbitalforge_tests.dir/tests/test_vec3.cpp.o"
+  "output": "CMakeFiles/orbitalforge_tests.dir/tests/test_vec3.cpp.o"
 },
 {
   "directory": "/home/aymane/Desktop/OrbitalForge/build",
-  "command": "/usr/bin/c++ -I/home/aymane/Desktop/OrbitalForge/include -g -std=c++20 -o CMakeFiles/orbitalforge_tests.dir/tests/test_body.cpp.o -c /home/aymane/Desktop/OrbitalForge/tests/test_body.cpp",
+  "command": "/usr/bin/c++  -I/home/aymane/Desktop/OrbitalForge/include -std=c++20 -o CMakeFiles/orbitalforge_tests.dir/tests/test_body.cpp.o -c /home/aymane/Desktop/OrbitalForge/tests/test_body.cpp",
   "file": "/home/aymane/Desktop/OrbitalForge/tests/test_body.cpp",
-  "output": "/home/aymane/Desktop/OrbitalForge/build/CMakeFiles/orbitalforge_tests.dir/tests/test_body.cpp.o"
+  "output": "CMakeFiles/orbitalforge_tests.dir/tests/test_body.cpp.o"
 },
 {
   "directory": "/home/aymane/Desktop/OrbitalForge/build",
-  "command": "/usr/bin/c++ -I/home/aymane/Desktop/OrbitalForge/include -g -std=c++20 -o CMakeFiles/orbitalforge_tests.dir/tests/test_gravity.cpp.o -c /home/aymane/Desktop/OrbitalForge/tests/test_gravity.cpp",
+  "command": "/usr/bin/c++  -I/home/aymane/Desktop/OrbitalForge/include -std=c++20 -o CMakeFiles/orbitalforge_tests.dir/tests/test_gravity.cpp.o -c /home/aymane/Desktop/OrbitalForge/tests/test_gravity.cpp",
   "file": "/home/aymane/Desktop/OrbitalForge/tests/test_gravity.cpp",
-  "output": "/home/aymane/Desktop/OrbitalForge/build/CMakeFiles/orbitalforge_tests.dir/tests/test_gravity.cpp.o"
+  "output": "CMakeFiles/orbitalforge_tests.dir/tests/test_gravity.cpp.o"
 },
 {
   "directory": "/home/aymane/Desktop/OrbitalForge/build",
-  "command": "/usr/bin/c++ -I/home/aymane/Desktop/OrbitalForge/include -g -std=c++20 -o CMakeFiles/orbitalforge_tests.dir/tests/test_integrator.cpp.o -c /home/aymane/Desktop/OrbitalForge/tests/test_integrator.cpp",
+  "command": "/usr/bin/c++  -I/home/aymane/Desktop/OrbitalForge/include -std=c++20 -o CMakeFiles/orbitalforge_tests.dir/tests/test_integrator.cpp.o -c /home/aymane/Desktop/OrbitalForge/tests/test_integrator.cpp",
   "file": "/home/aymane/Desktop/OrbitalForge/tests/test_integrator.cpp",
-  "output": "/home/aymane/Desktop/OrbitalForge/build/CMakeFiles/orbitalforge_tests.dir/tests/test_integrator.cpp.o"
+  "output": "CMakeFiles/orbitalforge_tests.dir/tests/test_integrator.cpp.o"
 },
 {
   "directory": "/home/aymane/Desktop/OrbitalForge/build",
-  "command": "/usr/bin/c++ -I/home/aymane/Desktop/OrbitalForge/include -g -std=c++20 -o CMakeFiles/orbitalforge_tests.dir/tests/test_system_state.cpp.o -c /home/aymane/Desktop/OrbitalForge/tests/test_system_state.cpp",
+  "command": "/usr/bin/c++  -I/home/aymane/Desktop/OrbitalForge/include -std=c++20 -o CMakeFiles/orbitalforge_tests.dir/tests/test_system_state.cpp.o -c /home/aymane/Desktop/OrbitalForge/tests/test_system_state.cpp",
   "file": "/home/aymane/Desktop/OrbitalForge/tests/test_system_state.cpp",
-  "output": "/home/aymane/Desktop/OrbitalForge/build/CMakeFiles/orbitalforge_tests.dir/tests/test_system_state.cpp.o"
+  "output": "CMakeFiles/orbitalforge_tests.dir/tests/test_system_state.cpp.o"
+},
+{
+  "directory": "/home/aymane/Desktop/OrbitalForge/build",
+  "command": "/usr/bin/c++  -I/home/aymane/Desktop/OrbitalForge/include -std=c++20 -o CMakeFiles/orbitalforge_tests.dir/tests/test_diagnostics.cpp.o -c /home/aymane/Desktop/OrbitalForge/tests/test_diagnostics.cpp",
+  "file": "/home/aymane/Desktop/OrbitalForge/tests/test_diagnostics.cpp",
+  "output": "CMakeFiles/orbitalforge_tests.dir/tests/test_diagnostics.cpp.o"
+},
+{
+  "directory": "/home/aymane/Desktop/OrbitalForge/build",
+  "command": "/usr/bin/c++  -I/home/aymane/Desktop/OrbitalForge/include -std=c++20 -o CMakeFiles/orbitalforge_tests.dir/tests/test_simulation_step.cpp.o -c /home/aymane/Desktop/OrbitalForge/tests/test_simulation_step.cpp",
+  "file": "/home/aymane/Desktop/OrbitalForge/tests/test_simulation_step.cpp",
+  "output": "CMakeFiles/orbitalforge_tests.dir/tests/test_simulation_step.cpp.o"
 }
 ]
 ```
@@ -350,6 +386,11 @@ clangd + CMake tools + CodeLLB need to be installed in VS extensions
 Day 1 Notes__________
 
 include directory contains public headers
+```
+
+### `examples/integrator_comparison.cpp`
+
+```cpp
 ```
 
 ### `include/orbitalforge/math/vec3.hpp`
@@ -470,6 +511,31 @@ struct Body {
 } // namespace orbitalforge::physics
 ```
 
+### `include/orbitalforge/physics/diagnostics.hpp`
+
+```cpp
+#pragma once
+
+#include "orbitalforge/math/vec3.hpp"
+#include "orbitalforge/physics/system_state.hpp"
+
+namespace orbitalforge::physics {
+
+[[nodiscard]] double kinetic_energy(const SystemState &system) noexcept;
+
+[[nodiscard]] double potential_energy(const SystemState &system,
+                                      double gravitational_constant);
+
+[[nodiscard]] double total_energy(const SystemState &system,
+                                  double gravitational_constant);
+
+[[nodiscard]] math::Vec3 total_momentum(const SystemState &system) noexcept;
+
+[[nodiscard]] math::Vec3 center_of_mass(const SystemState &system);
+
+} // namespace orbitalforge::physics
+```
+
 ### `include/orbitalforge/physics/gravity.hpp`
 
 ```cpp
@@ -553,6 +619,25 @@ struct SystemState {
 };
 
 } // namespace orbitalforge::physics
+```
+
+### `include/orbitalforge/simulation/step.hpp`
+
+```cpp
+#pragma once
+
+#include "orbitalforge/physics/system_state.hpp"
+
+namespace orbitalforge::simulation {
+
+void advance_explicit_euler_step(physics::SystemState &system,
+                                 double gravitational_constant,
+                                 double time_step);
+
+void advance_semi_implicit_euler_step(physics::SystemState &system,
+                                      double gravitational_constant,
+                                      double time_step);
+} // namespace orbitalforge::simulation
 ```
 
 ### `OrbitalForge_7-Day_Modern_CPP_Bootcamp.md`
@@ -3746,6 +3831,97 @@ void Body::set_state(const State &new_state) noexcept {
 } // namespace orbitalforge::physics
 ```
 
+### `src/physics/diagnostics.cpp`
+
+```cpp
+#include "orbitalforge/physics/diagnostics.hpp"
+#include "orbitalforge/math/vec3.hpp"
+
+#include <cstddef>
+#include <stdexcept>
+
+namespace orbitalforge::physics {
+
+using math::Vec3;
+
+double kinetic_energy(const SystemState &system) noexcept {
+  double total{};
+
+  for (const Body &body : system.bodies) {
+    total += 0.5 * body.mass * body.velocity.squared_norm();
+  }
+
+  return total;
+}
+
+double potential_energy(const SystemState &system,
+                        double gravitational_constant) {
+
+  if (gravitational_constant <= 0.0) {
+    throw std::invalid_argument{"gravitational constant must be positive"};
+  }
+
+  double total{};
+
+  for (std::size_t first_index = 0; first_index < system.bodies.size();
+       ++first_index) {
+
+    for (std::size_t second_index = first_index + 1;
+         second_index < system.bodies.size(); ++second_index) {
+      const Body &first = system.bodies[first_index];
+      const Body &second = system.bodies[second_index];
+
+      const Vec3 displacement = second.position - first.position;
+
+      const double distance = displacement.norm();
+
+      if (distance == 0) {
+        throw std::domain_error{
+            "potential energy is undefined for coincident bodies"};
+      }
+
+      total -= gravitational_constant * first.mass * second.mass / distance;
+    }
+  }
+  return total;
+}
+
+double total_energy(const SystemState &system, double gravitational_constant) {
+  return kinetic_energy(system) +
+         potential_energy(system, gravitational_constant);
+}
+
+Vec3 total_momentum(const SystemState &system) noexcept {
+
+  Vec3 momentum{};
+
+  for (const Body &body : system.bodies) {
+    momentum += body.mass * body.velocity;
+  }
+
+  return momentum;
+}
+
+Vec3 center_of_mass(const SystemState &system) {
+  Vec3 weighted_postion{};
+
+  double total_mass{};
+
+  for (const Body &body : system.bodies) {
+    weighted_postion += body.mass * body.position;
+    total_mass += body.mass;
+  }
+
+  if (total_mass == 0.0) {
+    throw std::domain_error{"center of mass is undefined for an empty system"};
+  }
+
+  return weighted_postion / total_mass;
+}
+
+} // namespace orbitalforge::physics
+```
+
 ### `src/physics/gravity.cpp`
 
 ```cpp
@@ -3798,6 +3974,10 @@ Vec3 gravitational_acceleration(const Body &target, const Body &source,
 
 vector<Vec3> gravitational_accelerations(const SystemState &system,
                                          double gravitational_constant) {
+
+  if (gravitational_constant <= 0.0) {
+    throw std::invalid_argument{"gravitational constant must be positive"};
+  }
 
   vector<Vec3> accelerations(system.bodies.size(), Vec3{});
 
@@ -3863,6 +4043,88 @@ State semi_implicit_euler_step(const State &state,
 } // namespace orbitalforge::physics
 ```
 
+### `src/simulation/step.cpp`
+
+```cpp
+#include "orbitalforge/simulation/step.hpp"
+
+#include "orbitalforge/math/vec3.hpp"
+#include "orbitalforge/physics/body.hpp"
+#include "orbitalforge/physics/gravity.hpp"
+#include "orbitalforge/physics/integrator.hpp"
+#include "orbitalforge/physics/state.hpp"
+#include "orbitalforge/physics/system_state.hpp"
+
+#include <cstddef>
+#include <stdexcept>
+
+namespace orbitalforge::simulation {
+
+using math::Vec3;
+using physics::Body;
+using physics::explicit_euler_step;
+using physics::gravitational_accelerations;
+using physics::semi_implicit_euler_step;
+using physics::State;
+using physics::SystemState;
+
+// anonymous namespace, everything inside it is private to step.cpp file. it
+// holds implemntation helpers
+namespace {
+
+void validate_time_step(double time_step) {
+  if (time_step <= 0.0) {
+    throw std::invalid_argument{"time_step must be strictly positive"};
+  }
+}
+
+template <typename Integrator>
+void advance_system(SystemState &system, double gravitational_constant,
+                    double time_step, const Integrator &integrator) {
+  validate_time_step(time_step);
+  const auto accelerations =
+      gravitational_accelerations(system, gravitational_constant);
+
+  if (accelerations.size() != system.bodies.size()) {
+    throw std::logic_error{"each body mut have exactly one acceleration"};
+  }
+
+  for (std::size_t index = 0; index < system.bodies.size(); ++index) {
+    Body &body = system.bodies[index];
+
+    const State current_state = body.state();
+
+    const State next_state =
+        integrator(current_state, accelerations[index], time_step);
+
+    body.set_state(next_state);
+  }
+}
+} // namespace
+
+void advance_explicit_euler_step(physics::SystemState &system,
+                                 double gravitational_constant,
+                                 double time_step) {
+
+  advance_system(system, gravitational_constant, time_step,
+                 [](const State &state, const Vec3 &acceleration, double dt) {
+                   return explicit_euler_step(state, acceleration, dt);
+                 });
+}
+
+void advance_semi_implicit_euler_step(physics::SystemState &system,
+                                      double gravitational_constant,
+                                      double time_step) {
+
+  advance_system(system, gravitational_constant, time_step,
+                 [](const State &state, const Vec3 &acceleration, double dt) {
+                   return semi_implicit_euler_step(state, acceleration, dt);
+                 });
+}
+
+} // namespace orbitalforge::simulation
+```
+
 ### `tests/test_body.cpp`
 
 ```cpp
@@ -3895,6 +4157,301 @@ TEST_CASE("body rejects negative mass") {
 
   REQUIRE_THROWS_AS((Body{"Impossible", -50.0, Vec3{}, Vec3{}}),
                     std::invalid_argument);
+}
+```
+
+### `tests/test_diagnostics.cpp`
+
+```cpp
+#include <catch2/catch_approx.hpp>
+#include <catch2/catch_test_macros.hpp>
+
+#include <stdexcept>
+
+#include "orbitalforge/math/vec3.hpp"
+#include "orbitalforge/physics/body.hpp"
+#include "orbitalforge/physics/diagnostics.hpp"
+#include "orbitalforge/physics/system_state.hpp"
+
+using orbitalforge::math::Vec3;
+using orbitalforge::physics::Body;
+using orbitalforge::physics::center_of_mass;
+using orbitalforge::physics::kinetic_energy;
+using orbitalforge::physics::potential_energy;
+using orbitalforge::physics::SystemState;
+using orbitalforge::physics::total_energy;
+using orbitalforge::physics::total_momentum;
+
+TEST_CASE("empty system has zero kinetic energy") {
+  const SystemState system{};
+
+  REQUIRE(kinetic_energy(system) == Catch::Approx(0.0));
+}
+
+TEST_CASE("kinetic energy sums contributions from every body") {
+  const SystemState system{
+      .bodies{
+          Body{
+              "First",
+              2.0,
+              Vec3{},
+              Vec3{3.0, 0.0, 0.0},
+          },
+          Body{
+              "Second",
+              4.0,
+              Vec3{},
+              Vec3{0.0, 2.0, 0.0},
+          },
+      },
+  };
+
+  REQUIRE(kinetic_energy(system) == Catch::Approx(17.0));
+}
+
+TEST_CASE("stationary bodies have zero kinetic energy") {
+  const SystemState system{
+      .bodies{
+          Body{
+              "First",
+              2.0,
+              Vec3{},
+              Vec3{},
+          },
+          Body{
+              "Second",
+              4.0,
+              Vec3{1.0, 0.0, 0.0},
+              Vec3{},
+          },
+      },
+  };
+
+  REQUIRE(kinetic_energy(system) == Catch::Approx(0.0));
+}
+
+TEST_CASE("equal and opposite momenta cancel") {
+  const SystemState system{
+      .bodies{
+          Body{
+              "First",
+              2.0,
+              Vec3{},
+              Vec3{3.0, 0.0, 0.0},
+          },
+          Body{
+              "Second",
+              3.0,
+              Vec3{},
+              Vec3{-2.0, 0.0, 0.0},
+          },
+      },
+  };
+
+  REQUIRE(total_momentum(system) == Vec3{});
+}
+
+TEST_CASE("total momentum sums all momentum components") {
+  const SystemState system{
+      .bodies{
+          Body{
+              "First",
+              2.0,
+              Vec3{},
+              Vec3{1.0, 2.0, 3.0},
+          },
+          Body{
+              "Second",
+              3.0,
+              Vec3{},
+              Vec3{-1.0, 1.0, 2.0},
+          },
+      },
+  };
+
+  const Vec3 momentum = total_momentum(system);
+
+  REQUIRE(momentum.x() == Catch::Approx(-1.0));
+  REQUIRE(momentum.y() == Catch::Approx(7.0));
+  REQUIRE(momentum.z() == Catch::Approx(12.0));
+}
+
+TEST_CASE("center of mass uses mass weighted positions") {
+  const SystemState system{
+      .bodies{
+          Body{
+              "Light",
+              1.0,
+              Vec3{0.0, 0.0, 0.0},
+              Vec3{},
+          },
+          Body{
+              "Heavy",
+              3.0,
+              Vec3{4.0, 0.0, 0.0},
+              Vec3{},
+          },
+      },
+  };
+
+  const Vec3 result = center_of_mass(system);
+
+  REQUIRE(result.x() == Catch::Approx(3.0));
+  REQUIRE(result.y() == Catch::Approx(0.0));
+  REQUIRE(result.z() == Catch::Approx(0.0));
+}
+
+TEST_CASE("single body is located at the center of mass") {
+  const SystemState system{
+      .bodies{
+          Body{
+              "Only body",
+              5.0,
+              Vec3{2.0, -4.0, 7.0},
+              Vec3{},
+          },
+      },
+  };
+
+  REQUIRE(center_of_mass(system) == Vec3{2.0, -4.0, 7.0});
+}
+
+TEST_CASE("center of mass is undefined for an empty system") {
+  const SystemState system{};
+
+  REQUIRE_THROWS_AS(center_of_mass(system), std::domain_error);
+}
+
+TEST_CASE("two body potential energy is negative") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{
+      .bodies{
+          Body{
+              "First",
+              2.0,
+              Vec3{0.0, 0.0, 0.0},
+              Vec3{},
+          },
+          Body{
+              "Second",
+              4.0,
+              Vec3{2.0, 0.0, 0.0},
+              Vec3{},
+          },
+      },
+  };
+
+  REQUIRE(potential_energy(system, gravitational_constant) ==
+          Catch::Approx(-4.0));
+}
+
+TEST_CASE("potential energy counts each pair exactly once") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{
+      .bodies{
+          Body{
+              "First",
+              1.0,
+              Vec3{0.0, 0.0, 0.0},
+              Vec3{},
+          },
+          Body{
+              "Second",
+              2.0,
+              Vec3{1.0, 0.0, 0.0},
+              Vec3{},
+          },
+          Body{
+              "Third",
+              3.0,
+              Vec3{3.0, 0.0, 0.0},
+              Vec3{},
+          },
+      },
+  };
+
+  REQUIRE(potential_energy(system, gravitational_constant) ==
+          Catch::Approx(-6.0));
+}
+
+TEST_CASE("empty and single body systems have zero potential energy") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState empty_system{};
+
+  const SystemState single_body_system{
+      .bodies{
+          Body{
+              "Only body",
+              1.0,
+              Vec3{},
+              Vec3{},
+          },
+      },
+  };
+
+  REQUIRE(potential_energy(empty_system, gravitational_constant) ==
+          Catch::Approx(0.0));
+
+  REQUIRE(potential_energy(single_body_system, gravitational_constant) ==
+          Catch::Approx(0.0));
+}
+
+TEST_CASE("potential energy rejects invalid gravitational constants") {
+  const SystemState system{};
+
+  REQUIRE_THROWS_AS(potential_energy(system, 0.0), std::invalid_argument);
+
+  REQUIRE_THROWS_AS(potential_energy(system, -1.0), std::invalid_argument);
+}
+
+TEST_CASE("potential energy is undefined for coincident bodies") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{
+      .bodies{
+          Body{
+              "First",
+              1.0,
+              Vec3{2.0, 3.0, 4.0},
+              Vec3{},
+          },
+          Body{
+              "Second",
+              2.0,
+              Vec3{2.0, 3.0, 4.0},
+              Vec3{},
+          },
+      },
+  };
+
+  REQUIRE_THROWS_AS(potential_energy(system, gravitational_constant),
+                    std::domain_error);
+}
+
+TEST_CASE("total energy combines kinetic and potential energy") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{
+      .bodies{
+          Body{
+              "First",
+              2.0,
+              Vec3{0.0, 0.0, 0.0},
+              Vec3{1.0, 0.0, 0.0},
+          },
+          Body{
+              "Second",
+              2.0,
+              Vec3{2.0, 0.0, 0.0},
+              Vec3{-1.0, 0.0, 0.0},
+          },
+      },
+  };
+
+  REQUIRE(total_energy(system, gravitational_constant) == Catch::Approx(0.0));
 }
 ```
 
@@ -3968,7 +4525,6 @@ TEST_CASE("source body accelerates target toward itself") {
   REQUIRE(acceleration.y() == Catch::Approx(.0));
   REQUIRE(acceleration.z() == Catch::Approx(.0));
 }
-
 TEST_CASE("gravity acceleration preserves spatial direction") {
   constexpr double gravitational_constant = 1.0;
 
@@ -3981,7 +4537,7 @@ TEST_CASE("gravity acceleration preserves spatial direction") {
   const Vec3 acceleration =
       gravitational_acceleration(target, source, gravitational_constant);
 
-  REQUIRE(acceleration.dot(displacement).norm() ==
+  REQUIRE(acceleration.cross(displacement).norm() ==
           Catch::Approx(0.0).margin(1e-12));
 
   REQUIRE(acceleration.dot(displacement) > 0.0);
@@ -4006,6 +4562,188 @@ TEST_CASE("two bodies accelerate toward each other") {
   REQUIRE(accelerations[1].x() == Catch::Approx(-0.5));
   REQUIRE(accelerations[1].y() == Catch::Approx(0.0));
   REQUIRE(accelerations[1].z() == Catch::Approx(0.0));
+}
+
+TEST_CASE("isolated body has zero gravitational acceleration") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{
+      .bodies{
+          Body{
+              "Alone",
+              5.0,
+              Vec3{10.0, 20.0, 30.0},
+              Vec3{},
+          },
+      },
+  };
+
+  const std::vector<Vec3> accelerations =
+      gravitational_accelerations(system, gravitational_constant);
+
+  REQUIRE(accelerations.size() == 1);
+  REQUIRE(accelerations[0] == Vec3{});
+}
+
+TEST_CASE("empty system has no gravitational accelerations") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{};
+
+  const std::vector<Vec3> accelerations =
+      gravitational_accelerations(system, gravitational_constant);
+
+  REQUIRE(accelerations.empty());
+}
+
+TEST_CASE("system gravity rejects invalid gravitational constant") {
+  const SystemState system{
+      .bodies{
+          Body{"Body", 1.0, Vec3{}, Vec3{}},
+      },
+  };
+
+  REQUIRE_THROWS_AS(gravitational_accelerations(system, 0.0),
+                    std::invalid_argument);
+
+  REQUIRE_THROWS_AS(gravitational_accelerations(system, -1.0),
+                    std::invalid_argument);
+}
+
+TEST_CASE("doubling source mass doubles target acceleration") {
+  constexpr double gravitational_constant = 1.0;
+
+  const Body target{
+      "Target",
+      1.0,
+      Vec3{0.0, 0.0, 0.0},
+      Vec3{},
+  };
+
+  const Body light_source{
+      "Light",
+      2.0,
+      Vec3{2.0, 0.0, 0.0},
+      Vec3{},
+  };
+
+  const Body heavy_source{
+      "Heavy",
+      4.0,
+      Vec3{2.0, 0.0, 0.0},
+      Vec3{},
+  };
+
+  const Vec3 light_acceleration =
+      gravitational_acceleration(target, light_source, gravitational_constant);
+
+  const Vec3 heavy_acceleration =
+      gravitational_acceleration(target, heavy_source, gravitational_constant);
+
+  REQUIRE(heavy_acceleration.x() ==
+          Catch::Approx(2.0 * light_acceleration.x()));
+}
+
+TEST_CASE("doubling distance reduces acceleration by four") {
+  constexpr double gravitational_constant = 1.0;
+
+  const Body target{
+      "Target",
+      1.0,
+      Vec3{},
+      Vec3{},
+  };
+
+  const Body near_source{
+      "Near",
+      4.0,
+      Vec3{2.0, 0.0, 0.0},
+      Vec3{},
+  };
+
+  const Body far_source{
+      "Far",
+      4.0,
+      Vec3{4.0, 0.0, 0.0},
+      Vec3{},
+  };
+
+  const double near_magnitude =
+      gravitational_acceleration(target, near_source, gravitational_constant)
+          .norm();
+
+  const double far_magnitude =
+      gravitational_acceleration(target, far_source, gravitational_constant)
+          .norm();
+
+  REQUIRE(far_magnitude == Catch::Approx(near_magnitude / 4.0));
+}
+
+TEST_CASE("two-body internal forces are equal and opposite") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{
+      .bodies{
+          Body{
+              "First",
+              2.0,
+              Vec3{-1.0, 0.0, 0.0},
+              Vec3{},
+          },
+          Body{
+              "Second",
+              4.0,
+              Vec3{1.0, 0.0, 0.0},
+              Vec3{},
+          },
+      },
+  };
+
+  const std::vector<Vec3> accelerations =
+      gravitational_accelerations(system, gravitational_constant);
+
+  const Vec3 first_force = accelerations[0] * system.bodies[0].mass;
+
+  const Vec3 second_force = accelerations[1] * system.bodies[1].mass;
+
+  REQUIRE((first_force + second_force).norm() ==
+          Catch::Approx(0.0).margin(1e-12));
+}
+
+TEST_CASE("body acceleration accumulates contributions from all sources") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{
+      .bodies{
+          Body{
+              "Target",
+              1.0,
+              Vec3{0.0, 0.0, 0.0},
+              Vec3{},
+          },
+          Body{
+              "Right",
+              4.0,
+              Vec3{2.0, 0.0, 0.0},
+              Vec3{},
+          },
+          Body{
+              "Up",
+              8.0,
+              Vec3{0.0, 2.0, 0.0},
+              Vec3{},
+          },
+      },
+  };
+
+  const std::vector<Vec3> accelerations =
+      gravitational_accelerations(system, gravitational_constant);
+
+  REQUIRE(accelerations[0].x() == Catch::Approx(1.0));
+
+  REQUIRE(accelerations[0].y() == Catch::Approx(2.0));
+
+  REQUIRE(accelerations[0].z() == Catch::Approx(0.0));
 }
 ```
 
@@ -4067,6 +4805,324 @@ TEST_CASE("integrators reject negative time step") {
 }
 ```
 
+### `tests/test_simulation_step.cpp`
+
+```cpp
+#include <catch2/catch_approx.hpp>
+#include <catch2/catch_test_macros.hpp>
+
+#include <stdexcept>
+#include <string>
+
+#include "orbitalforge/math/vec3.hpp"
+#include "orbitalforge/physics/body.hpp"
+#include "orbitalforge/physics/system_state.hpp"
+#include "orbitalforge/simulation/step.hpp"
+
+namespace {
+
+using orbitalforge::math::Vec3;
+using orbitalforge::physics::Body;
+using orbitalforge::physics::SystemState;
+
+void require_vec3_approx(const Vec3 &actual, const Vec3 &expected,
+                         double margin = 1.0e-12) {
+  REQUIRE(actual.x() == Catch::Approx(expected.x()).margin(margin));
+  REQUIRE(actual.y() == Catch::Approx(expected.y()).margin(margin));
+  REQUIRE(actual.z() == Catch::Approx(expected.z()).margin(margin));
+}
+
+SystemState make_symmetric_two_body_system() {
+  return SystemState{
+      .bodies{
+          Body{
+              "Left",
+              1.0,
+              Vec3{-1.0, 0.0, 0.0},
+              Vec3{},
+          },
+          Body{
+              "Right",
+              1.0,
+              Vec3{1.0, 0.0, 0.0},
+              Vec3{},
+          },
+      },
+  };
+}
+
+} // namespace
+
+TEST_CASE("explicit Euler advances a symmetric two-body system") {
+  constexpr double gravitational_constant = 1.0;
+  constexpr double time_step = 0.5;
+
+  SystemState system = make_symmetric_two_body_system();
+
+  orbitalforge::simulation::advance_explicit_euler_step(
+      system, gravitational_constant, time_step);
+
+  /*
+   * Initial distance between the bodies is 2.
+   *
+   * Acceleration magnitude:
+   *
+   *     a = Gm / r^2
+   *       = 1 * 1 / 2^2
+   *       = 0.25
+   *
+   * Explicit Euler uses the old velocity for position:
+   *
+   *     x_next = x + v * dt
+   *
+   * Both initial velocities are zero, so positions remain unchanged.
+   *
+   *     v_next = v + a * dt
+   *            = 0 + 0.25 * 0.5
+   *            = 0.125
+   */
+
+  require_vec3_approx(system.bodies[0].position, Vec3{-1.0, 0.0, 0.0});
+
+  require_vec3_approx(system.bodies[1].position, Vec3{1.0, 0.0, 0.0});
+
+  require_vec3_approx(system.bodies[0].velocity, Vec3{0.125, 0.0, 0.0});
+
+  require_vec3_approx(system.bodies[1].velocity, Vec3{-0.125, 0.0, 0.0});
+}
+
+TEST_CASE("semi-implicit Euler advances a symmetric two-body system") {
+  constexpr double gravitational_constant = 1.0;
+  constexpr double time_step = 0.5;
+
+  SystemState system = make_symmetric_two_body_system();
+
+  orbitalforge::simulation::advance_semi_implicit_euler_step(
+      system, gravitational_constant, time_step);
+
+  /*
+   * The acceleration magnitude is 0.25.
+   *
+   * Semi-implicit Euler first updates velocity:
+   *
+   *     v_next = 0 + 0.25 * 0.5
+   *            = 0.125
+   *
+   * It then updates position using the new velocity:
+   *
+   *     x_next = x + v_next * dt
+   *            = x + 0.125 * 0.5
+   *            = x + 0.0625
+   */
+
+  require_vec3_approx(system.bodies[0].velocity, Vec3{0.125, 0.0, 0.0});
+
+  require_vec3_approx(system.bodies[1].velocity, Vec3{-0.125, 0.0, 0.0});
+
+  require_vec3_approx(system.bodies[0].position, Vec3{-0.9375, 0.0, 0.0});
+
+  require_vec3_approx(system.bodies[1].position, Vec3{0.9375, 0.0, 0.0});
+}
+
+TEST_CASE("explicit Euler computes all accelerations from the same snapshot") {
+  constexpr double gravitational_constant = 1.0;
+  constexpr double time_step = 0.25;
+
+  SystemState system = make_symmetric_two_body_system();
+
+  orbitalforge::simulation::advance_explicit_euler_step(
+      system, gravitational_constant, time_step);
+
+  /*
+   * Both bodies must be updated from accelerations calculated before either
+   * body is mutated. Otherwise, updating the first body could influence the
+   * acceleration used for the second body.
+   */
+
+  REQUIRE(system.bodies[0].velocity.x() ==
+          Catch::Approx(-system.bodies[1].velocity.x()));
+
+  REQUIRE(system.bodies[0].velocity.y() ==
+          Catch::Approx(-system.bodies[1].velocity.y()));
+
+  REQUIRE(system.bodies[0].velocity.z() ==
+          Catch::Approx(-system.bodies[1].velocity.z()));
+}
+
+TEST_CASE(
+    "semi-implicit Euler computes all accelerations from the same snapshot") {
+  constexpr double gravitational_constant = 1.0;
+  constexpr double time_step = 0.25;
+
+  SystemState system = make_symmetric_two_body_system();
+
+  orbitalforge::simulation::advance_semi_implicit_euler_step(
+      system, gravitational_constant, time_step);
+
+  REQUIRE(system.bodies[0].position.x() ==
+          Catch::Approx(-system.bodies[1].position.x()));
+
+  REQUIRE(system.bodies[0].position.y() ==
+          Catch::Approx(-system.bodies[1].position.y()));
+
+  REQUIRE(system.bodies[0].position.z() ==
+          Catch::Approx(-system.bodies[1].position.z()));
+
+  REQUIRE(system.bodies[0].velocity.x() ==
+          Catch::Approx(-system.bodies[1].velocity.x()));
+
+  REQUIRE(system.bodies[0].velocity.y() ==
+          Catch::Approx(-system.bodies[1].velocity.y()));
+
+  REQUIRE(system.bodies[0].velocity.z() ==
+          Catch::Approx(-system.bodies[1].velocity.z()));
+}
+
+TEST_CASE("simulation steps preserve body names and masses") {
+  constexpr double gravitational_constant = 1.0;
+  constexpr double time_step = 0.1;
+
+  SystemState system = make_symmetric_two_body_system();
+
+  orbitalforge::simulation::advance_semi_implicit_euler_step(
+      system, gravitational_constant, time_step);
+
+  REQUIRE(system.bodies[0].name == "Left");
+  REQUIRE(system.bodies[0].mass == Catch::Approx(1.0));
+
+  REQUIRE(system.bodies[1].name == "Right");
+  REQUIRE(system.bodies[1].mass == Catch::Approx(1.0));
+}
+
+TEST_CASE(
+    "an isolated body moves with constant velocity using explicit Euler") {
+  constexpr double gravitational_constant = 1.0;
+  constexpr double time_step = 0.5;
+
+  SystemState system{
+      .bodies{
+          Body{
+              "Solo",
+              5.0,
+              Vec3{1.0, 2.0, 3.0},
+              Vec3{4.0, -2.0, 1.0},
+          },
+      },
+  };
+
+  orbitalforge::simulation::advance_explicit_euler_step(
+      system, gravitational_constant, time_step);
+
+  require_vec3_approx(system.bodies[0].position, Vec3{3.0, 1.0, 3.5});
+
+  require_vec3_approx(system.bodies[0].velocity, Vec3{4.0, -2.0, 1.0});
+}
+
+TEST_CASE(
+    "an isolated body moves with constant velocity using semi-implicit Euler") {
+  constexpr double gravitational_constant = 1.0;
+  constexpr double time_step = 0.5;
+
+  SystemState system{
+      .bodies{
+          Body{
+              "Solo",
+              5.0,
+              Vec3{1.0, 2.0, 3.0},
+              Vec3{4.0, -2.0, 1.0},
+          },
+      },
+  };
+
+  orbitalforge::simulation::advance_semi_implicit_euler_step(
+      system, gravitational_constant, time_step);
+
+  /*
+   * With zero acceleration, explicit and semi-implicit Euler produce the
+   * same result because the velocity does not change.
+   */
+
+  require_vec3_approx(system.bodies[0].position, Vec3{3.0, 1.0, 3.5});
+
+  require_vec3_approx(system.bodies[0].velocity, Vec3{4.0, -2.0, 1.0});
+}
+
+TEST_CASE("simulation steps leave an empty system empty") {
+  constexpr double gravitational_constant = 1.0;
+  constexpr double time_step = 0.1;
+
+  SystemState explicit_system{};
+
+  orbitalforge::simulation::advance_explicit_euler_step(
+      explicit_system, gravitational_constant, time_step);
+
+  REQUIRE(explicit_system.bodies.empty());
+
+  SystemState semi_implicit_system{};
+
+  orbitalforge::simulation::advance_semi_implicit_euler_step(
+      semi_implicit_system, gravitational_constant, time_step);
+
+  REQUIRE(semi_implicit_system.bodies.empty());
+}
+
+TEST_CASE("explicit Euler rejects a zero time step") {
+  SystemState system = make_symmetric_two_body_system();
+
+  REQUIRE_THROWS_AS(
+      orbitalforge::simulation::advance_explicit_euler_step(system, 1.0, 0.0),
+      std::invalid_argument);
+}
+
+TEST_CASE("explicit Euler rejects a negative time step") {
+  SystemState system = make_symmetric_two_body_system();
+
+  REQUIRE_THROWS_AS(
+      orbitalforge::simulation::advance_explicit_euler_step(system, 1.0, -0.1),
+      std::invalid_argument);
+}
+
+TEST_CASE("semi-implicit Euler rejects a zero time step") {
+  SystemState system = make_symmetric_two_body_system();
+
+  REQUIRE_THROWS_AS(orbitalforge::simulation::advance_semi_implicit_euler_step(
+                        system, 1.0, 0.0),
+                    std::invalid_argument);
+}
+
+TEST_CASE("semi-implicit Euler rejects a negative time step") {
+  SystemState system = make_symmetric_two_body_system();
+
+  REQUIRE_THROWS_AS(orbitalforge::simulation::advance_semi_implicit_euler_step(
+                        system, 1.0, -0.1),
+                    std::invalid_argument);
+}
+
+TEST_CASE("explicit Euler rejects an invalid gravitational constant") {
+  SystemState system = make_symmetric_two_body_system();
+
+  REQUIRE_THROWS_AS(
+      orbitalforge::simulation::advance_explicit_euler_step(system, 0.0, 0.1),
+      std::invalid_argument);
+
+  REQUIRE_THROWS_AS(
+      orbitalforge::simulation::advance_explicit_euler_step(system, -1.0, 0.1),
+      std::invalid_argument);
+}
+
+TEST_CASE("semi-implicit Euler rejects an invalid gravitational constant") {
+  SystemState system = make_symmetric_two_body_system();
+
+  REQUIRE_THROWS_AS(orbitalforge::simulation::advance_semi_implicit_euler_step(
+                        system, 0.0, 0.1),
+                    std::invalid_argument);
+
+  REQUIRE_THROWS_AS(orbitalforge::simulation::advance_semi_implicit_euler_step(
+                        system, -1.0, 0.1),
+                    std::invalid_argument);
+}
+```
+
 ### `tests/test_system_state.cpp`
 
 ```cpp
@@ -4102,6 +5158,7 @@ TEST_CASE("system state stores multiple bodies") {
 #include "orbitalforge/math/vec3.hpp"
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
+#include <sstream>
 #include <stdexcept>
 
 using orbitalforge::math::Vec3;

@@ -48,6 +48,10 @@ Vec3 gravitational_acceleration(const Body &target, const Body &source,
 vector<Vec3> gravitational_accelerations(const SystemState &system,
                                          double gravitational_constant) {
 
+  if (gravitational_constant <= 0.0) {
+    throw std::invalid_argument{"gravitational constant must be positive"};
+  }
+
   vector<Vec3> accelerations(system.bodies.size(), Vec3{});
 
   for (std::size_t target_index = 0; target_index < system.bodies.size();

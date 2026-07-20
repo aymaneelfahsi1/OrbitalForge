@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/orbitalforge.dir/link.d CMakeFiles/orbitalforge.dir/apps/orbitalforge_cli/main.cpp.o -o orbitalforge  liborbitalforge_core.a
