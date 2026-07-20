@@ -1,12 +1,11 @@
-#include <catch2/catch_approx.hpp>
-#include <catch2/catch_test_macros.hpp>
 
 #include <array>
+#include <catch2/internal/catch_context.hpp>
+#include <chrono>
 #include <cmath>
 #include <cstddef>
-#include <limits>
-#include <stdexcept>
-#include <string>
+#include <iomanip>
+#include <iostream>
 #include <string_view>
 
 #include "orbitalforge/math/vec3.hpp"
@@ -24,416 +23,255 @@ using orbitalforge::physics::total_momentum;
 
 using StepFunction = void (*)(SystemState &, double, double);
 
-struct NamedIntegrator {
+using orbitalforge::physics::center_of_mass;
+using orbitalforge::physics::total_energy;
+using orbitalforge::physics::total_momentum;
+using orbitalforge::simulation::advance_explicit_euler_step;
+using orbitalforge::simulation::advance_leapfrog_step;
+using orbitalforge::simulation::advance_runge_kutta_4_step;
+using orbitalforge::simulation::advance_semi_implicit_euler_step;
+using orbitalforge::simulation::advance_velocity_verlet_step;
+
+struct Integrator {
   std::string_view name;
   StepFunction step;
 };
 
-constexpr std::array advanced_integrators{
-    NamedIntegrator{
-        "Velocity Verlet",
-        orbitalforge::simulation::advance_velocity_verlet_step,
-    },
-    NamedIntegrator{
-        "Leapfrog",
-        orbitalforge::simulation::advance_leapfrog_step,
-    },
-    NamedIntegrator{
-        "RK4",
-        orbitalforge::simulation::advance_runge_kutta_4_step,
-    },
+struct SimulationResult {
+  std::string_view integrator_name;
+  double initial_energy;
+  double final_energy;
+  double absolute_energy_drift;
+  double relative_energy_drift;
+
+  double momentum_drift;
+  double center_of_mass_drift;
+
+  double final_separation;
+  double elapsed_milliseconds;
 };
 
-void require_vec3_approx(const Vec3 &actual, const Vec3 &expected,
-                         double margin = 1.0e-12) {
+constexpr std::array integrators{
+    Integrator{"Explicit Euler", advance_explicit_euler_step},
+    Integrator{"Semi-implicit  Euler ", advance_semi_implicit_euler_step},
+    Integrator{"Velocity Verlet", advance_velocity_verlet_step},
+    Integrator{"Leapfrog", advance_leapfrog_step},
+    Integrator{"RK4", advance_runge_kutta_4_step}};
 
-  REQUIRE(actual.x() == Catch::Approx(expected.x()).margin(margin));
+[[nodiscard]] SystemState make_equal_mass_circular_orbit() {
+  /*
+   * We use normalized units:
+   *
+   *     G = 1
+   *     m1 = 1
+   *     m2 = 1
+   *
+   * The bodies are separated by distance:
+   *
+   *     r = 1
+   *
+   * Their center of mass is at the origin:
+   *
+   *     x1 = -0.5
+   *     x2 =  0.5
+   *
+   * Each body moves on a circle of radius:
+   *
+   *     R = 0.5
+   *
+   * Gravitational acceleration magnitude:
+   *
+   *     a = Gm / r^2 = 1
+   *
+   * Circular motion requires:
+   *
+   *     v^2 / R = a
+   *
+   * Therefore:
+   *
+   *     v = sqrt(aR)
+   *       = sqrt(0.5)
+   */
 
-  REQUIRE(actual.y() == Catch::Approx(expected.y()).margin(margin));
+  const double orbital_speed = std::sqrt(.5);
 
-  REQUIRE(actual.z() == Catch::Approx(expected.z()).margin(margin));
+  return SystemState{.bodies{
+      Body{"Primary", 1.0, Vec3{-.5, .0, .0}, Vec3{.0, -orbital_speed, .0}},
+      Body{"Secondary", 1.0, Vec3{.5, .0, .0}, Vec3{.0, orbital_speed, .0}}}};
 }
 
-void require_system_states_approx(const SystemState &actual,
-                                  const SystemState &expected,
-                                  double margin = 1.0e-12) {
+[[nodiscard]] double relative_drift(double initial_value, double final_value) {
+  const double absolute_drift = std::abs(final_value - initial_value);
 
-  REQUIRE(actual.bodies.size() == expected.bodies.size());
-
-  for (std::size_t index = 0; index < actual.bodies.size(); ++index) {
-
-    INFO("body index: " << index);
-
-    require_vec3_approx(actual.bodies[index].position,
-                        expected.bodies[index].position, margin);
-
-    require_vec3_approx(actual.bodies[index].velocity,
-                        expected.bodies[index].velocity, margin);
+  if (initial_value == .0) {
+    return absolute_drift;
   }
+
+  return absolute_drift / std::abs(initial_value);
 }
 
-SystemState make_symmetric_two_body_system() {
-  return SystemState{
-      .bodies{
-          Body{
-              "Left",
-              1.0,
-              Vec3{-1.0, 0.0, 0.0},
-              Vec3{},
-          },
-          Body{
-              "Right",
-              1.0,
-              Vec3{1.0, 0.0, 0.0},
-              Vec3{},
-          },
-      },
-  };
+[[nodiscard]] double body_seperation(const SystemState &system) {
+  if (system.bodies.size() < 2) {
+    return .0;
+  }
+
+  const Vec3 displacement =
+      system.bodies[1].position - system.bodies[0].position;
+  return displacement.norm();
 }
 
-SystemState make_momentum_test_system() {
-  return SystemState{
-      .bodies{
-          Body{
-              "First",
-              2.0,
-              Vec3{-2.0, 0.0, 0.0},
-              Vec3{0.2, 0.7, 0.0},
-          },
-          Body{
-              "Second",
-              3.0,
-              Vec3{1.0, 1.0, 0.0},
-              Vec3{-0.4, 0.1, 0.0},
-          },
-          Body{
-              "Third",
-              5.0,
-              Vec3{2.0, -1.0, 0.0},
-              Vec3{0.3, -0.5, 0.0},
-          },
-      },
-  };
+[[nodiscard]] SimulationResult run_simulation(const Integrator &integrator,
+                                              const SystemState &initial_system,
+                                              double gravitational_constant,
+                                              double time_step,
+                                              std::size_t step_count) {
+  SystemState system = initial_system;
+
+  const double initial_energy = total_energy(system, gravitational_constant);
+
+  const Vec3 initial_momentum = total_momentum(system);
+
+  const Vec3 initial_center_of_mass = center_of_mass(system);
+
+  const auto start_time = std::chrono::steady_clock::now();
+
+  for (std::size_t step = 0; step < step_count; ++step) {
+    integrator.step(system, gravitational_constant, time_step);
+  }
+
+  const auto end_time = std::chrono::steady_clock::now();
+  const double final_energy = total_energy(system, gravitational_constant);
+
+  const Vec3 final_momentum = total_momentum(system);
+
+  const Vec3 final_center_of_mass = center_of_mass(system);
+
+  const double absolute_energy_drift = std::abs(final_energy - initial_energy);
+  const double momentum_drift = (final_momentum - initial_momentum).norm();
+  const double center_of_mass_drift =
+      (final_center_of_mass - initial_center_of_mass).norm();
+
+  const std::chrono::duration<double, std::milli> elapsed_time =
+      end_time - start_time;
+
+  return SimulationResult{.integrator_name = integrator.name,
+                          .initial_energy = initial_energy,
+                          .final_energy = final_energy,
+                          .absolute_energy_drift = absolute_energy_drift,
+                          .relative_energy_drift =
+                              relative_drift(initial_energy, final_energy),
+                          .momentum_drift = momentum_drift,
+                          .center_of_mass_drift = center_of_mass_drift,
+                          .final_separation = body_seperation(system),
+                          .elapsed_milliseconds = elapsed_time.count()};
+}
+
+void print_header(double gravitational_constant, double time_step,
+                  std::size_t step_count) {
+
+  const double total_time = time_step * static_cast<double>(step_count);
+
+  std::cout << "OrbitalForge integrator comparison\n"
+            << "==================================\n\n";
+
+  std::cout << "Scenario:               "
+            << "equal-mass circular binary orbit\n";
+
+  std::cout << "Gravitational constant: " << gravitational_constant << '\n';
+
+  std::cout << "Time step:              " << time_step << '\n';
+
+  std::cout << "Step count:             " << step_count << '\n';
+
+  std::cout << "Total simulated time:   " << total_time << "\n\n";
+}
+
+void print_table_header() {
+
+  std::cout << std::left << std::setw(22) << "Integrator"
+
+            << std::right << std::setw(18) << "Abs E drift"
+
+            << std::setw(18) << "Rel E drift"
+
+            << std::setw(18) << "Momentum drift"
+
+            << std::setw(18) << "COM drift"
+
+            << std::setw(18) << "Final distance"
+
+            << std::setw(14) << "Time (ms)"
+
+            << '\n';
+
+  std::cout << std::string(126, '-') << '\n';
+}
+
+void print_result(const SimulationResult &result) {
+
+  std::cout << std::left << std::setw(22) << result.integrator_name
+
+            << std::right << std::scientific << std::setprecision(6)
+
+            << std::setw(18) << result.absolute_energy_drift
+
+            << std::setw(18) << result.relative_energy_drift
+
+            << std::setw(18) << result.momentum_drift
+
+            << std::setw(18) << result.center_of_mass_drift
+
+            << std::setw(18) << result.final_separation
+
+            << std::fixed << std::setprecision(3) << std::setw(14)
+            << result.elapsed_milliseconds
+
+            << '\n';
+}
+
+void print_energy_details(const SimulationResult &result) {
+
+  std::cout << "\n" << result.integrator_name << '\n';
+
+  std::cout << "  Initial energy: " << std::scientific << std::setprecision(12)
+            << result.initial_energy << '\n';
+
+  std::cout << "  Final energy:   " << result.final_energy << '\n';
+
+  std::cout << "  Energy change:  "
+            << result.final_energy - result.initial_energy << '\n';
 }
 
 } // namespace
 
-TEST_CASE("advanced integrators reject zero time step") {
-
+int main() {
   constexpr double gravitational_constant = 1.0;
 
-  for (const NamedIntegrator &integrator : advanced_integrators) {
+  constexpr double time_step = 0.01;
 
-    INFO("integrator: " << integrator.name);
+  constexpr std::size_t step_count = 100'000;
 
-    SystemState system = make_symmetric_two_body_system();
+  const SystemState initial_system = make_equal_mass_circular_orbit();
 
-    REQUIRE_THROWS_AS(integrator.step(system, gravitational_constant, 0.0),
-                      std::invalid_argument);
+  print_header(gravitational_constant, time_step, step_count);
+
+  print_table_header();
+
+  std::array<SimulationResult, integrators.size()> results{};
+
+  for (std::size_t index = 0; index < integrators.size(); ++index) {
+    results[index] =
+        run_simulation(integrators[index], initial_system,
+                       gravitational_constant, time_step, step_count);
+
+    print_result(results[index]);
   }
-}
 
-TEST_CASE("advanced integrators reject negative time step") {
+  std::cout << "\n Energy details: \n" << "\n";
 
-  constexpr double gravitational_constant = 1.0;
-
-  for (const NamedIntegrator &integrator : advanced_integrators) {
-
-    INFO("integrator: " << integrator.name);
-
-    SystemState system = make_symmetric_two_body_system();
-
-    REQUIRE_THROWS_AS(integrator.step(system, gravitational_constant, -0.25),
-                      std::invalid_argument);
+  for (const SimulationResult &result : results) {
+    print_energy_details(result);
   }
-}
 
-TEST_CASE("advanced integrators reject non-finite time step") {
-
-  constexpr double gravitational_constant = 1.0;
-
-  const double not_a_number = std::numeric_limits<double>::quiet_NaN();
-
-  const double infinity = std::numeric_limits<double>::infinity();
-
-  for (const NamedIntegrator &integrator : advanced_integrators) {
-
-    INFO("integrator: " << integrator.name);
-
-    SystemState nan_system = make_symmetric_two_body_system();
-
-    REQUIRE_THROWS_AS(
-        integrator.step(nan_system, gravitational_constant, not_a_number),
-        std::invalid_argument);
-
-    SystemState infinity_system = make_symmetric_two_body_system();
-
-    REQUIRE_THROWS_AS(
-        integrator.step(infinity_system, gravitational_constant, infinity),
-        std::invalid_argument);
-  }
-}
-
-TEST_CASE("advanced integrators accept an empty system") {
-
-  constexpr double gravitational_constant = 1.0;
-  constexpr double time_step = 0.1;
-
-  for (const NamedIntegrator &integrator : advanced_integrators) {
-
-    INFO("integrator: " << integrator.name);
-
-    SystemState system;
-
-    REQUIRE_NOTHROW(integrator.step(system, gravitational_constant, time_step));
-
-    REQUIRE(system.bodies.empty());
-  }
-}
-
-TEST_CASE("advanced integrators move an isolated body linearly") {
-
-  constexpr double gravitational_constant = 1.0;
-  constexpr double time_step = 0.25;
-
-  const Vec3 initial_position{
-      10.0,
-      -4.0,
-      2.0,
-  };
-
-  const Vec3 velocity{
-      2.0,
-      3.0,
-      -1.0,
-  };
-
-  const Vec3 expected_position = initial_position + velocity * time_step;
-
-  for (const NamedIntegrator &integrator : advanced_integrators) {
-
-    INFO("integrator: " << integrator.name);
-
-    SystemState system{
-        .bodies{
-            Body{
-                "Alone",
-                5.0,
-                initial_position,
-                velocity,
-            },
-        },
-    };
-
-    integrator.step(system, gravitational_constant, time_step);
-
-    require_vec3_approx(system.bodies[0].position, expected_position);
-
-    require_vec3_approx(system.bodies[0].velocity, velocity);
-  }
-}
-
-TEST_CASE("velocity Verlet performs the expected two-body step") {
-
-  constexpr double gravitational_constant = 1.0;
-  constexpr double time_step = 0.5;
-
-  SystemState system = make_symmetric_two_body_system();
-
-  /*
-   * Initial body separation:
-   *
-   *     r = 2
-   *
-   * Initial acceleration magnitude:
-   *
-   *     a0 = Gm / r^2
-   *        = 1 / 4
-   *        = 0.25
-   *
-   * Velocity-Verlet position:
-   *
-   *     x1 = x0 + v0 * dt
-   *             + 0.5 * a0 * dt^2
-   *
-   * The initial velocities are zero:
-   *
-   *     displacement
-   *       = 0.5 * 0.25 * 0.5^2
-   *       = 0.03125
-   */
-
-  orbitalforge::simulation::advance_velocity_verlet_step(
-      system, gravitational_constant, time_step);
-
-  constexpr double expected_left_position = -0.96875;
-
-  constexpr double expected_right_position = 0.96875;
-
-  require_vec3_approx(system.bodies[0].position,
-                      Vec3{expected_left_position, 0.0, 0.0});
-
-  require_vec3_approx(system.bodies[1].position,
-                      Vec3{expected_right_position, 0.0, 0.0});
-
-  const double new_separation =
-      expected_right_position - expected_left_position;
-
-  const double final_acceleration =
-      gravitational_constant / (new_separation * new_separation);
-
-  const double expected_speed = 0.5 * (0.25 + final_acceleration) * time_step;
-
-  require_vec3_approx(system.bodies[0].velocity,
-                      Vec3{expected_speed, 0.0, 0.0});
-
-  require_vec3_approx(system.bodies[1].velocity,
-                      Vec3{-expected_speed, 0.0, 0.0});
-}
-
-TEST_CASE("leapfrog matches velocity Verlet") {
-
-  constexpr double gravitational_constant = 1.0;
-  constexpr double time_step = 0.125;
-
-  SystemState verlet_system{
-      .bodies{
-          Body{
-              "First",
-              2.0,
-              Vec3{-1.5, 0.2, 0.0},
-              Vec3{0.1, 0.4, 0.0},
-          },
-          Body{
-              "Second",
-              3.0,
-              Vec3{1.0, -0.3, 0.0},
-              Vec3{-0.2, -0.1, 0.0},
-          },
-          Body{
-              "Third",
-              0.5,
-              Vec3{0.2, 2.0, 0.0},
-              Vec3{0.3, -0.2, 0.0},
-          },
-      },
-  };
-
-  SystemState leapfrog_system = verlet_system;
-
-  orbitalforge::simulation::advance_velocity_verlet_step(
-      verlet_system, gravitational_constant, time_step);
-
-  orbitalforge::simulation::advance_leapfrog_step(
-      leapfrog_system, gravitational_constant, time_step);
-
-  require_system_states_approx(leapfrog_system, verlet_system);
-}
-
-TEST_CASE("RK4 preserves mirror symmetry") {
-
-  constexpr double gravitational_constant = 1.0;
-  constexpr double time_step = 0.2;
-
-  SystemState system{
-      .bodies{
-          Body{
-              "Left",
-              1.0,
-              Vec3{-1.0, 0.0, 0.0},
-              Vec3{0.0, -0.5, 0.0},
-          },
-          Body{
-              "Right",
-              1.0,
-              Vec3{1.0, 0.0, 0.0},
-              Vec3{0.0, 0.5, 0.0},
-          },
-      },
-  };
-
-  orbitalforge::simulation::advance_runge_kutta_4_step(
-      system, gravitational_constant, time_step);
-
-  const Body &left = system.bodies[0];
-
-  const Body &right = system.bodies[1];
-
-  REQUIRE(left.position.x() ==
-          Catch::Approx(-right.position.x()).margin(1.0e-12));
-
-  REQUIRE(left.position.y() ==
-          Catch::Approx(-right.position.y()).margin(1.0e-12));
-
-  REQUIRE(left.position.z() ==
-          Catch::Approx(-right.position.z()).margin(1.0e-12));
-
-  REQUIRE(left.velocity.x() ==
-          Catch::Approx(-right.velocity.x()).margin(1.0e-12));
-
-  REQUIRE(left.velocity.y() ==
-          Catch::Approx(-right.velocity.y()).margin(1.0e-12));
-
-  REQUIRE(left.velocity.z() ==
-          Catch::Approx(-right.velocity.z()).margin(1.0e-12));
-}
-
-TEST_CASE("advanced integrators preserve total momentum") {
-
-  constexpr double gravitational_constant = 1.0;
-  constexpr double time_step = 0.05;
-
-  for (const NamedIntegrator &integrator : advanced_integrators) {
-
-    INFO("integrator: " << integrator.name);
-
-    SystemState system = make_momentum_test_system();
-
-    const Vec3 initial_momentum = total_momentum(system);
-
-    integrator.step(system, gravitational_constant, time_step);
-
-    const Vec3 final_momentum = total_momentum(system);
-
-    require_vec3_approx(final_momentum, initial_momentum, 1.0e-11);
-  }
-}
-
-TEST_CASE("advanced integrators preserve body identity and mass") {
-
-  constexpr double gravitational_constant = 1.0;
-  constexpr double time_step = 0.1;
-
-  for (const NamedIntegrator &integrator : advanced_integrators) {
-
-    INFO("integrator: " << integrator.name);
-
-    SystemState system = make_momentum_test_system();
-
-    const std::string first_name = system.bodies[0].name;
-
-    const std::string second_name = system.bodies[1].name;
-
-    const std::string third_name = system.bodies[2].name;
-
-    const double first_mass = system.bodies[0].mass;
-
-    const double second_mass = system.bodies[1].mass;
-
-    const double third_mass = system.bodies[2].mass;
-
-    integrator.step(system, gravitational_constant, time_step);
-
-    REQUIRE(system.bodies[0].name == first_name);
-
-    REQUIRE(system.bodies[1].name == second_name);
-
-    REQUIRE(system.bodies[2].name == third_name);
-
-    REQUIRE(system.bodies[0].mass == first_mass);
-
-    REQUIRE(system.bodies[1].mass == second_mass);
-
-    REQUIRE(system.bodies[2].mass == third_mass);
-  }
+  return 0;
 }

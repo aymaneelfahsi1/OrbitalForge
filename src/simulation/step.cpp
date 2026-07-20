@@ -222,12 +222,13 @@ void advance_runge_kutta_4_step(physics::SystemState &system,
   const SystemDerivative k2 =
       evaluate_derivative(k2_system, gravitational_constant);
 
-  const SystemState k3_system = offset_system(k2_system, k2, .5 * time_step);
+  const SystemState k3_system =
+      offset_system(initial_system, k2, .5 * time_step);
 
   const SystemDerivative k3 =
       evaluate_derivative(k3_system, gravitational_constant);
 
-  const SystemState k4_system = offset_system(k3_system, k3, time_step);
+  const SystemState k4_system = offset_system(initial_system, k3, time_step);
 
   const SystemDerivative k4 =
       evaluate_derivative(k4_system, gravitational_constant);

@@ -59,6 +59,32 @@ target_link_libraries(
         orbitalforge_core
 )
 
+
+#Numerical integrator comparison experiement
+
+add_executable(
+    orbitalforge_integrator_comparison
+    examples/integrator_comparison.cpp
+)
+
+target_link_libraries(
+    orbitalforge_integrator_comparison
+    PRIVATE
+        orbitalforge_core
+)
+
+target_compile_options(
+    orbitalforge_integrator_comparison
+    PRIVATE
+        -Wall
+        -Wextra
+        -Wpedantic
+        -Wconversion
+        -Wshadow
+)
+
+
+
 # Tests
 include(CTest)
 enable_testing()
@@ -83,6 +109,8 @@ target_link_libraries(
         orbitalforge_core
         Catch2::Catch2WithMain
 )
+
+
 
 include(Catch)
 catch_discover_tests(orbitalforge_tests)
