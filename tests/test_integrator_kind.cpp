@@ -57,5 +57,5 @@ TEST_CASE("selected integrator can advance an empty system") {
 
   auto *step = step_function(IntegratorKind::velocity_verlet);
 
-  REQUIRE_NOTHROW(step(system, 6.67430e-11, 1.0));
+  REQUIRE_NOTHROW(step(system, 6.67430e-11, 0.0, 1.0));
 }

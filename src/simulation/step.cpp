@@ -1,17 +1,17 @@
 #include "orbitalforge/simulation/step.hpp"
 
+#include <cmath>
+#include <cstddef>
+#include <stdexcept>
+#include <utility>
+#include <vector>
+
 #include "orbitalforge/math/vec3.hpp"
 #include "orbitalforge/physics/body.hpp"
 #include "orbitalforge/physics/gravity.hpp"
 #include "orbitalforge/physics/integrator.hpp"
 #include "orbitalforge/physics/state.hpp"
 #include "orbitalforge/physics/system_state.hpp"
-
-#include <cmath>
-#include <cstddef>
-#include <stdexcept>
-#include <utility>
-#include <vector>
 
 namespace orbitalforge::simulation {
 
@@ -24,8 +24,6 @@ using physics::State;
 using physics::SystemState;
 using std::vector;
 
-// anonymous namespace, everything inside it is private to step.cpp file. it
-// holds implemntation helpers
 namespace {
 
 void validate_time_step(double time_step) {
@@ -45,11 +43,12 @@ void validate_acceleration_count(const SystemState &system,
 template <typename Integrator>
 void advance_system_with_fixed_acceleration(SystemState &system,
                                             double gravitational_constant,
-                                            double time_step,
+                                            double softening, double time_step,
                                             const Integrator &integrator) {
   validate_time_step(time_step);
-  const auto accelerations =
-      gravitational_accelerations(system, gravitational_constant);
+
+  const vector<Vec3> accelerations =
+      gravitational_accelerations(system, gravitational_constant, softening);
 
   validate_acceleration_count(system, accelerations);
 
@@ -71,9 +70,10 @@ struct SystemDerivative {
 };
 
 [[nodiscard]] SystemDerivative
-evaluate_derivative(const SystemState &system, double gravitational_constant) {
+evaluate_derivative(const SystemState &system, double gravitational_constant,
+                    double softening) {
   vector<Vec3> accelerations =
-      gravitational_accelerations(system, gravitational_constant);
+      gravitational_accelerations(system, gravitational_constant, softening);
 
   validate_acceleration_count(system, accelerations);
 
@@ -84,13 +84,15 @@ evaluate_derivative(const SystemState &system, double gravitational_constant) {
     velocities.push_back(body.velocity);
   }
 
-  return SystemDerivative{std::move(velocities), std::move(accelerations)};
+  return SystemDerivative{
+      std::move(velocities),
+      std::move(accelerations),
+  };
 }
 
 [[nodiscard]] SystemState offset_system(const SystemState &base_system,
                                         const SystemDerivative &derivative,
                                         double scale) {
-
   if (derivative.position_rates.size() != base_system.bodies.size() ||
       derivative.velocity_rates.size() != base_system.bodies.size()) {
     throw std::logic_error{"system derivative size must match body count"};
@@ -99,12 +101,12 @@ evaluate_derivative(const SystemState &system, double gravitational_constant) {
   SystemState result = base_system;
 
   for (std::size_t index = 0; index < result.bodies.size(); ++index) {
-
     const State base_state = base_system.bodies[index].state();
 
-    result.bodies[index].set_state(
-        State{base_state.position + derivative.position_rates[index] * scale,
-              base_state.velocity + derivative.velocity_rates[index] * scale});
+    result.bodies[index].set_state(State{
+        base_state.position + derivative.position_rates[index] * scale,
+        base_state.velocity + derivative.velocity_rates[index] * scale,
+    });
   }
 
   return result;
@@ -112,82 +114,87 @@ evaluate_derivative(const SystemState &system, double gravitational_constant) {
 
 } // namespace
 
-void advance_explicit_euler_step(physics::SystemState &system,
+void advance_explicit_euler_step(SystemState &system,
                                  double gravitational_constant,
-                                 double time_step) {
-
+                                 double softening, double time_step) {
   advance_system_with_fixed_acceleration(
-      system, gravitational_constant, time_step,
+      system, gravitational_constant, softening, time_step,
       [](const State &state, const Vec3 &acceleration, double dt) {
         return explicit_euler_step(state, acceleration, dt);
       });
 }
 
-void advance_semi_implicit_euler_step(physics::SystemState &system,
+void advance_semi_implicit_euler_step(SystemState &system,
                                       double gravitational_constant,
-                                      double time_step) {
-
+                                      double softening, double time_step) {
   advance_system_with_fixed_acceleration(
-      system, gravitational_constant, time_step,
+      system, gravitational_constant, softening, time_step,
       [](const State &state, const Vec3 &acceleration, double dt) {
         return semi_implicit_euler_step(state, acceleration, dt);
       });
 }
 
-void advance_velocity_verlet_step(physics::SystemState &system,
+void advance_velocity_verlet_step(SystemState &system,
                                   double gravitational_constant,
-                                  double time_step) {
+                                  double softening, double time_step) {
   validate_time_step(time_step);
 
   const vector<Vec3> initial_accelerations =
-      gravitational_accelerations(system, gravitational_constant);
+      gravitational_accelerations(system, gravitational_constant, softening);
 
   validate_acceleration_count(system, initial_accelerations);
 
-  const double half_time_step_squared = .5 * time_step * time_step;
+  const double half_time_step_squared = 0.5 * time_step * time_step;
 
-  for (std::size_t index = 0; index < system.bodies.size(); index++) {
+  for (std::size_t index = 0; index < system.bodies.size(); ++index) {
     Body &body = system.bodies[index];
 
-    Vec3 position_advanced =
+    const Vec3 advanced_position =
         body.position + body.velocity * time_step +
         initial_accelerations[index] * half_time_step_squared;
 
-    body.set_state(State{position_advanced, body.velocity});
+    body.set_state(State{
+        advanced_position,
+        body.velocity,
+    });
   }
 
   const vector<Vec3> final_accelerations =
-      gravitational_accelerations(system, gravitational_constant);
+      gravitational_accelerations(system, gravitational_constant, softening);
 
   validate_acceleration_count(system, final_accelerations);
 
-  const double half_time_step = .5 * time_step;
+  const double half_time_step = 0.5 * time_step;
 
-  for (std::size_t index = 0; index < system.bodies.size(); index++) {
+  for (std::size_t index = 0; index < system.bodies.size(); ++index) {
     Body &body = system.bodies[index];
 
-    Vec3 velocity_advanced = body.velocity + (initial_accelerations[index] +
-                                              final_accelerations[index]) *
-                                                 half_time_step;
+    const Vec3 advanced_velocity =
+        body.velocity +
+        (initial_accelerations[index] + final_accelerations[index]) *
+            half_time_step;
 
-    body.set_state(State{body.position, velocity_advanced});
+    body.set_state(State{
+        body.position,
+        advanced_velocity,
+    });
   }
 }
 
 void advance_leapfrog_step(SystemState &system, double gravitational_constant,
-                           double time_step) {
+                           double softening, double time_step) {
   validate_time_step(time_step);
 
   const vector<Vec3> initial_accelerations =
-      gravitational_accelerations(system, gravitational_constant);
+      gravitational_accelerations(system, gravitational_constant, softening);
 
   validate_acceleration_count(system, initial_accelerations);
 
-  const double half_time_step = .5 * time_step;
+  const double half_time_step = 0.5 * time_step;
 
   for (std::size_t index = 0; index < system.bodies.size(); ++index) {
-    Body &body = system.bodies[index];
-    body.velocity += initial_accelerations[index] * half_time_step;
+    system.bodies[index].velocity +=
+        initial_accelerations[index] * half_time_step;
   }
 
   for (Body &body : system.bodies) {
@@ -195,7 +202,7 @@ void advance_leapfrog_step(SystemState &system, double gravitational_constant,
   }
 
   const vector<Vec3> final_accelerations =
-      gravitational_accelerations(system, gravitational_constant);
+      gravitational_accelerations(system, gravitational_constant, softening);
 
   validate_acceleration_count(system, final_accelerations);
 
@@ -205,33 +212,32 @@ void advance_leapfrog_step(SystemState &system, double gravitational_constant,
   }
 }
 
-void advance_runge_kutta_4_step(physics::SystemState &system,
-                                double gravitational_constant,
+void advance_runge_kutta_4_step(SystemState &system,
+                                double gravitational_constant, double softening,
                                 double time_step) {
-
   validate_time_step(time_step);
 
   const SystemState initial_system = system;
 
   const SystemDerivative k1 =
-      evaluate_derivative(initial_system, gravitational_constant);
+      evaluate_derivative(initial_system, gravitational_constant, softening);
 
   const SystemState k2_system =
-      offset_system(initial_system, k1, .5 * time_step);
+      offset_system(initial_system, k1, 0.5 * time_step);
 
   const SystemDerivative k2 =
-      evaluate_derivative(k2_system, gravitational_constant);
+      evaluate_derivative(k2_system, gravitational_constant, softening);
 
   const SystemState k3_system =
-      offset_system(initial_system, k2, .5 * time_step);
+      offset_system(initial_system, k2, 0.5 * time_step);
 
   const SystemDerivative k3 =
-      evaluate_derivative(k3_system, gravitational_constant);
+      evaluate_derivative(k3_system, gravitational_constant, softening);
 
   const SystemState k4_system = offset_system(initial_system, k3, time_step);
 
   const SystemDerivative k4 =
-      evaluate_derivative(k4_system, gravitational_constant);
+      evaluate_derivative(k4_system, gravitational_constant, softening);
 
   const double weighted_time_step = time_step / 6.0;
 
@@ -246,12 +252,16 @@ void advance_runge_kutta_4_step(physics::SystemState &system,
         k1.velocity_rates[index] + 2.0 * k2.velocity_rates[index] +
         2.0 * k3.velocity_rates[index] + k4.velocity_rates[index];
 
-    const Vec3 new_postion =
+    const Vec3 new_position =
         initial_state.position + weighted_position_rate * weighted_time_step;
+
     const Vec3 new_velocity =
         initial_state.velocity + weighted_velocity_rate * weighted_time_step;
 
-    system.bodies[index].set_state(State{new_postion, new_velocity});
+    system.bodies[index].set_state(State{
+        new_position,
+        new_velocity,
+    });
   }
 }
 

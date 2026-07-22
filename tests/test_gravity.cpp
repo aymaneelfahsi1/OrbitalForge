@@ -1,6 +1,7 @@
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
 
+#include <cmath>
 #include <limits>
 #include <stdexcept>
 
@@ -302,4 +303,46 @@ TEST_CASE("body acceleration accumulates contributions from all sources") {
   REQUIRE(accelerations[0].y() == Catch::Approx(2.0));
 
   REQUIRE(accelerations[0].z() == Catch::Approx(0.0));
+}
+
+TEST_CASE("softening reduces gravitational acceleration") {
+  constexpr double gravitational_constant = 1.0;
+
+  const Body target{"Target", 1.0, Vec3{0.0, 0.0, 0.0}, Vec3{}};
+
+  const Body source{"Source", 1.0, Vec3{1.0, 0.0, 0.0}, Vec3{}};
+
+  const Vec3 unsoftened =
+      gravitational_acceleration(target, source, gravitational_constant, 0.0);
+
+  const Vec3 softened =
+      gravitational_acceleration(target, source, gravitational_constant, 1.0);
+
+  REQUIRE(softened.norm() < unsoftened.norm());
+
+  REQUIRE(softened.x() == Approx(1.0 / std::pow(2.0, 1.5)));
+}
+
+TEST_CASE("positive softening permits coincident bodies") {
+  constexpr double gravitational_constant = 1.0;
+
+  const SystemState system{
+      .bodies{
+          Body{"First", 1.0, Vec3{}, Vec3{}},
+          Body{"Second", 1.0, Vec3{}, Vec3{}},
+      },
+  };
+
+  const std::vector<Vec3> accelerations =
+      gravitational_accelerations(system, gravitational_constant, 0.1);
+
+  REQUIRE(accelerations[0] == Vec3{});
+  REQUIRE(accelerations[1] == Vec3{});
+}
+
+TEST_CASE("gravity rejects negative softening") {
+  const SystemState system{};
+
+  REQUIRE_THROWS_AS(gravitational_accelerations(system, 1.0, -0.1),
+                    std::invalid_argument);
 }

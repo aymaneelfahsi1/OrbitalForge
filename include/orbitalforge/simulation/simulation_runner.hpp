@@ -14,6 +14,7 @@ using orbitalforge::physics::SystemState;
 
 struct SimulationConfig {
   double gravitational_constant;
+  double softening;
   double time_step;
   std::size_t step_count;
   std::size_t output_interval;
@@ -37,13 +38,13 @@ struct SimulationResult {
 };
 
 class SimulationRunner {
-
 public:
   [[nodiscard]] SimulationResult run(const SystemState &initial_state,
                                      const SimulationConfig &config) const;
 
 private:
-  static void validate(const SimulationConfig &config);
+  static void validate(const SystemState &initial_state,
+                       const SimulationConfig &config);
 };
 
 } // namespace orbitalforge::simulation

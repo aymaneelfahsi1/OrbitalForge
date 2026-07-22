@@ -1,0 +1,11 @@
+name = Two-body orbit
+gravitational_constant = 1.0
+softening = 0.0
+time_step = 0.01
+step_count = 100'000;
+output_interval = 10
+integrator = velocity-verlet
+seed = 42
+
+body = Primary,1.0,-0.5,0.0,0.0,0.0,-0.5,0.0
+body = Secondary,1.0,0.5,0.0,0.0,0.0,0.5,0.0

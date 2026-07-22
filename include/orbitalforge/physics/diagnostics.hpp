@@ -8,10 +8,12 @@ namespace orbitalforge::physics {
 [[nodiscard]] double kinetic_energy(const SystemState &system) noexcept;
 
 [[nodiscard]] double potential_energy(const SystemState &system,
-                                      double gravitational_constant);
+                                      double gravitational_constant,
+                                      double softening = 0.0);
 
 [[nodiscard]] double total_energy(const SystemState &system,
-                                  double gravitational_constant);
+                                  double gravitational_constant,
+                                  double softening = 0.0);
 
 [[nodiscard]] math::Vec3 total_momentum(const SystemState &system) noexcept;
 

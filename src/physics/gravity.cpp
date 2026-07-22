@@ -1,97 +1,90 @@
 #include "orbitalforge/physics/gravity.hpp"
 
 #include <cmath>
-#include <cstddef>
 #include <stdexcept>
 #include <vector>
 
 namespace orbitalforge::physics {
 
-using math::Vec3;
+namespace {
+
+void validate_parameters(double gravitational_value, double softening) {
+  if (!std::isfinite(gravitational_value) || gravitational_value <= 0.0) {
+    throw std::invalid_argument{
+        "gravitational parameter must be positive and finite"};
+  }
+
+  if (!std::isfinite(softening) || softening < 0.0) {
+    throw std::invalid_argument{"softening must be non-negative and finite"};
+  }
+}
+
+} // namespace
 
 Vec3 gravitational_acceleration(const Vec3 &position,
-                                double gravitational_parameter) {
+                                double gravitational_parameter,
+                                double softening) {
+  validate_parameters(gravitational_parameter, softening);
 
-  if (!std::isfinite(gravitational_parameter) ||
-      gravitational_parameter <= 0.0) {
-    throw std::invalid_argument{"gravitational parameter must be positive"};
+  const double softened_squared_distance =
+      position.squared_norm() + softening * softening;
+
+  if (softened_squared_distance == 0.0) {
+    throw std::domain_error{
+        "gravitational acceleration is undefined at the origin"};
   }
 
-  const double distance_squared = position.squared_norm();
+  const double softened_distance = std::sqrt(softened_squared_distance);
 
-  if (distance_squared == 0.0) {
-    throw std::domain_error{"gravity is undefined at the origin"};
-  }
+  const double inverse_distance_cubed =
+      1.0 / (softened_squared_distance * softened_distance);
 
-  const double distance = std::sqrt(distance_squared);
-
-  const double scale = -gravitational_parameter / (distance_squared * distance);
-
-  return position * scale;
+  return position * (-gravitational_parameter * inverse_distance_cubed);
 }
 
 Vec3 gravitational_acceleration(const Body &target, const Body &source,
-                                double gravitational_constant) {
+                                double gravitational_constant,
+                                double softening) {
+  const Vec3 displacement = target.position - source.position;
 
-  if (!std::isfinite(gravitational_constant) ||
-      gravitational_constant <= 0.0) {
-    throw std::invalid_argument{"gravitational constant must be positive"};
-  }
-
-  const Vec3 displacement = source.position - target.position;
-
-  const double distance_squared = displacement.squared_norm();
-
-  if (distance_squared == 0.0) {
-    throw std::domain_error{"source and target cannot be coincident"};
-  }
-
-  const double distance = std::sqrt(distance_squared);
-
-  const double scale =
-      gravitational_constant * source.mass / (distance_squared * distance);
-
-  return displacement * scale;
+  return gravitational_acceleration(
+      displacement, gravitational_constant * source.mass, softening);
 }
 
 std::vector<Vec3> gravitational_accelerations(const SystemState &system,
-                                              double gravitational_constant) {
+                                              double gravitational_constant,
+                                              double softening) {
+  validate_parameters(gravitational_constant, softening);
 
-  if (!std::isfinite(gravitational_constant) ||
-      gravitational_constant <= 0.0) {
-    throw std::invalid_argument{"gravitational constant must be positive"};
-  }
+  std::vector<Vec3> accelerations(system.bodies.size());
 
-  std::vector<Vec3> accelerations(system.bodies.size(), Vec3{});
-
-  for (std::size_t first_index = 0; first_index < system.bodies.size();
-       ++first_index) {
-
-    for (std::size_t second_index = first_index + 1;
-         second_index < system.bodies.size(); ++second_index) {
-
-      const Body &first_body = system.bodies[first_index];
-
-      const Body &second_body = system.bodies[second_index];
+  for (std::size_t first = 0; first < system.bodies.size(); ++first) {
+    for (std::size_t second = first + 1; second < system.bodies.size();
+         ++second) {
+      const Body &first_body = system.bodies[first];
+      const Body &second_body = system.bodies[second];
 
       const Vec3 displacement = second_body.position - first_body.position;
 
-      const double distance_squared = displacement.squared_norm();
+      const double softened_squared_distance =
+          displacement.squared_norm() + softening * softening;
 
-      if (distance_squared == 0.0) {
-        throw std::domain_error{"two bodies cannot occupy the same position"};
+      if (softened_squared_distance == 0.0) {
+        throw std::domain_error{
+            "distinct bodies cannot occupy the same position "
+            "when softening is zero"};
       }
 
-      const double distance = std::sqrt(distance_squared);
+      const double softened_distance = std::sqrt(softened_squared_distance);
 
-      const double common_scale =
-          gravitational_constant / (distance_squared * distance);
+      const double inverse_distance_cubed =
+          1.0 / (softened_squared_distance * softened_distance);
 
-      accelerations[first_index] +=
-          displacement * (common_scale * second_body.mass);
+      const Vec3 common =
+          displacement * (gravitational_constant * inverse_distance_cubed);
 
-      accelerations[second_index] -=
-          displacement * (common_scale * first_body.mass);
+      accelerations[first] += common * second_body.mass;
+      accelerations[second] -= common * first_body.mass;
     }
   }
 

@@ -14,6 +14,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_library(
     orbitalforge_core
+    src/app/scenario.cpp
     src/math/vec3.cpp
     src/physics/body.cpp
     src/physics/gravity.cpp
@@ -22,6 +23,7 @@ add_library(
     src/simulation/step.cpp
     src/simulation/integrator_kind.cpp
     src/simulation/simulation_runner.cpp
+    src/app/scenario_parser.cpp
 )
 
 target_include_directories(
@@ -57,6 +59,16 @@ target_link_libraries(
         orbitalforge_core
 )
 
+target_compile_options(
+    orbitalforge
+    PRIVATE
+        -Wall
+        -Wextra
+        -Wpedantic
+        -Wconversion
+        -Wshadow
+)
+
 add_executable(
     orbitalforge_integrator_comparison
     examples/integrator_comparison.cpp
@@ -77,6 +89,7 @@ target_compile_options(
         -Wconversion
         -Wshadow
 )
+
 include(CTest)
 
 if(BUILD_TESTING)
@@ -94,6 +107,8 @@ if(BUILD_TESTING)
         tests/test_advanced_integrators.cpp
         tests/test_integrator_kind.cpp
         tests/test_simulation_runner.cpp
+        tests/test_scenario.cpp
+        tests/test_scenario_parser.cpp
     )
 
     target_link_libraries(
@@ -101,6 +116,16 @@ if(BUILD_TESTING)
         PRIVATE
             orbitalforge_core
             Catch2::Catch2WithMain
+    )
+
+    target_compile_options(
+        orbitalforge_tests
+        PRIVATE
+            -Wall
+            -Wextra
+            -Wpedantic
+            -Wconversion
+            -Wshadow
     )
 
     include(Catch)

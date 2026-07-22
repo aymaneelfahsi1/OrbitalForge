@@ -20,14 +20,17 @@ double kinetic_energy(const SystemState &system) noexcept {
 }
 
 double potential_energy(const SystemState &system,
-                        double gravitational_constant) {
+                        double gravitational_constant, double softening) {
 
-  if (!std::isfinite(gravitational_constant) ||
-      gravitational_constant <= 0.0) {
+  if (!std::isfinite(gravitational_constant) || gravitational_constant <= 0.0) {
     throw std::invalid_argument{"gravitational constant must be positive"};
   }
 
-  double total{};
+  if (!std::isfinite(softening) || softening < 0.0) {
+    throw std::invalid_argument{"softening must be non-negative and finite"};
+  }
+
+  double total_energy{};
 
   for (std::size_t first_index = 0; first_index < system.bodies.size();
        ++first_index) {
@@ -39,22 +42,26 @@ double potential_energy(const SystemState &system,
 
       const Vec3 displacement = second.position - first.position;
 
-      const double distance = displacement.norm();
+      const double softened_distance =
+          std::sqrt(displacement.squared_norm() + softening * softening);
 
-      if (distance == 0) {
+      if (softened_distance == 0.0) {
         throw std::domain_error{
-            "potential energy is undefined for coincident bodies"};
+            "potential energy is undefined for coincident bodies "
+            "when softening is zero"};
       }
 
-      total -= gravitational_constant * first.mass * second.mass / distance;
+      total_energy -=
+          gravitational_constant * first.mass * second.mass / softened_distance;
     }
   }
-  return total;
+  return total_energy;
 }
 
-double total_energy(const SystemState &system, double gravitational_constant) {
+double total_energy(const SystemState &system, double gravitational_constant,
+                    double softening) {
   return kinetic_energy(system) +
-         potential_energy(system, gravitational_constant);
+         potential_energy(system, gravitational_constant, softening);
 }
 
 Vec3 total_momentum(const SystemState &system) noexcept {
@@ -69,12 +76,12 @@ Vec3 total_momentum(const SystemState &system) noexcept {
 }
 
 Vec3 center_of_mass(const SystemState &system) {
-  Vec3 weighted_postion{};
+  Vec3 weighted_position{};
 
   double total_mass{};
 
   for (const Body &body : system.bodies) {
-    weighted_postion += body.mass * body.position;
+    weighted_position += body.mass * body.position;
     total_mass += body.mass;
   }
 
@@ -82,7 +89,7 @@ Vec3 center_of_mass(const SystemState &system) {
     throw std::domain_error{"center of mass is undefined for an empty system"};
   }
 
-  return weighted_postion / total_mass;
+  return weighted_position / total_mass;
 }
 
 } // namespace orbitalforge::physics
