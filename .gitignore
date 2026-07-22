@@ -1,4 +1,5 @@
 build/
+todo/
 build-release/
 .vscode/
 *.o

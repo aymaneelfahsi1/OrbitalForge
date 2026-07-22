@@ -1,6 +1,7 @@
 #include "orbitalforge/physics/diagnostics.hpp"
 #include "orbitalforge/math/vec3.hpp"
 
+#include <cmath>
 #include <cstddef>
 #include <stdexcept>
 
@@ -21,7 +22,8 @@ double kinetic_energy(const SystemState &system) noexcept {
 double potential_energy(const SystemState &system,
                         double gravitational_constant) {
 
-  if (gravitational_constant <= 0.0) {
+  if (!std::isfinite(gravitational_constant) ||
+      gravitational_constant <= 0.0) {
     throw std::invalid_argument{"gravitational constant must be positive"};
   }
 

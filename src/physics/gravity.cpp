@@ -12,7 +12,8 @@ using math::Vec3;
 Vec3 gravitational_acceleration(const Vec3 &position,
                                 double gravitational_parameter) {
 
-  if (gravitational_parameter <= 0.0) {
+  if (!std::isfinite(gravitational_parameter) ||
+      gravitational_parameter <= 0.0) {
     throw std::invalid_argument{"gravitational parameter must be positive"};
   }
 
@@ -32,7 +33,8 @@ Vec3 gravitational_acceleration(const Vec3 &position,
 Vec3 gravitational_acceleration(const Body &target, const Body &source,
                                 double gravitational_constant) {
 
-  if (gravitational_constant <= 0.0) {
+  if (!std::isfinite(gravitational_constant) ||
+      gravitational_constant <= 0.0) {
     throw std::invalid_argument{"gravitational constant must be positive"};
   }
 
@@ -55,7 +57,8 @@ Vec3 gravitational_acceleration(const Body &target, const Body &source,
 std::vector<Vec3> gravitational_accelerations(const SystemState &system,
                                               double gravitational_constant) {
 
-  if (gravitational_constant <= 0.0) {
+  if (!std::isfinite(gravitational_constant) ||
+      gravitational_constant <= 0.0) {
     throw std::invalid_argument{"gravitational constant must be positive"};
   }
 

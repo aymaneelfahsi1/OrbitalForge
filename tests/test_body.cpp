@@ -1,5 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 
+#include <limits>
 #include <stdexcept>
 #include <string>
 
@@ -27,4 +28,15 @@ TEST_CASE("body rejects negative mass") {
 
   REQUIRE_THROWS_AS((Body{"Impossible", -50.0, Vec3{}, Vec3{}}),
                     std::invalid_argument);
+}
+
+TEST_CASE("body rejects non-finite mass") {
+  REQUIRE_THROWS_AS(
+      (Body{"Impossible", std::numeric_limits<double>::quiet_NaN(), Vec3{},
+            Vec3{}}),
+      std::invalid_argument);
+  REQUIRE_THROWS_AS(
+      (Body{"Impossible", std::numeric_limits<double>::infinity(), Vec3{},
+            Vec3{}}),
+      std::invalid_argument);
 }

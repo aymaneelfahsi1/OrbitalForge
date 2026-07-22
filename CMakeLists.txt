@@ -12,7 +12,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Core scientific library
 add_library(
     orbitalforge_core
     src/math/vec3.cpp
@@ -21,8 +20,8 @@ add_library(
     src/physics/integrator.cpp
     src/physics/diagnostics.cpp
     src/simulation/step.cpp
-
-
+    src/simulation/integrator_kind.cpp
+    src/simulation/simulation_runner.cpp
 )
 
 target_include_directories(
@@ -47,7 +46,6 @@ target_compile_options(
         -Wshadow
 )
 
-# Command-line application
 add_executable(
     orbitalforge
     apps/orbitalforge_cli/main.cpp
@@ -58,9 +56,6 @@ target_link_libraries(
     PRIVATE
         orbitalforge_core
 )
-
-
-#Numerical integrator comparison experiement
 
 add_executable(
     orbitalforge_integrator_comparison
@@ -82,35 +77,32 @@ target_compile_options(
         -Wconversion
         -Wshadow
 )
-
-
-
-# Tests
 include(CTest)
-enable_testing()
 
-find_package(Catch2 REQUIRED)
+if(BUILD_TESTING)
+    find_package(Catch2 REQUIRED)
 
-add_executable(
-    orbitalforge_tests
-    tests/test_vec3.cpp
-    tests/test_body.cpp
-    tests/test_gravity.cpp
-    tests/test_integrator.cpp
-    tests/test_system_state.cpp
-    tests/test_diagnostics.cpp
-    tests/test_simulation_step.cpp
-    tests/test_advanced_integrators.cpp
-)
+    add_executable(
+        orbitalforge_tests
+        tests/test_vec3.cpp
+        tests/test_body.cpp
+        tests/test_gravity.cpp
+        tests/test_integrator.cpp
+        tests/test_system_state.cpp
+        tests/test_diagnostics.cpp
+        tests/test_simulation_step.cpp
+        tests/test_advanced_integrators.cpp
+        tests/test_integrator_kind.cpp
+        tests/test_simulation_runner.cpp
+    )
 
-target_link_libraries(
-    orbitalforge_tests
-    PRIVATE
-        orbitalforge_core
-        Catch2::Catch2WithMain
-)
+    target_link_libraries(
+        orbitalforge_tests
+        PRIVATE
+            orbitalforge_core
+            Catch2::Catch2WithMain
+    )
 
-
-
-include(Catch)
-catch_discover_tests(orbitalforge_tests)
+    include(Catch)
+    catch_discover_tests(orbitalforge_tests)
+endif()

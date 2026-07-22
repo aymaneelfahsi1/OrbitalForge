@@ -1,6 +1,7 @@
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
 
+#include <limits>
 #include <stdexcept>
 
 #include "orbitalforge/math/vec3.hpp"
@@ -48,6 +49,23 @@ TEST_CASE("gravity rejects invalid gravitational parameter") {
   const Vec3 position{7.0e6, 0.0, 0.0};
 
   REQUIRE_THROWS_AS(gravitational_acceleration(position, 0.0),
+                    std::invalid_argument);
+}
+
+TEST_CASE("gravity rejects non-finite gravitational parameters") {
+  const Vec3 position{7.0e6, 0.0, 0.0};
+  const double not_a_number = std::numeric_limits<double>::quiet_NaN();
+  const double infinity = std::numeric_limits<double>::infinity();
+
+  REQUIRE_THROWS_AS(gravitational_acceleration(position, not_a_number),
+                    std::invalid_argument);
+  REQUIRE_THROWS_AS(gravitational_acceleration(position, infinity),
+                    std::invalid_argument);
+
+  const SystemState system{};
+  REQUIRE_THROWS_AS(gravitational_accelerations(system, not_a_number),
+                    std::invalid_argument);
+  REQUIRE_THROWS_AS(gravitational_accelerations(system, infinity),
                     std::invalid_argument);
 }
 

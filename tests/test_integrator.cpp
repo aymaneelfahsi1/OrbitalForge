@@ -1,6 +1,7 @@
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
 
+#include <limits>
 #include <stdexcept>
 
 #include "orbitalforge/math/vec3.hpp"
@@ -49,5 +50,20 @@ TEST_CASE("integrators reject negative time step") {
   const State state{Vec3{}, Vec3{}};
 
   REQUIRE_THROWS_AS(explicit_euler_step(state, Vec3{}, -1.0),
+                    std::invalid_argument);
+}
+
+TEST_CASE("integrators reject non-finite time step") {
+  const State state{Vec3{}, Vec3{}};
+  const double not_a_number = std::numeric_limits<double>::quiet_NaN();
+  const double infinity = std::numeric_limits<double>::infinity();
+
+  REQUIRE_THROWS_AS(explicit_euler_step(state, Vec3{}, not_a_number),
+                    std::invalid_argument);
+  REQUIRE_THROWS_AS(semi_implicit_euler_step(state, Vec3{}, not_a_number),
+                    std::invalid_argument);
+  REQUIRE_THROWS_AS(explicit_euler_step(state, Vec3{}, infinity),
+                    std::invalid_argument);
+  REQUIRE_THROWS_AS(semi_implicit_euler_step(state, Vec3{}, infinity),
                     std::invalid_argument);
 }

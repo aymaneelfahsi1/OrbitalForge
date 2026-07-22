@@ -1,6 +1,7 @@
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
 
+#include <limits>
 #include <stdexcept>
 
 #include "orbitalforge/math/vec3.hpp"
@@ -21,6 +22,17 @@ TEST_CASE("empty system has zero kinetic energy") {
   const SystemState system{};
 
   REQUIRE(kinetic_energy(system) == Catch::Approx(0.0));
+}
+
+TEST_CASE("potential energy rejects non-finite gravitational constants") {
+  const SystemState system{};
+
+  REQUIRE_THROWS_AS(
+      potential_energy(system, std::numeric_limits<double>::quiet_NaN()),
+      std::invalid_argument);
+  REQUIRE_THROWS_AS(
+      potential_energy(system, std::numeric_limits<double>::infinity()),
+      std::invalid_argument);
 }
 
 TEST_CASE("kinetic energy sums contributions from every body") {

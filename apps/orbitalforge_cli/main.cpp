@@ -1,7 +1,6 @@
 #include <chrono>
 #include <cmath>
 #include <cstddef>
-#include <cstdio>
 #include <iomanip>
 #include <iostream>
 #include <string>
@@ -10,13 +9,22 @@
 #include "orbitalforge/physics/body.hpp"
 #include "orbitalforge/physics/diagnostics.hpp"
 #include "orbitalforge/physics/system_state.hpp"
-#include "orbitalforge/simulation/step.hpp"
+#include "orbitalforge/simulation/integrator_kind.hpp"
+#include "orbitalforge/simulation/simulation_runner.hpp"
 
 namespace {
 
 using orbitalforge::math::Vec3;
 using orbitalforge::physics::Body;
+using orbitalforge::physics::center_of_mass;
 using orbitalforge::physics::SystemState;
+using orbitalforge::physics::total_momentum;
+using orbitalforge::simulation::DiagnosticSample;
+using orbitalforge::simulation::integrator_name;
+using orbitalforge::simulation::IntegratorKind;
+using orbitalforge::simulation::SimulationConfig;
+using orbitalforge::simulation::SimulationResult;
+using orbitalforge::simulation::SimulationRunner;
 
 constexpr double gravitational_constant = 6.67430e-11;
 constexpr double solar_mass = 1.98847e30;
@@ -24,7 +32,6 @@ constexpr double astronomical_unit = 1.495978707e11;
 constexpr double seconds_per_day = 86'400.0;
 
 [[nodiscard]] SystemState make_rotating_star_cluster(std::size_t body_count) {
-
   SystemState system{};
 
   system.bodies.reserve(body_count);
@@ -34,15 +41,11 @@ constexpr double seconds_per_day = 86'400.0;
   }
 
   constexpr double minimum_radius = 10.0 * astronomical_unit;
-
   constexpr double maximum_radius = 1'000.0 * astronomical_unit;
-
   constexpr double star_mass = solar_mass;
-
   constexpr double golden_angle = 2.39996322972865332;
 
   for (std::size_t index = 0; index < body_count; ++index) {
-
     const double fraction =
         (static_cast<double>(index) + 1.0) / static_cast<double>(body_count);
 
@@ -74,22 +77,17 @@ constexpr double seconds_per_day = 86'400.0;
         0.0,
     };
 
-    system.bodies.push_back(Body{
-        "Star",
-        star_mass,
-        position,
-        velocity,
-    });
+    system.bodies.emplace_back("Star-" + std::to_string(index + 1), star_mass,
+                               position, velocity);
   }
 
-  const Vec3 initial_center_of_mass =
-      orbitalforge::physics::center_of_mass(system);
+  const Vec3 initial_center_of_mass = center_of_mass(system);
 
   for (Body &body : system.bodies) {
     body.position -= initial_center_of_mass;
   }
 
-  const Vec3 initial_momentum = orbitalforge::physics::total_momentum(system);
+  const Vec3 initial_momentum = total_momentum(system);
 
   const Vec3 center_of_mass_velocity =
       initial_momentum / (star_mass * static_cast<double>(body_count));
@@ -101,270 +99,119 @@ constexpr double seconds_per_day = 86'400.0;
   return system;
 }
 
-[[nodiscard]] FILE *open_live_plot() {
+void print_simulation_header(const SimulationConfig &config,
+                             std::size_t body_count) {
+  const double simulated_duration =
+      config.time_step * static_cast<double>(config.step_count);
 
-  FILE *plot = popen("gnuplot", "w");
-
-  if (plot == nullptr) {
-    std::cerr << "Warning: Gnuplot could not be started.\n"
-              << "The simulation will continue without visualization.\n";
-
-    return nullptr;
-  }
-
-  std::fprintf(plot, "set terminal qt size 1000,800\n"
-                     "set title 'OrbitalForge N-body simulation'\n"
-                     "set xlabel 'x (AU)'\n"
-                     "set ylabel 'y (AU)'\n"
-                     "set zlabel 'z (AU)'\n"
-                     "set grid\n"
-                     "set view 60,30\n"
-                     "set xrange [-1100:1100]\n"
-                     "set yrange [-1100:1100]\n"
-                     "set zrange [-100:100]\n"
-                     "set ticslevel 0\n"
-                     "set key off\n");
-
-  std::fflush(plot);
-
-  return plot;
+  std::cout << "OrbitalForge N-body Simulator\n"
+            << "==============================\n\n"
+            << "Scenario:             "
+            << "self-gravitating rotating star cluster\n"
+            << "Integrator:           " << integrator_name(config.integrator)
+            << '\n'
+            << "Unit system:          SI\n"
+            << "Gravitational G:      " << std::scientific
+            << gravitational_constant << " m^3 kg^-1 s^-2\n"
+            << "Bodies:               " << body_count << '\n'
+            << "Mass per body:        " << solar_mass << " kg\n"
+            << "Time step:            " << std::fixed << std::setprecision(2)
+            << config.time_step / seconds_per_day << " days\n"
+            << "Simulation duration:  " << simulated_duration / seconds_per_day
+            << " days\n"
+            << "Steps:                " << config.step_count << "\n\n";
 }
 
-void update_live_plot(FILE *plot, const SystemState &system,
-                      double simulation_time, double elapsed_real_time) {
+void print_diagnostics_header() {
+  std::cout << std::right << std::setw(10) << "Step" << std::setw(16)
+            << "Time (days)" << std::setw(22) << "Energy (J)" << std::setw(20)
+            << "Rel E drift" << std::setw(20) << "Momentum drift"
+            << std::setw(20) << "COM drift (m)" << '\n';
 
-  if (plot == nullptr) {
-    return;
-  }
-
-  std::fprintf(plot,
-               "set title "
-               "'OrbitalForge | simulated: %.2f days | real: %.2f s'\n",
-               simulation_time / seconds_per_day, elapsed_real_time);
-
-  std::fprintf(plot, "splot '-' using 1:2:3 "
-                     "with points pointtype 7 pointsize 0.7\n");
-
-  for (const Body &body : system.bodies) {
-    std::fprintf(plot, "%.12e %.12e %.12e\n",
-                 body.position.x() / astronomical_unit,
-                 body.position.y() / astronomical_unit,
-                 body.position.z() / astronomical_unit);
-  }
-
-  std::fprintf(plot, "e\n");
-
-  std::fflush(plot);
+  std::cout << std::string(108, '-') << '\n';
 }
 
-void close_live_plot(FILE *plot) {
-
-  if (plot == nullptr) {
-    return;
-  }
-
-  std::fprintf(plot, "exit\n");
-  std::fflush(plot);
-  pclose(plot);
-}
-
-void print_progress(const SystemState &system, std::size_t step,
-                    double simulation_time, double elapsed_real_time,
-                    double initial_energy, const Vec3 &initial_momentum,
-                    const Vec3 &initial_center_of_mass) {
-
-  const double current_energy =
-      orbitalforge::physics::total_energy(system, gravitational_constant);
-
-  const Vec3 current_momentum = orbitalforge::physics::total_momentum(system);
-
-  const Vec3 current_center_of_mass =
-      orbitalforge::physics::center_of_mass(system);
-
-  const double absolute_energy_drift =
-      std::abs(current_energy - initial_energy);
-
-  const double relative_energy_drift =
-      absolute_energy_drift / std::abs(initial_energy);
-
-  const double momentum_drift = (current_momentum - initial_momentum).norm();
-
-  const double center_of_mass_drift =
-      (current_center_of_mass - initial_center_of_mass).norm();
-
-  std::cout << std::right
-
-            << std::setw(10) << step
+void print_diagnostic_sample(const DiagnosticSample &sample) {
+  std::cout << std::right << std::setw(10) << sample.step
 
             << std::setw(16) << std::fixed << std::setprecision(2)
-            << simulation_time / seconds_per_day
-
-            << std::setw(16) << elapsed_real_time
+            << sample.simulation_time / seconds_per_day
 
             << std::setw(22) << std::scientific << std::setprecision(8)
-            << current_energy
+            << sample.total_energy
 
-            << std::setw(20) << relative_energy_drift
+            << std::setw(20) << sample.relative_energy_drift
 
-            << std::setw(20) << momentum_drift
+            << std::setw(20) << sample.momentum_drift
 
-            << std::setw(20) << center_of_mass_drift
+            << std::setw(20) << sample.center_of_mass_drift
 
             << '\n';
+}
+
+void print_final_diagnostics(const SimulationResult &result,
+                             double elapsed_milliseconds) {
+  const DiagnosticSample &initial_sample = result.diagnostics.front();
+
+  const DiagnosticSample &final_sample = result.diagnostics.back();
+
+  const double absolute_energy_drift =
+      std::abs(final_sample.total_energy - initial_sample.total_energy);
+
+  std::cout << "\nFinal diagnostics\n"
+            << "=================\n"
+            << std::scientific << std::setprecision(12)
+            << "Initial energy:         " << initial_sample.total_energy
+            << " J\n"
+            << "Final energy:           " << final_sample.total_energy << " J\n"
+            << "Absolute energy drift:  " << absolute_energy_drift << " J\n"
+            << "Relative energy drift:  " << final_sample.relative_energy_drift
+            << '\n'
+            << "Momentum drift:         " << final_sample.momentum_drift
+            << " kg m/s\n"
+            << "Center-of-mass drift:   " << final_sample.center_of_mass_drift
+            << " m\n"
+            << std::fixed << std::setprecision(3)
+            << "Execution time:         " << elapsed_milliseconds << " ms\n";
 }
 
 } // namespace
 
 int main() {
-
   constexpr std::size_t body_count = 20;
-
-  constexpr std::size_t step_count = 2'000'000;
-
+  constexpr std::size_t step_count = 2'000;
   constexpr std::size_t output_interval = 200;
+  constexpr double time_step = 10.0 * seconds_per_day;
 
-  constexpr std::size_t plot_interval = 1;
+  const SystemState initial_system = make_rotating_star_cluster(body_count);
 
-  constexpr double time_step = 0.1 * seconds_per_day;
+  const SimulationConfig config{
+      .gravitational_constant = gravitational_constant,
+      .time_step = time_step,
+      .step_count = step_count,
+      .output_interval = output_interval,
+      .integrator = IntegratorKind::velocity_verlet,
+  };
 
-  SystemState system = make_rotating_star_cluster(body_count);
+  print_simulation_header(config, body_count);
+  print_diagnostics_header();
 
-  const double initial_energy =
-      orbitalforge::physics::total_energy(system, gravitational_constant);
-
-  const Vec3 initial_momentum = orbitalforge::physics::total_momentum(system);
-
-  const Vec3 initial_center_of_mass =
-      orbitalforge::physics::center_of_mass(system);
-
-  const double simulated_duration = time_step * static_cast<double>(step_count);
-
-  std::cout << "OrbitalForge N-body Simulator\n"
-            << "==============================\n\n"
-
-            << "Scenario:             "
-            << "self-gravitating rotating star cluster\n"
-
-            << "Integrator:           "
-            << "Velocity Verlet\n"
-
-            << "Unit system:          "
-            << "SI\n"
-
-            << "Gravitational G:      " << std::scientific
-            << gravitational_constant << " m^3 kg^-1 s^-2\n"
-
-            << "Bodies:               " << body_count << '\n'
-
-            << "Mass per body:        " << solar_mass << " kg\n"
-
-            << "Time step:            " << std::fixed << std::setprecision(2)
-            << time_step / seconds_per_day << " days\n"
-
-            << "Simulation duration:  " << simulated_duration / seconds_per_day
-            << " days\n"
-
-            << "Steps:                " << step_count << "\n\n";
-
-  std::cout << std::right
-
-            << std::setw(10) << "Step"
-
-            << std::setw(16) << "Time (days)"
-
-            << std::setw(16) << "Real time (s)"
-
-            << std::setw(22) << "Energy (J)"
-
-            << std::setw(20) << "Rel E drift"
-
-            << std::setw(20) << "Momentum drift"
-
-            << std::setw(20) << "COM drift (m)"
-
-            << '\n';
-
-  std::cout << std::string(124, '-') << '\n';
-
-  FILE *live_plot = open_live_plot();
+  const SimulationRunner runner;
 
   const auto start_time = std::chrono::steady_clock::now();
 
-  print_progress(system, 0, 0.0, 0.0, initial_energy, initial_momentum,
-                 initial_center_of_mass);
-
-  update_live_plot(live_plot, system, 0.0, 0.0);
-
-  for (std::size_t step = 1; step <= step_count; ++step) {
-
-    orbitalforge::simulation::advance_velocity_verlet_step(
-        system, gravitational_constant, time_step);
-
-    const double simulation_time = static_cast<double>(step) * time_step;
-
-    const auto current_time = std::chrono::steady_clock::now();
-
-    const std::chrono::duration<double> elapsed_real_time =
-        current_time - start_time;
-
-    if (step % plot_interval == 0 || step == step_count) {
-
-      update_live_plot(live_plot, system, simulation_time,
-                       elapsed_real_time.count());
-    }
-
-    if (step % output_interval == 0 || step == step_count) {
-
-      print_progress(system, step, simulation_time, elapsed_real_time.count(),
-                     initial_energy, initial_momentum, initial_center_of_mass);
-    }
-  }
+  const SimulationResult result = runner.run(initial_system, config);
 
   const auto end_time = std::chrono::steady_clock::now();
 
   const std::chrono::duration<double, std::milli> elapsed_time =
       end_time - start_time;
 
-  const double final_energy =
-      orbitalforge::physics::total_energy(system, gravitational_constant);
+  for (const DiagnosticSample &sample : result.diagnostics) {
+    print_diagnostic_sample(sample);
+  }
 
-  const Vec3 final_momentum = orbitalforge::physics::total_momentum(system);
-
-  const Vec3 final_center_of_mass =
-      orbitalforge::physics::center_of_mass(system);
-
-  const double absolute_energy_drift = std::abs(final_energy - initial_energy);
-
-  const double relative_energy_drift =
-      absolute_energy_drift / std::abs(initial_energy);
-
-  const double momentum_drift = (final_momentum - initial_momentum).norm();
-
-  const double center_of_mass_drift =
-      (final_center_of_mass - initial_center_of_mass).norm();
-
-  std::cout << "\nFinal diagnostics\n"
-            << "=================\n"
-
-            << std::scientific << std::setprecision(12)
-
-            << "Initial energy:         " << initial_energy << " J\n"
-
-            << "Final energy:           " << final_energy << " J\n"
-
-            << "Absolute energy drift:  " << absolute_energy_drift << " J\n"
-
-            << "Relative energy drift:  " << relative_energy_drift << '\n'
-
-            << "Momentum drift:         " << momentum_drift << " kg m/s\n"
-
-            << "Center-of-mass drift:   " << center_of_mass_drift << " m\n"
-
-            << std::fixed << std::setprecision(3)
-
-            << "Execution time:         " << elapsed_time.count() << " ms\n";
-
-  close_live_plot(live_plot);
+  print_final_diagnostics(result, elapsed_time.count());
 
   return 0;
 }

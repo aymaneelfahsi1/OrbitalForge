@@ -1,6 +1,5 @@
 
 #include <array>
-#include <catch2/internal/catch_context.hpp>
 #include <chrono>
 #include <cmath>
 #include <cstddef>

@@ -10,7 +10,8 @@ using math::Vec3;
 using std::string;
 
 struct Body {
-  Body(string name, double mass, Vec3 position, Vec3 velocity);
+  Body(string body_name, double body_mass, Vec3 body_position,
+       Vec3 body_velocity);
 
   [[nodiscard]] State state() const noexcept;
 

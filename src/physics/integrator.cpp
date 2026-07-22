@@ -1,6 +1,7 @@
 #include "orbitalforge/physics/integrator.hpp"
 #include "orbitalforge/math/vec3.hpp"
 
+#include <cmath>
 #include <stdexcept>
 
 namespace orbitalforge::physics {
@@ -8,7 +9,7 @@ namespace orbitalforge::physics {
 State explicit_euler_step(const State &state, const math::Vec3 &acceleration,
                           double time_step) {
 
-  if (time_step <= .0) {
+  if (!std::isfinite(time_step) || time_step <= 0.0) {
     throw std::invalid_argument("time step must be positive");
   }
 
@@ -23,7 +24,7 @@ State semi_implicit_euler_step(const State &state,
                                const math::Vec3 &acceleration,
                                double time_step) {
 
-  if (time_step <= .0) {
+  if (!std::isfinite(time_step) || time_step <= 0.0) {
     throw std::invalid_argument("time step must be positive");
   }
 
