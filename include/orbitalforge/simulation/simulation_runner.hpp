@@ -32,9 +32,16 @@ struct DiagnosticSample {
   double center_of_mass_drift;
 };
 
+struct TrajectorySample {
+  std::size_t step;
+  double simulation_time;
+  physics::SystemState state;
+};
+
 struct SimulationResult {
   SystemState final_system_state;
   std::vector<DiagnosticSample> diagnostics;
+  std::vector<TrajectorySample> trajectory;
 };
 
 class SimulationRunner {

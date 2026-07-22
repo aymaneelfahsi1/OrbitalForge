@@ -1,0 +1,30 @@
+# OrbitalForge Solar System
+# Units:
+#   Mass      : kg
+#   Position  : m
+#   Velocity  : m/s
+
+name = Solar System
+
+gravitational_constant = 6.67430e-11
+softening = 1.0e7
+
+time_step = 3600
+step_count = 87600
+output_interval = 24
+
+integrator = velocity-verlet
+
+seed = 42
+
+body = Sun,1.98847e30,0,0,0,0,0,0
+
+body = Mercury,3.3011e23,5.790905e10,0,0,0,47870,0
+body = Venus,4.8675e24,1.082090e11,0,0,0,35020,0
+body = Earth,5.9722e24,1.495979e11,0,0,0,29780,0
+body = Mars,6.4171e23,2.279390e11,0,0,0,24077,0
+
+body = Jupiter,1.89813e27,7.785700e11,0,0,0,13070,0
+body = Saturn,5.6834e26,1.433530e12,0,0,0,9680,0
+body = Uranus,8.6810e25,2.872460e12,0,0,0,6800,0
+body = Neptune,1.02413e26,4.495060e12,0,0,0,5430,0

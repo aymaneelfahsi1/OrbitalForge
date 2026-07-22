@@ -32,11 +32,10 @@ namespace {
   return absolute_drift / std::abs(initial_value);
 }
 
-[[nodiscard]] DiagnosticSample
-make_sample(const SystemState &state, std::size_t step, double time_step,
-            double gravitational_constant, double softening,
-            double initial_energy, const Vec3 &initial_momentum,
-            const Vec3 &initial_center_of_mass) {
+[[nodiscard]] DiagnosticSample make_diagnostic_sample(
+    const SystemState &state, std::size_t step, double time_step,
+    double gravitational_constant, double softening, double initial_energy,
+    const Vec3 &initial_momentum, const Vec3 &initial_center_of_mass) {
   const double current_energy =
       total_energy(state, gravitational_constant, softening);
 
@@ -55,6 +54,13 @@ make_sample(const SystemState &state, std::size_t step, double time_step,
       .center_of_mass_drift =
           (current_center_of_mass - initial_center_of_mass).norm(),
   };
+}
+
+[[nodiscard]] TrajectorySample make_trajectory_sample(const SystemState &state,
+                                                      std::size_t step,
+                                                      double simulation_time) {
+  return TrajectorySample{
+      .step = step, .simulation_time = simulation_time, .state = state};
 }
 
 } // namespace
@@ -104,23 +110,26 @@ SimulationResult SimulationRunner::run(const SystemState &initial_state,
 
   const Vec3 initial_center_of_mass = center_of_mass(state);
 
-  std::vector<DiagnosticSample> samples;
-
   const std::size_t interval_samples =
       config.step_count / config.output_interval;
 
   const bool final_step_needs_sample =
       config.step_count % config.output_interval != 0;
 
-  const std::size_t expected_samples =
+  const std::size_t expected_samples_count =
       1 + interval_samples + static_cast<std::size_t>(final_step_needs_sample);
 
-  samples.reserve(expected_samples);
+  std::vector<DiagnosticSample> diagnostics;
+  diagnostics.reserve(expected_samples_count);
 
-  samples.push_back(make_sample(state, 0, config.time_step,
-                                config.gravitational_constant, config.softening,
-                                initial_energy, initial_momentum,
-                                initial_center_of_mass));
+  std::vector<TrajectorySample> trajectory;
+  trajectory.reserve(expected_samples_count);
+
+  diagnostics.push_back(make_diagnostic_sample(
+      state, 0, config.time_step, config.gravitational_constant,
+      config.softening, initial_energy, initial_momentum,
+      initial_center_of_mass));
+  trajectory.push_back(make_trajectory_sample(state, 0, 0.0));
 
   for (std::size_t step = 1; step <= config.step_count; ++step) {
     advance(state, config.gravitational_constant, config.softening,
@@ -130,18 +139,22 @@ SimulationResult SimulationRunner::run(const SystemState &initial_state,
 
     const bool final_step = step == config.step_count;
 
+    const double simulation_time = static_cast<double>(step) * config.time_step;
+
     if (output_step || final_step) {
-      samples.push_back(make_sample(state, step, config.time_step,
-                                    config.gravitational_constant,
-                                    config.softening, initial_energy,
-                                    initial_momentum, initial_center_of_mass));
+      diagnostics.push_back(make_diagnostic_sample(
+          state, step, config.time_step, config.gravitational_constant,
+          config.softening, initial_energy, initial_momentum,
+          initial_center_of_mass));
+
+      trajectory.push_back(
+          make_trajectory_sample(state, step, simulation_time));
     }
   }
 
-  return SimulationResult{
-      .final_system_state = std::move(state),
-      .diagnostics = std::move(samples),
-  };
+  return SimulationResult{.final_system_state = std::move(state),
+                          .diagnostics = std::move(diagnostics),
+                          .trajectory = std::move(trajectory)};
 }
 
 } // namespace orbitalforge::simulation

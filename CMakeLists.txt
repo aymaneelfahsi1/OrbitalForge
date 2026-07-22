@@ -14,6 +14,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_library(
     orbitalforge_core
+    src/app/benchmark.cpp
     src/app/scenario.cpp
     src/math/vec3.cpp
     src/physics/body.cpp
@@ -24,6 +25,9 @@ add_library(
     src/simulation/integrator_kind.cpp
     src/simulation/simulation_runner.cpp
     src/app/scenario_parser.cpp
+    src/io/csv_writer.cpp
+    src/io/metadata_writer.cpp
+    src/io/simulation_output_writer.cpp
 )
 
 target_include_directories(
@@ -109,6 +113,7 @@ if(BUILD_TESTING)
         tests/test_simulation_runner.cpp
         tests/test_scenario.cpp
         tests/test_scenario_parser.cpp
+        tests/test_benchmark.cpp
     )
 
     target_link_libraries(
