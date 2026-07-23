@@ -135,4 +135,13 @@ if(BUILD_TESTING)
 
     include(Catch)
     catch_discover_tests(orbitalforge_tests)
+
+    add_test(
+        NAME orbitalforge_cli_smoke
+        COMMAND
+            ${CMAKE_COMMAND}
+            -DORBITALFORGE_EXECUTABLE=$<TARGET_FILE:orbitalforge>
+            -DORBITALFORGE_TEST_WORK_DIR=${CMAKE_CURRENT_BINARY_DIR}/cli_smoke
+            -P ${CMAKE_CURRENT_SOURCE_DIR}/tests/orbitalforge_cli_smoke.cmake
+    )
 endif()

@@ -1,6 +1,5 @@
 #include <array>
 #include <chrono>
-#include <cmath>
 #include <exception>
 #include <filesystem>
 #include <iomanip>
@@ -21,10 +20,10 @@
 namespace {
 
 using orbitalforge::app::BenchmarkResult;
-using orbitalforge::app::parse_scenario_file;
 using orbitalforge::app::parse_benchmark_body_counts;
-using orbitalforge::app::run_benchmark;
+using orbitalforge::app::parse_scenario_file;
 using orbitalforge::app::ParseError;
+using orbitalforge::app::run_benchmark;
 using orbitalforge::app::Scenario;
 using orbitalforge::app::ScenarioParseResult;
 using orbitalforge::io::write_simulation_outputs;
@@ -37,7 +36,6 @@ using orbitalforge::simulation::SimulationRunner;
 
 constexpr int success_exit_code = 0;
 constexpr int usage_error_exit_code = 1;
-constexpr int scenario_error_exit_code = 2;
 constexpr int simulation_error_exit_code = 3;
 
 struct SimulateArguments {
