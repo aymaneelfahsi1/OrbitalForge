@@ -28,6 +28,7 @@ add_library(
     src/io/csv_writer.cpp
     src/io/metadata_writer.cpp
     src/io/simulation_output_writer.cpp
+    src/statistics/sample_statistics.cpp
 )
 
 target_include_directories(
@@ -114,6 +115,7 @@ if(BUILD_TESTING)
         tests/test_scenario.cpp
         tests/test_scenario_parser.cpp
         tests/test_benchmark.cpp
+        tests/test_sample_statistics.cpp
     )
 
     target_link_libraries(
