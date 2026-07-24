@@ -1,5 +1,6 @@
 #include <array>
 #include <chrono>
+#include <cstdint>
 #include <exception>
 #include <filesystem>
 #include <iomanip>
@@ -19,13 +20,17 @@
 
 namespace {
 
-using orbitalforge::app::BenchmarkResult;
 using orbitalforge::app::parse_benchmark_body_counts;
+using orbitalforge::app::benchmark_all_integrators;
+using orbitalforge::app::IntegratorBenchmarkResult;
+using orbitalforge::app::BenchmarkSortKind;
 using orbitalforge::app::parse_scenario_file;
 using orbitalforge::app::ParseError;
-using orbitalforge::app::run_benchmark;
 using orbitalforge::app::Scenario;
 using orbitalforge::app::ScenarioParseResult;
+using orbitalforge::app::sort_integrator_results;
+using orbitalforge::app::parse_benchmark_sort_kind;
+using orbitalforge::app::apply_benchmark_sort;
 using orbitalforge::io::write_simulation_outputs;
 using orbitalforge::simulation::DiagnosticSample;
 using orbitalforge::simulation::integrator_name;
@@ -37,6 +42,9 @@ using orbitalforge::simulation::SimulationRunner;
 constexpr int success_exit_code = 0;
 constexpr int usage_error_exit_code = 1;
 constexpr int simulation_error_exit_code = 3;
+
+constexpr std::size_t default_warmup_count = 2;
+constexpr std::size_t default_repetition_count = 5;
 
 struct SimulateArguments {
   std::filesystem::path scenario_path;
@@ -55,6 +63,7 @@ struct CompareResult {
 struct BenchmarkArguments {
   std::filesystem::path scenario_path;
   std::vector<std::size_t> body_counts;
+  BenchmarkSortKind sort_kind;
 };
 
 constexpr std::array integrators{
@@ -69,7 +78,8 @@ void print_usage(std::string_view executable_name) {
             << " simulate <scenario.orbit> [--output <directory>]\n"
             << "  " << executable_name << " compare <scenario.orbit>\n"
             << "  " << executable_name
-            << " benchmark <scenario.orbit> --sizes <list>\n\n"
+            << " benchmark <scenario.orbit> --sizes <list>"
+               " [--sort <sort|stable-sort|partial-sort|nth-element|partition>]\n\n"
             << "Examples:\n"
             << "  " << executable_name << " simulate scenarios/two_body.orbit\n"
             << "  " << executable_name
@@ -339,7 +349,7 @@ run_compare_command(const std::filesystem::path &scenario_path) {
 
 [[nodiscard]] BenchmarkArguments parse_benchmark_arguments(int argc,
                                                            char *argv[]) {
-  if (argc != 5) {
+  if (argc != 5 && argc != 7) {
     throw std::invalid_argument{
         "benchmark expects a scenario path and --sizes list"};
   }
@@ -351,41 +361,38 @@ run_compare_command(const std::filesystem::path &scenario_path) {
                                 std::string{option}};
   }
 
-  return BenchmarkArguments{
+  BenchmarkArguments arguments{
       .scenario_path = argv[2],
       .body_counts = parse_benchmark_body_counts(argv[4]),
+      .sort_kind = BenchmarkSortKind::sort,
   };
+
+  if (argc == 7) {
+    if (std::string_view{argv[5]} != "--sort") {
+      throw std::invalid_argument{"expected --sort after --sizes"};
+    }
+    arguments.sort_kind = parse_benchmark_sort_kind(argv[6]);
+  }
+
+  return arguments;
 }
 
 void print_benchmark_header(const Scenario &scenario) {
   std::cout << "OrbitalForge benchmark\n"
             << "======================\n\n"
             << "Scenario template: " << scenario.name << '\n'
-            << "Integrator:        " << integrator_name(scenario.integrator)
-            << '\n'
-            << "Steps:             " << scenario.step_count << "\n\n"
+            << "Integrators:       all\n"
+            << "Steps:             " << scenario.step_count << '\n'
+            << "Warmups:           " << default_warmup_count << '\n'
+            << "Repetitions:       " << default_repetition_count << "\n\n";
 
-            << std::right << std::setw(14) << "Bodies"
+  std::cout << std::right << std::setw(10) << "Bodies" << std::setw(14)
+            << "Min (ms)" << std::setw(14) << "Median" << std::setw(14)
+            << "Mean" << std::setw(14) << "Stddev" << std::setw(14) << "P95"
+            << std::setw(22) << "Milliseconds/step"
+            << std::setw(20) << "Checksum" << '\n';
 
-            << std::setw(22) << "Total time (ms)"
-
-            << std::setw(24) << "Milliseconds/step"
-
-            << '\n';
-
-  std::cout << std::string(60, '-') << '\n';
-}
-
-void print_benchmark_result(const BenchmarkResult &result) {
-  std::cout << std::right << std::setw(14) << result.body_count
-
-            << std::fixed << std::setprecision(3)
-
-            << std::setw(22) << result.elapsed_milliseconds
-
-            << std::setw(24) << result.milliseconds_per_step
-
-            << '\n';
+  std::cout << std::string(100, '-') << '\n';
 }
 
 [[nodiscard]] int run_benchmark_command(const BenchmarkArguments &arguments) {
@@ -394,9 +401,24 @@ void print_benchmark_result(const BenchmarkResult &result) {
   print_benchmark_header(scenario);
 
   for (const std::size_t body_count : arguments.body_counts) {
-    const BenchmarkResult result = run_benchmark(scenario, body_count);
+    std::vector<IntegratorBenchmarkResult> results = benchmark_all_integrators(
+        scenario, body_count, default_warmup_count, default_repetition_count);
 
-    print_benchmark_result(result);
+    apply_benchmark_sort(results, arguments.sort_kind);
+
+    std::cout << "\nBodies: " << body_count << '\n';
+
+    for (const IntegratorBenchmarkResult &result : results) {
+      std::cout << std::left << std::setw(24)
+                << integrator_name(result.integrator_kind) << std::right
+                << std::fixed << std::setprecision(3) << std::setw(14)
+                << result.timing.mean << std::setw(14) << result.timing.p95
+                << std::setw(22)
+                << result.timing.mean /
+                       static_cast<double>(result.step_count)
+                << std::setw(20) << result.checksum
+                << '\n';
+    }
   }
 
   return success_exit_code;

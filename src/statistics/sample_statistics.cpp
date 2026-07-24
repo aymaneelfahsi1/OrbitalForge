@@ -12,7 +12,7 @@ namespace orbitalforge::statistics {
 namespace {
 
 [[nodiscard]] double calculate_mean(const std::vector<double> &samples) {
-  const double total = std::accumulate(samples.begin(), samples.end(), 0);
+  const double total = std::accumulate(samples.begin(), samples.end(), 0.0);
 
   return total / static_cast<double>(samples.size());
 }

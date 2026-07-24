@@ -1,10 +1,13 @@
 #include "orbitalforge/app/benchmark.hpp"
 
+#include <algorithm>
 #include <charconv>
 #include <chrono>
 #include <cmath>
 #include <cstdint>
 #include <optional>
+#include <string_view>
+#include <utility>
 #include <stdexcept>
 #include <string>
 #include <system_error>
@@ -36,18 +39,6 @@ using simulation::SimulationRunner;
   }
 
   return value;
-}
-
-[[nodiscard]] SimulationConfig
-make_simulation_config(const Scenario &scenario) {
-  return SimulationConfig{
-      .gravitational_constant = scenario.gravitational_constant,
-      .softening = scenario.softening,
-      .time_step = scenario.time_step,
-      .step_count = scenario.step_count,
-      .output_interval = scenario.output_interval,
-      .integrator = scenario.integrator,
-  };
 }
 
 [[nodiscard]] SystemState make_benchmark_system(const Scenario &scenario,
@@ -161,30 +152,6 @@ void validate_benchmark_config(const BenchmarkConfig &config) {
   }
 }
 
-BenchmarkResult run_benchmark(const Scenario &scenario,
-                              std::size_t body_count) {
-  const SystemState initial_state = make_benchmark_system(scenario, body_count);
-  SimulationConfig config = make_simulation_config(scenario);
-  config.output_interval = config.step_count == 0 ? 1 : config.step_count;
-
-  const SimulationRunner runner;
-  const auto start_time = std::chrono::steady_clock::now();
-  const auto result = runner.run(initial_state, config);
-  const auto end_time = std::chrono::steady_clock::now();
-  const std::chrono::duration<double, std::milli> elapsed_time =
-      end_time - start_time;
-  const double milliseconds_per_step =
-      config.step_count == 0
-          ? 0.0
-          : elapsed_time.count() / static_cast<double>(config.step_count);
-
-  return BenchmarkResult{
-      .body_count = result.final_system_state.bodies.size(),
-      .elapsed_milliseconds = elapsed_time.count(),
-      .milliseconds_per_step = milliseconds_per_step,
-  };
-}
-
 BenchmarkSample run_benchmark_sample(const Scenario &scenario,
                                      const BenchmarkConfig &config) {
 
@@ -241,6 +208,187 @@ BenchmarkBatch run_benchmark_batch(const Scenario &scenario,
 
   return collect_benchmark_samples(config.warmup_count, config.repetition_count,
                                    operation);
+}
+
+statistics::SampleStatistics
+summarize_benchmark_batch(const BenchmarkBatch &batch) {
+  if (batch.samples.empty()) {
+    throw std::invalid_argument{
+        "cannot summarize benchmark batch without samples"};
+  }
+
+  std::vector<double> elapsed_samples;
+  elapsed_samples.reserve(batch.samples.size());
+
+  std::transform(batch.samples.begin(), batch.samples.end(),
+                 std::back_inserter(elapsed_samples),
+                 [](const BenchmarkSample &sample) {
+                   return sample.elapsed_milliseconds;
+                 });
+
+  return statistics::summarize_samples(elapsed_samples);
+}
+
+std::vector<IntegratorBenchmarkResult>
+benchmark_all_integrators(const Scenario &scenario, std::size_t body_count,
+                          std::size_t warmup_count,
+                          std::size_t repetition_count) {
+  constexpr std::array integrators{
+      simulation::IntegratorKind::explicit_euler,
+      simulation::IntegratorKind::semi_implicit_euler,
+      simulation::IntegratorKind::velocity_verlet,
+      simulation::IntegratorKind::leapfrog,
+      simulation::IntegratorKind::runge_kutta_4,
+  };
+
+  std::vector<IntegratorBenchmarkResult> results;
+  results.reserve(integrators.size());
+
+  for (const simulation::IntegratorKind integrator_kind : integrators) {
+    const BenchmarkConfig config{
+        .warmup_count = warmup_count,
+        .repetition_count = repetition_count,
+        .body_count = body_count,
+        .step_count = scenario.step_count,
+        .integrator_kind = integrator_kind,
+    };
+
+    const BenchmarkBatch batch = run_benchmark_batch(scenario, config);
+
+    results.push_back(IntegratorBenchmarkResult{
+        .integrator_kind = integrator_kind,
+        .body_count = body_count,
+        .step_count = scenario.step_count,
+        .timing = summarize_benchmark_batch(batch),
+        .checksum = batch.checksum,
+    });
+  }
+
+  return results;
+}
+
+void sort_integrator_results(std::vector<IntegratorBenchmarkResult> &results) {
+  std::sort(results.begin(), results.end(),
+            [](const IntegratorBenchmarkResult &left,
+               const IntegratorBenchmarkResult &right) {
+              if (left.timing.mean != right.timing.mean) {
+                return left.timing.mean < right.timing.mean;
+              }
+
+              return static_cast<int>(left.integrator_kind) <
+                     static_cast<int>(right.integrator_kind);
+            });
+}
+
+void stable_sort_integrator_results(
+    std::vector<IntegratorBenchmarkResult> &results) {
+  std::stable_sort(
+      results.begin(), results.end(),
+      [](const IntegratorBenchmarkResult &left,
+         const IntegratorBenchmarkResult &right) {
+        return left.timing.mean < right.timing.mean;
+      });
+}
+
+void partial_sort_integrator_results(
+    std::vector<IntegratorBenchmarkResult> &results, std::size_t count) {
+  const std::size_t middle = std::min(count, results.size());
+  std::partial_sort(
+      results.begin(), results.begin() + static_cast<std::ptrdiff_t>(middle),
+      results.end(), [](const IntegratorBenchmarkResult &left,
+                        const IntegratorBenchmarkResult &right) {
+        return left.timing.mean < right.timing.mean;
+      });
+}
+
+void nth_element_integrator_results(
+    std::vector<IntegratorBenchmarkResult> &results, std::size_t index) {
+  if (index >= results.size()) {
+    throw std::out_of_range{"nth element index is outside the results"};
+  }
+
+  std::nth_element(
+      results.begin(), results.begin() + static_cast<std::ptrdiff_t>(index),
+      results.end(), [](const IntegratorBenchmarkResult &left,
+                        const IntegratorBenchmarkResult &right) {
+        return left.timing.mean < right.timing.mean;
+      });
+}
+
+std::pair<std::size_t, std::size_t> find_minmax_integrator_results(
+    const std::vector<IntegratorBenchmarkResult> &results) {
+  if (results.empty()) {
+    throw std::invalid_argument{"cannot find min and max of empty results"};
+  }
+
+  const auto [minimum, maximum] = std::minmax_element(
+      results.begin(), results.end(),
+      [](const IntegratorBenchmarkResult &left,
+         const IntegratorBenchmarkResult &right) {
+        return left.timing.mean < right.timing.mean;
+      });
+
+  return {
+      static_cast<std::size_t>(std::distance(results.begin(), minimum)),
+      static_cast<std::size_t>(std::distance(results.begin(), maximum)),
+  };
+}
+
+std::optional<std::size_t> lower_bound_integrator_results(
+    const std::vector<IntegratorBenchmarkResult> &results, double mean) {
+  const auto position = std::lower_bound(
+      results.begin(), results.end(), mean,
+      [](const IntegratorBenchmarkResult &result, double value) {
+        return result.timing.mean < value;
+      });
+
+  if (position == results.end()) {
+    return std::nullopt;
+  }
+
+  return static_cast<std::size_t>(std::distance(results.begin(), position));
+}
+
+std::size_t partition_integrator_results(
+    std::vector<IntegratorBenchmarkResult> &results, double maximum_mean) {
+  const auto boundary = std::partition(
+      results.begin(), results.end(),
+      [maximum_mean](const IntegratorBenchmarkResult &result) {
+        return result.timing.mean <= maximum_mean;
+      });
+
+  return static_cast<std::size_t>(std::distance(results.begin(), boundary));
+}
+
+BenchmarkSortKind parse_benchmark_sort_kind(std::string_view text) {
+  if (text == "sort") return BenchmarkSortKind::sort;
+  if (text == "stable-sort") return BenchmarkSortKind::stable_sort;
+  if (text == "partial-sort") return BenchmarkSortKind::partial_sort;
+  if (text == "nth-element") return BenchmarkSortKind::nth_element;
+  if (text == "partition") return BenchmarkSortKind::partition;
+  throw std::invalid_argument{"unknown benchmark sort kind"};
+}
+
+void apply_benchmark_sort(std::vector<IntegratorBenchmarkResult> &results,
+                          BenchmarkSortKind kind) {
+  switch (kind) {
+  case BenchmarkSortKind::sort:
+    sort_integrator_results(results);
+    break;
+  case BenchmarkSortKind::stable_sort:
+    stable_sort_integrator_results(results);
+    break;
+  case BenchmarkSortKind::partial_sort:
+    partial_sort_integrator_results(results, results.size());
+    break;
+  case BenchmarkSortKind::nth_element:
+    nth_element_integrator_results(results, results.size() / 2);
+    break;
+  case BenchmarkSortKind::partition:
+    static_cast<void>(
+        partition_integrator_results(results, results.front().timing.mean));
+    break;
+  }
 }
 
 } // namespace orbitalforge::app
